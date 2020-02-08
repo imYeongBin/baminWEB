@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ppp.bamin.DAO.MemberMapper">
+    
+    <resultMap id="selectMap" type="java.util.Map">
+    	<id property="memberNo" column="MEMBER_NO"/>
+    	<id property="memberNm" column="MEMBER_NM"/>
+    	<id property="attCnt" column="ATT_CNT"/>
+    	<id property="telNo" column="TEL_NO"/>
+    	<id property="lctn" column="LCTN"/>
+    	<id property="gndr" column="GNDR"/>
+    	<id property="age" column="AGE"/>
+    	<id property="feeBalance" column="FEE_BALANCE"/>    
+    </resultMap>
+    
+    
+    <select id="memberList" resultMap="selectMap">
+   	SELECT
+   	MEMBERNO AS MEMBER_NO
+   	,MEMBERNM AS MEMBER_NM
+   	,ATTCNT AS ATT_CNT
+   	,TELNO AS TEL_NO
+   	,LCTN AS LCTN
+   	,GNDR AS GNDR
+   	,AGE AS AGE
+   	,FEEBALANCE AS FEE_BALANCE
+   	FROM MEMBER
+    </select>
+	
+</mapper>

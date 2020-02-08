@@ -1,18 +1,18 @@
 package com.ppp.bamin.Controller;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ppp.bamin.BC.Member;
-import com.ppp.bamin.BC.Impl.MemberImpl;
+import com.ppp.bamin.DAO.MemberMapper;
 
 @Controller
 public class CommController {
-
-	Member memberList;
+	
+	@Autowired
+	private SqlSession sqlSession;
 	
 	
 	@RequestMapping("/main.do")
@@ -23,26 +23,14 @@ public class CommController {
 	
 	@RequestMapping("/memberList.do")
 	public String memberList(Model model) {
-		System.out.println("memberList 호출");
-		
-		memberList = new MemberImpl();
-		memberList.memberList(model);
-		
+		System.out.println("1");
+		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+		System.out.println("2");
+		model.addAttribute("memberList", mapper.memberList());
+		System.out.println("3");
 		return "member/memberList";
-	}
-	
-	
-	@RequestMapping("memberReg")
-	public String memberReg(HttpServletRequest request, Model model) {
-		System.out.println("memberReg 호출");
-		
-		model.addAttribute("request",request);
-		
-		
-		return "member/memberReg";
-	}
-	
-	
+	}	
+
 	
 	
 }
