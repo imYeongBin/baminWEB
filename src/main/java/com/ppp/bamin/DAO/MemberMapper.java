@@ -8,5 +8,5 @@ public interface MemberMapper {
 	
 	public ArrayList<Map<String,Object>> memberList();
 	
-	
+	public void memberReg(Map<String, Object> inDsMap);
 }

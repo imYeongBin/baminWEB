@@ -28,5 +28,11 @@
    	,FEEBALANCE AS FEE_BALANCE
    	FROM MEMBER
     </select>
+    
+    <insert id="memberReg">
+    INSERT INTO MEMBER VALUES
+    (#{memberNo},#{memberNm},#{attCnt},#{telNo},#{lctn},#{gndr},#{age},#{feeBalance});
+    
+    </insert>
 	
 </mapper>
