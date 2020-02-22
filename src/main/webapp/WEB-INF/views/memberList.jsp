@@ -26,7 +26,7 @@ String defaultLayout = getServletPath.replace("/", "").replace(".do", "");
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body> 
 <div ng-app="myApp" ng-controller="memberList">
 	
 	<script type="text/javascript">
