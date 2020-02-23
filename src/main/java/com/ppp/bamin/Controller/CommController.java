@@ -16,7 +16,7 @@ public class CommController {
 	
 	@Autowired
 	private SqlSession sqlSession   ;
-	 
+	 //gram
 	 
 //	@RequestMapping("/*")  
 //	public String main(HttpServletRequest request, Model model) {
