@@ -1,0 +1,263 @@
+@charset "utf-8";
+
+/* font */
+@font-face {
+  font-family: 'Roboto B';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/common/font/Roboto-Bold-webfont.eot');
+  src: url('/common/font/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('/common/font/Roboto-Bold-webfont.woff') format('woff'), url('/common/font/Roboto-Bold-webfont.ttf') format('truetype');
+}
+
+/* reset */
+html, body {height:100%;}
+*{margin:0;padding:0;letter-spacing:0;font-family:"RixSGo M","Malgun Gothic","Dotum",sans-serif;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,
+article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0}
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block}
+body{font-family:"RixSGo M","Malgun Gothic","Dotum",sans-serif;letter-spacing:0;font-size:16px;line-height:24px;color:#333;background-color:#fff;overflow-y:scroll}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal !important;line-height:21px;font-family:"RixSGo B";}
+img{vertical-align:top;border:0}
+button,input,select,textarea{margin:0;font-size:100%;vertical-align:middle}
+fieldset{border:0}
+legend,caption{/*visibility:hidden;*/width:0;height:0;font-size:0;line-height:0}
+address,cite,code,dfn,em,var{font-style:normal;font-weight:normal}
+strong{font-style:normal;font-family:"RixSGo B";font-weight:normal;}
+ol,ul{list-style:none}
+table{border-collapse:collapse;border-spacing:0;width:100%;}
+caption,hr,legend{width:0px;height:0px;font-size:1px;text-indent:-9999em;line-height:0}
+th{text-align:left;font-size:14px;color:#333;line-height:18px;font-family:"RixSGo EB","Dotum",sans-serif;letter-spacing:0;vertical-align:top;font-weight:normal;}
+th label{font-family:"RixSGo EB","Dotum",sans-serif;}
+td{text-align:left;color:#333;line-height:22px;vertical-align:top}
+dt {font-weight:normal;}
+label em{color:#929292;}
+
+/* form controll */
+input[type=checkbox],
+input[type=radio]{width:13px;height:13px;margin:2px 0;padding:0;vertical-align:middle}
+input[type=text],
+input[type=password] {padding:1px 0 1px 0;text-indent:0;line-height:20px;height:20px;border:0;color:#333!important;background:transparent;width:100%;font-family:"RixSGo EB","Dotum",sans-serif;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;}
+select {padding:5px 0;border:0;font-family:"RixSGo M","Malgun Gothic","Dotum",sans-serif;color:#333;}
+::-webkit-input-placeholder { color:#929292 !important;font-family:"RixSGo M","Malgun Gothic","Dotum",sans-serif !important; }
+::-moz-placeholder {color:#929292 !important;font-family:"RixSGo M","Malgun Gothic","Dotum",sans-serif !important; } /* firefox 19+ */
+:-ms-input-placeholder {color:#929292 !important;font-family:"RixSGo M","Malgun Gothic","Dotum",sans-serif !important; } /* ie */
+input:-moz-placeholder {color:#929292 !important;font-family:"RixSGo M","Malgun Gothic","Dotum",sans-serif !important; }
+input[type=text]:-ms-input-placeholder {color:#929292 !important;font-family:"RixSGo M","Malgun Gothic","Dotum",sans-serif !important; } /* ie */
+input[type=password]:-ms-input-placeholder {color:#929292 !important;font-family:"RixSGo M","Malgun Gothic","Dotum",sans-serif !important; } /* ie */
+.placeholdersjs{color:#929292 !important;font-family:"RixSGo M","Malgun Gothic","Dotum",sans-serif !important;}
+textarea{background:#fff;padding:1px 0 1px 0;text-indent:0;width:100%;height:18px;line-height:18px;color:#333;border:0;font-family:"RixSGo EB","Dotum",sans-serif;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;resize:none;overflow:hidden !important;}
+/*textarea, input, *:focus {outline: none !important; }*/
+textarea:focus, input:focus {}
+input:-webkit-autofill {-webkit-box-shadow:0 0 0 500px #fff inset;}
+
+
+
+/* skipnav */
+.skipnav{position:absolute;top:0;left:0;width:100%;height:0;line-height:0;}
+.skipnav a{display:block;overflow:hidden;height:1px;width:1px;padding:0;font-size:0;line-height:0;margin:0 -1px -1px 0;}
+.skipnav a:hover,
+.skipnav a:active,
+.skipnav a:focus{position:absolute;top:0;left:0;z-index:50;width:100%;height:40px;line-height:100%;margin:0;padding:10px 0 5px 0;border:1px solid #000;background:#333;font-size:16px;color:#fff;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box}
+
+/* common */
+.clfix{*zoom:1}
+.clfix:before,.clfix:after{display:table;line-height:0;content:""}
+.clfix:after{clear:both}
+.hidden{visibility:hidden;}
+.ov_hidden {overflow:hidden !important;}
+.ov_auto {overflow-y:auto !important;overflow-x:hidden;}
+.hide_txt{display:inline-block;overflow:hidden;position:absolute;width:1px;height:1px;font-size:1px;line-height:0;clip:rect(1px 1px 1px 1px)}
+
+.vat {vertical-align:top !important;}
+.vam {vertical-align:middle !important;}
+.fl {float:left !important}
+.fr {float:right !important}
+.fn {float:none !important}
+.txt_l {text-align:left !important;}
+.txt_r {text-align:right !important;}
+.txt_c {text-align:center !important;}
+.fw_b {font-weight:700 !important;}
+.fw_b1{font-family: "RixSGo B";}
+.txt_s19 {font-size:19px !important;}
+.txt_s19b {font-size:19px !important;font-family:"RixSGo B" !important}
+.txt_s16 {font-size:16px !important;}
+
+.ltr4 {letter-spacing:-4px !important;}
+
+.highlight {background:yellow;}
+.keyword {}
+.bdt0{border-top:0 !important}
+.hgt205{height: 205px !important}
+
+/* link */
+a,a:link,a:visited,a:active,a:hover,a:focus{color:#333;font-size:100%;text-decoration:none;}
+a:hover {text-decoration:underline;color:#00819a;}
+.focus{outline:1px solid #9CBEF5}
+
+a.link {text-decoration:underline;}
+a.link span {text-decoration:underline;}
+a.link01 {text-decoration:underline;}
+a.link02 {text-decoration:underline;color:#425e77 !important;font-family:"RixSGo B";}
+a.link03 {text-decoration:underline;color:#a16a38 !important;font-family:"RixSGo B";}
+a.link04 {text-decoration:underline;color:#90494c !important;font-family:"RixSGo B";}
+a.link:hover,
+a.link02:hover,
+a.link03:hover,
+a.link04:hover {}
+a.link_prd {line-height:20px;display: inline-block;}/* 2016-02-02 WAC */
+
+a.link_prd em {display:block;}
+a.link_prd span {display:block;text-decoration:underline;font-size:14px;color:#777;}
+a.link_prd:hover {text-decoration:none !important;}
+a.link_prd:hover span {color:#00819a;}
+
+/* space */
+.mt0 {margin-top:0 !important;}
+.mt5 {margin-top:5px !important;}
+.mt10 {margin-top:10px !important;}
+.mt13 {margin-top:13px !important;}
+.mt15 {margin-top:15px !important;}
+.mt20 {margin-top:20px !important;}
+.mt30 {margin-top:30px !important;}
+.mt40 {margin-top:40px !important;}
+.mt50 {margin-top:50px !important;}
+.mt60 {margin-top:60px !important;}
+.mt80 {margin-top:80px !important;}
+.mt100 {margin-top:100px !important;}
+.mt-40{margin-top: -40px !important;}
+
+.mb0 {margin-bottom:0 !important;}
+.mb5 {margin-bottom:5px !important;}
+.mb10 {margin-bottom:10px !important;}
+.mb15 {margin-bottom:15px !important;}
+.mb20 {margin-bottom:20px !important;}
+.mb30 {margin-bottom:30px !important;}
+.mb40 {margin-bottom:40px !important;}
+.mb50 {margin-bottom:50px !important;}
+.mb60 {margin-bottom:60px !important;}
+.mb100 {margin-bottom:100px !important;}
+
+.ml0 {margin-left:0 !important;}
+.ml5 {margin-left:5px !important;}
+.ml10 {margin-left:10px !important;}
+.ml20 {margin-left:20px !important;}
+.ml30 {margin-left:30px !important;}
+.ml40 {margin-left:40px !important;}
+.ml50 {margin-left:50px !important;}
+.ml60 {margin-left:60px !important;}
+.ml70 {margin-left:70px !important;}
+
+.mr0 {margin-right:0 !important;}
+.mr5 {margin-right:5px !important;}
+.mr10 {margin-right:10px !important;}
+.mr20 {margin-right:20px !important;}
+.mr21 {margin-right:21px !important;}
+.mr30 {margin-right:30px !important;}
+.mr37 {margin-right:37px !important;}
+.mr44 {margin-right:44px !important;}
+.mr56 {margin-right:56px !important;}
+
+.pt0 {padding-top:0 !important;}
+.pt10 {padding-top:10px !important;}
+.pt20 {padding-top:20px !important;}
+.pt25 {padding-top:25px !important;}
+.pt32 {padding-top:32px !important;}
+.pb0 {padding-bottom:0 !important;}
+.pb5 {padding-bottom:5px !important;}
+.pb10 {padding-bottom:10px !important;}
+.pb20 {padding-bottom:20px !important;}
+.pb30 {padding-bottom:30px !important;}
+.pb40 {padding-bottom:40px !important;}
+.pb50 {padding-bottom:50px !important;}
+.pb60 {padding-bottom:60px !important;}
+
+.pr0{padding-right:0 !important}
+
+.plr15{padding-left:15px !important;padding-right:15px !important;}
+
+/* 간격 */
+.space {margin-top:40px !important;} /* 기본 */
+.space_etc {margin-top:50px !important;} /* 공시실 기본 */
+.space_mid {margin-top:14px !important;} /* 공시실 타이틀+타이틀 */
+.space_bm {margin-top:6px !important;} /* 공시실 타이틀+타이틀+타이틀 */
+
+.space60 {margin-top:60px !important;}
+.space50 {margin-top:50px !important;}
+.space40 {margin-top:40px !important;}
+.space30 {margin-top:30px !important;}
+.space20 {margin-top:20px !important;}
+.space10 {margin-top:10px !important;}
+
+/* top button *//* 20160316 */
+.topbtn{position:fixed;left:50%;bottom:180px;margin-left:655px;background:#f8f8f8;z-index:1;display:none}/* 180329 */ /* 180406수정 */
+.topbtn a{display:block;padding:25px 0 10px;width:44px;height:12px;font-size:12px;line-height:12px;color:#555555;text-align:center;background:url("../images/common/bg_topbtn.png") no-repeat 14px 10px}
+.topbtn a:hover{text-decoration:none}
+@media screen and (max-width: 1300px) {
+   .topbtn{left: auto;right: 10px;margin-left:0;}
+
+}
+
+
+/* parking page 20160316 */
+#parking_page {padding:100px 0;}
+.parking_page_cont {width:1200px;margin:0 auto;text-align:center;}
+.parking_page_cont p {margin:0 0 25px 0;color:#333333;font-size:28px;line-height:43px;}
+.parking_page_cont .txt01 {font-family:"RixSGo B";}
+.parking_page_cont .txt02 {color:#555;}
+.parking_page_cont p span {font-size:26px;}
+.ico_parking01 {display:block;width:256px;height:200px;margin:0 auto 35px;background:url('/default/images/common/ico_parking01.png') no-repeat 0 0;}
+
+
+/* 170113 완전판매모니터링 수정 */
+.ts_monitor{}
+.ts_monitor dl{background: url(/default/images/menual/ico_ts_monitor.jpg) no-repeat 53px 25px;padding: 25px 0 27px 159px !important;border: 1px solid #e7e7e7;border-bottom: none;margin-top:26px}
+.ts_monitor dl.no_exp{border-bottom: 1px solid #e7e7e7;}/* 하단에 설명 부분 없을때 */
+.ts_monitor_exp{padding:0 33px 25px 33px;border: 1px solid #e7e7e7;border-top: none;}
+.ts_monitor_exp>ul{border-top:1px dashed #e7e7e7;padding-top:23px }
+.ts_monitor_exp>ul li{background: url(../images/common/bg_snb_2dep01.gif) no-repeat 0 12px; padding: 3px 0 3px 7px;color:#333;letter-spacing:-0.03em}
+.ts_monitor_exp>ul li>ul li{background: url(../images/product/bu_dash.png) no-repeat 0 10px; padding: 0 0 0  8px;color:#333;font-size:14px;margin-top:4px}
+.ts_monitor_exp>ul li>ul li em{font-family: "RixSGo EB";color:#000}
+
+/* 다이렉트 장기보험 중단안내 */
+.stopinfo_pop{width:540px;font-size:14px;}
+.stopinfo_pop .pos_rel{padding-bottom:30px;background:url("/default/images/product/bg_mond.png") no-repeat 397px 154px;}
+.btn_area .btn.btn_h38_bk01{height:38px;line-height:38px;border:1px solid #475069;background:#475069;color:#fff;font-size:16px;}
+.btn_area .btn.btn_h38_bk01 em {display:inline-block;margin-left:8px;width:6px;height:10px;background:url("/default/images/product/bg_link_arrow.png") no-repeat 0 0}
+
+ul.dot_list01 li{background: url(../images/common/bg_snb_2dep01.gif) no-repeat 0 9px; padding-left:8px;}
+
+
+input.disabled{color:#999 !important}
+input.disabled::-webkit-input-placeholder {color:#b2b2b2}
+input.disabled:-moz-placeholder {color:#b2b2b2}
+input.disabled::-moz-placeholder {color:#b2b2b2}
+input.disabled:-ms-input-placeholder {color:#b2b2b2}
+.bx_foc input.disabled ~ .foc{content:'';display:block;height:1px;background:#aaa;position:absolute;bottom:-1px;left:0;z-index:10}
+
+/*2018-01-09 시스템 파킹페이지(전체화면 블락)*/
+.sys_header{position:relative;width:820px;height:114px;margin:0 auto;border-bottom:0}
+.sys_header h1{position:absolute;left:0;top:35px}
+.sys_header h1 a{display:block}
+.sys_parking{text-align:center;padding:0 0 120px 0}
+.sys_parking .ico_error{position:absolute;top:0;left:50%;width:249px;height:201px;margin-left:-100px;background:url(../images/common/img_main_sysparking.png) no-repeat}
+.sys_parking .sys_content{position:relative;padding:240px 0 0 0}
+.sys_parking .sys_content .txtl{margin:0 0 13px 0;color:#000;font-family:"RixSGo B";font-size:26px;line-height:36px}
+.sys_parking .sys_content .txts{margin:0 0 41px 0;font-family:"RixSGo B";font-size:22px;line-height:32px;color:#666}
+.sys_notice{overflow:hidden;box-sizing:border-box;width:820px;margin:0 auto;padding:37px 40px;background:#efefef}
+.sys_notice dl{float:left;overflow:hidden;width:100%;margin:0 0 21px 0;text-align:left}
+.sys_notice dl dt{float:left;width:95px;font-size:17px;font-family:"RixSGo B";color:#000}
+.sys_notice dl dd{float:left;width:630px;color:#666;font-size:17px;line-height:24px;font-family:"RixSGo M";background:#efefef}
+.sys_notice .txt_noti{float:left;text-align:left;font-size:16px;color:#888;padding-left:10px;background:url("../images/common/bu_star01.png") no-repeat 0 7px}
+
+/* 180419 스마트오퍼 lnb my account */
+.lnb_smartOffer_banner{position:relative;vertical-align: top; padding: 14px 19px 14px 10px; display: inline-block; margin: 10px 0 10px -10px; box-sizing: border-box; border: 1px solid #999; width: 210px;background: url(/default/images/common/ico_menu_arrow.gif) no-repeat 195px 50%;}
+.lnb_smartOffer_banner:hover,.lnb_smartOffer_banner:focus{color:#333}
+.lnb_smartOffer_banner img{position: absolute; top: 50%; margin-top: -10px;}
+.lnb_smartOffer_banner span{line-height:20px;display: inline-block;padding-left: 40px}
+.lnb_smartOffer_banner span.event{padding-left: 52px;}
+
+/* 장기TM 상품페이지 하단 베스트셀러 공통노출 작업 관련 상품리스트 확인 요청 : 180422  */
+.uiTm_bestSellerCon{margin:102px 0;text-align: center;}
+.uiTm_bestSellerCon h3{padding:0;margin-bottom: 22px;} /* 190124수정: 기존 margin-bottom: 52px; */
+.uiTm_bestSellerCon li{float: left;width:287px}
+.uiTm_bestSellerCon li + li{margin-left:19px}
