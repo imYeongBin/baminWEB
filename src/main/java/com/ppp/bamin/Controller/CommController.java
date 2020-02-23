@@ -16,8 +16,8 @@ public class CommController {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	
-	
+	 
+	 
 //	@RequestMapping("/*")
 //	public String main(HttpServletRequest request, Model model) {
 //		
