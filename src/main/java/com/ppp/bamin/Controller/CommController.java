@@ -15,10 +15,10 @@ import com.sun.xml.internal.ws.client.ResponseContext;
 public class CommController {
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSession sqlSession   ;
 	 
 	 
-//	@RequestMapping("/*")
+//	@RequestMapping("/*")  
 //	public String main(HttpServletRequest request, Model model) {
 //		
 //		//String getRequestURI = request.getRequestURI();		//  /namin/main.do
