@@ -19,7 +19,7 @@
 <script type="text/javascript" src="${webRoot}/common/js/angular/angular-route.js"></script>
 <script type="text/javascript" src="${webRoot}/common/js/angular/angular-animate.js"></script>
 <script type="text/javascript" src="${webRoot}/common/js/angular-block-ui/angular-block-ui.min.js"></script>
-<script type="text/javascript"src="${webRoot}/common/js/library_allinone.js"></script>
+<script type="text/javascript"src="${webRoot}/default/js/library_allinone.js"></script>
 <script src="${webRoot}/default/app/comm/common.js"></script>
 
 
