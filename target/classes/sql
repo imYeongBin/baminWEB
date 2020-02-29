@@ -1,0 +1,19 @@
+CREATE TABLE member(
+	memberNo int NOT NULL 
+	,memberNm varchar2(2000) NOT NULL 
+	,attCnt int NOT NULL 
+	,telNo varchar2(2000) NOT NULL 
+	,lctn varchar2(2000) NOT NULL 
+	,gndr varchar2(2000) NOT NULL 
+	,age int  NOT NULL 
+	,feeBalance int  NOT NULL 
+)
+
+INSERT INTO MEMBER values(1,'임영빈',0,'01041993679','강서구','M',32,0);
+
+COMMIT;
+
+
+DROP TABLE MEMBER;
+
+SELECT * FROM MEMBER;
