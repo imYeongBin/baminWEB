@@ -12,26 +12,17 @@
 (function(angular, mz) {
 
 	mz.load('default/app/comm/', [
-	    'athdc.js',
 		'config.js',
 		'controller.js',
 		'directive.js',
 		'fileUtil.js',
 		'filter.js',
 		'http.js',
-		'lib.js',
-		'menu.js',
-		'oz.js',
 		'paging.js',
 		'provider.js',
 		'search.js',
 		'service.js',
-		'util.js' ,
-		'mzCbMgr.js',
-		'chatMgr.js',
-		'chatbot_pop.js',
-		'analysis.js',
-		'tm_service.js'
+		'util.js' 
 	],true); 
 	 
 

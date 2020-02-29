@@ -36,5 +36,5 @@
 			}
 		};
 	});
-
+debugger;
 })(angular, mz);

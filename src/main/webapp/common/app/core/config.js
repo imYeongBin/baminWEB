@@ -14,6 +14,8 @@
 	mz.core.config(mz.mold(function($logProvider, $locationProvider){
 		// 濡쒓퉭�ㅼ젙
 		$logProvider.debugEnabled(!!mz.MODE.LOG);
+		
+		debugger;
 		// �댁돩諭�
 		$locationProvider.html5Mode(false).hashPrefix('!');
 	}));

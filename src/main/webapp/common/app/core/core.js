@@ -18,8 +18,7 @@
 		'loading.js',
 		'service.js',
 		'provider.js',
-		'log.js',
-		'crossStorage.js'
+		'log.js'
 	], true);
 
 })(angular, mz);

@@ -38,7 +38,7 @@ public class CommController {
 		String getServletPath = request.getServletPath().toString();//		/main.do
 		System.out.println("getServletPath : "+getServletPath);
 		
-		String jsPath = getContextPath+getServletPath;
+		String jsPath = getServletPath;
 		System.out.println("jsPath : "+jsPath);
 		
 		return retVal;
