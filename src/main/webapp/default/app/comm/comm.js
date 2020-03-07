@@ -10,12 +10,11 @@
  * 媛뺥솚湲� 2015-08-12 First Draft
  */
 (function(angular, mz) {
-
+	 
 	mz.load('default/app/comm/', [
 		'config.js',
 		'controller.js',
 		'directive.js',
-		'fileUtil.js',
 		'filter.js',
 		'http.js',
 		'paging.js',

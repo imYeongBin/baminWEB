@@ -4,6 +4,7 @@
 		/**
 		 * �붾젆�곕툕 �대� scope�� 媛믪쓣 �뗮똿�쒕떎.
 		 */
+		
 		function setScopeValues(scope, attrs) {
 			scope.List = [];
 			scope.Hide = false;
@@ -169,4 +170,5 @@
 			}
 		};
 	}));
+	
 })(angular, mz);

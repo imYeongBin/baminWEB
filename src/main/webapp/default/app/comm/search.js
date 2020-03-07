@@ -1,5 +1,6 @@
 (function(angular, mz) {
 	// search
+	
 	mz.comm.factory('search', mz.mold(function(co) {
 		var $timeout = co.get('$timeout');
 		var $q = co.get('$q');
@@ -88,5 +89,5 @@
 			}
 		};
 	}));
-
+	
 })(angular, mz);

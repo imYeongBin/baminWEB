@@ -1,6 +1,6 @@
-var app = angular.module('myApp',[]);
-app.controller('myCtrl', function($scope, $http, $location) {
-	
+var app = angular.module('app',[]);
+app.controller('comm', function($scope, $http, $location) {
+	debugger;
 	$scope.memberList = function(){
 		console.log("AAAAA");
 		

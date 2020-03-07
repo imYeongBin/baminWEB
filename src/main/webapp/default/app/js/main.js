@@ -1,6 +1,7 @@
 (function(angular,mz){
-   
+   debugger;
    var cfg = mz.lib.bundle(['']);
+   
    var bc ={
       retrieve : ''   
    };
@@ -11,15 +12,15 @@
       {
          path: '/list',
          name: 'main',
-         tpl: '/views/main'
+         tpl: 'main'
       }      
 
-   ], '/main');
+   ], '/list');
 
 
 
    mz.controller('main',function(co,$scope){
-   
+	   debugger;
 	   var bc = co.get('bc');
 	   var layerPop = co.get('layerPop');
 	   var location = co.get('location');
@@ -31,6 +32,7 @@
 	   init();
 	   
 	   function init(){
+		   debugger;
 		   var a = 1 ;
 		   $scope.a = a;
 		   

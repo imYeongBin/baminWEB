@@ -1,7 +1,7 @@
 (function(angular, mz) {
 
 	//�곹뭹 �쎄� �뚯씪 �ㅼ슫濡쒕뱶
-	mz.comm.service('pdClusPdf', mz.mold(function(logger, http, util, fileUtil, layerPop) {
+	/*mz.comm.service('pdClusPdf', mz.mold(function(logger, http, util, fileUtil, layerPop) {
 		var log = logger.getLogger('pdClusPdf');	
 		var o = {};
 		//�쎄� �뚯씪 �ㅼ슫濡쒕뱶
@@ -41,7 +41,7 @@
 		};
 		
 		return o;
-	}));
+	}));*/
 	
 	// uiControl
 	mz.comm.service('bind', function(co){
@@ -61,7 +61,7 @@
 		};
 	});
 	//rsecure
-	mz.comm.factory('rsecure', mz.mold(function(logger, ajax, $timeout, $window, co) {
+	/*mz.comm.factory('rsecure', mz.mold(function(logger, ajax, $timeout, $window, co) {
 		var log = logger.getLogger('rsecure');
 		var o = {};
 
@@ -105,11 +105,11 @@
 		};
 		
 		return o;		
-	}));
+	}));*/
 	
 	
 	//wiselog
-	mz.comm.factory('wiselog', mz.mold(function(logger, $window, $q, co) {
+	/*mz.comm.factory('wiselog', mz.mold(function(logger, $window, $q, co) {
 		var log = logger.getLogger('wiselog');
 		
 		var info = {};
@@ -139,10 +139,10 @@
 		};
 		
 		return o;
-	}));
+	}));*/
 	
 	// session
-	mz.comm.factory('session', mz.mold(function(logger, $rootScope, http, menuService, path, $window, $location, wiselog, co, $timeout) {
+	/*mz.comm.factory('session', mz.mold(function(logger, $rootScope, http, menuService, path, $window, $location, wiselog, co, $timeout) {
 		var log = logger.getLogger('session');
 
 		return {
@@ -194,10 +194,10 @@
 				});
 			}
 		};
-	}));
+	}));*/
 
 	// location
-	mz.comm.factory('location', mz.mold(function(co, path, $routeParams, $window, $location, $route) {
+	/*mz.comm.factory('location', mz.mold(function(co, path, $routeParams, $window, $location, $route) {
 		var o = {};
 		var _recv = {};
 
@@ -258,10 +258,10 @@
 		}
 
 		return o;
-	}));
+	}));*/
 	
 	//layer popup
-	mz.comm.factory('layerPop', mz.mold(function(logger, $rootScope, $compile, $controller, $q, $timeout, ajax, co, wiselog, $window) {
+	/*mz.comm.factory('layerPop', mz.mold(function(logger, $rootScope, $compile, $controller, $q, $timeout, ajax, co, wiselog, $window) {
 		var o = {};
 		var LAYER_INFO  = "layerInfo";
 		var LAYER_NM    = "layer-pop-nm";
@@ -401,14 +401,14 @@
 					
 					$scope[LAYER_NM] = name; 
 					
-					/*
+					
 					$scope.$on(EVENT_CLEAR, function(event, data) {
 						deferred.reject(false);
 						setLayerInfo(name, {});
 						$("#" + name).remove();
 						$scope.$destroy();
 					});
-					*/
+					
 					
 					// 20191105 : BHY : 媛��낆삁�� �덉씠�댄뙘�� 媛��대뜲 �뺣젹 Class = onlymain 異붽� (吏곹뙋怨� �숈씪�섍쾶 蹂�寃�)
 					var html = "<div id=\"" + name + "\" class='onlymain'></div>";
@@ -483,10 +483,10 @@
 		}
 
 		return o;
-	}));
+	}));*/
 	
 	//system popup
-	mz.comm.factory('systemPop', mz.mold(function($window, $q) {
+	/*mz.comm.factory('systemPop', mz.mold(function($window, $q) {
 		var o = {};
 
 		o.open = function(url, name, param, option, flag) {
@@ -534,10 +534,10 @@
 		};
 
 		return o;
-	}));
+	}));*/
 	
 	// serverDateUtil
-	mz.comm.factory('serverDateUtil', mz.mold(function(co) {
+	/*mz.comm.factory('serverDateUtil', mz.mold(function(co) {
 		var log = co.get('logger').getLogger('serverDateUtil');
 		var location = co.get('location');
 		var $q = co.get('$q');
@@ -561,10 +561,10 @@
 		};
 
 		return o;
-	}));
+	}));*/
 
 	// mkt
-	mz.comm.factory('mkt', function(co, $rootScope){
+	/*mz.comm.factory('mkt', function(co, $rootScope){
 		var $timeout = co.get('$timeout');
 		var http = co.get('http');
 		var log = co.get('logger').getLogger('mkt');
@@ -764,10 +764,10 @@
 			}
 		};
 
-	});
+	});*/
 
 	// ��異� 媛��κ툑�� �뺤씤
-	mz.comm.factory('lon', function(co, $q){
+	/*mz.comm.factory('lon', function(co, $q){
 		var http = co.get('http');
 		var log = co.get('logger').getLogger('lon');
 		var util = co.get('util');
@@ -833,11 +833,11 @@
 			}
 		};
 
-	});	
+	});	*/
 
 	/* - 2016.11.24 ------------------------------- */
 	/* - 泥대쪟�� �덉씠�댄뙘�� ------------------------------- */
-	mz.comm.factory('wakeup', mz.mold(function($rootScope, co) {
+	/*mz.comm.factory('wakeup', mz.mold(function($rootScope, co) {
 		var log = co.get('logger').getLogger('wakeup');
 		var layerPop = co.get('layerPop');
 		var util = co.get("util");
@@ -866,7 +866,7 @@
 			var wakeup = co.get('wakeup');
 			// DPID : �좎엯�� �ㅻ쭏�몄삤�� 濡쒓렇濡� �볦쓬
 			$scope.dpid = param.dpid;
-			/* - public ------------------------------- */
+			 - public ------------------------------- 
 			$scope.close = function() {
 				layerPop.close($scope);
 			};
@@ -1003,14 +1003,14 @@
 		}
 
 		return o;
-	}));
+	}));*/
 
 	/**
 	 * �곷떞�쒓컙�ㅼ젙
 	 * -> default/app/comm/slzDateData.json �� slzMm�� �ㅼ젙 �붿씠 �덉쑝硫� 媛��몄삤怨� 
 	 *     �놁쑝硫� 湲곗〈諛⑹떇洹몃�濡� �명똿��
 	 */
-	mz.comm.factory('slzDate', mz.mold(function($rootScope, co) {
+	/*mz.comm.factory('slzDate', mz.mold(function($rootScope, co) {
 		var log = co.get('logger').getLogger('slzDate');
 		var http = co.get('http');
 		var util = co.get('util');
@@ -1029,9 +1029,9 @@
 			o.retrieveCsReqDate();	//�곷떞�쒓컙�ㅼ젙
 		};
 		
-		/**
+		*//**
 		 * �곷떞�쒓컙�ㅼ젙
-		 */
+		 *//*
 		o.retrieveCsReqDate = function() {
 			var dt = new Date();
 			var yyyymm = dt.getFullYear() + util.leftPad((dt.getMonth()+1).toString(), 2, "0");	//�꾩옱�꾩썡
@@ -1101,10 +1101,10 @@
 			});
 		};
 		
-		/**
+		*//**
 		 * �곷떞�쒓컙�ㅼ젙
 		 * 1-��, 2-�됱씪, 3-��
-		 */
+		 *//*
 		o.retrieveCsReqTime = function(selectDate) {
 			if(angular.isUndefined($rootScope.cmDay))	return;
 			if(angular.isUndefined(selectDate) || selectDate == "") selectDate = $rootScope.csReqDate;
@@ -1136,10 +1136,10 @@
 			return csReqTime;
 		};
 		
-		/**
+		*//**
 		 * TM�곷떞�쒓컙 Return
 		 * gb= 1-��, 2-�됱씪, 3-��
-		 */
+		 *//*
 		o.getSlzTime = function(gb) {
 			var today = $rootScope.today;
 			var slzTime = "";
@@ -1154,9 +1154,9 @@
 			}
 		}
 		
-		/**
+		*//**
 		 * �붾㈃�� 蹂댁뿬吏� �곷떞�쒓컙
-		 */
+		 *//*
 		o.retrieveSlzTime = function() {
 			if($rootScope.weekDaySlzTime != "")	return;
 			var today = $rootScope.today;
@@ -1181,9 +1181,9 @@
 			
 		}
 		
-		/**
+		*//**
 		 * �쒓컙 �ㅼ젙
-		 */
+		 *//*
 		function isNowInit() {
 			if ($rootScope.csReqDate == $rootScope.today) {
 				$rootScope.isNow = true;
@@ -1196,6 +1196,6 @@
 		}
 		
 		return o;
-	}));
-
+	}));*/
+	
 })(angular, mz);

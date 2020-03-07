@@ -10,7 +10,7 @@
  * 媛뺥솚湲� 2015-08-12 First Draft
  */
 (function(angular, mz) {
-
+	
 	// resolve provider
 	mz.comm.provider('resolve', mz.mold(function() {
 		this.$get = function() {

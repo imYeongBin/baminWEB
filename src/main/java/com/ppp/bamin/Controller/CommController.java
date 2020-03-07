@@ -15,19 +15,17 @@ import com.sun.xml.internal.ws.client.ResponseContext;
 public class CommController {
 	
 	@Autowired
-	private SqlSession sqlSession   ;
+	private SqlSession sqlSession;
 	 //desktop
 
 	
 	private final static String CLIENT_JS = "clientJs";
 	private final static String URI_INDEXOF_TXT = ".do";
-	
 	@RequestMapping("/**/**")  
 	public String main(HttpServletRequest request, Model model) {
-		
 		String retVal = "defaultLayout";
 		
-		//int paramIdx = request.getRequestURI().indexOf(URI_INDEXOF_TXT);
+		int paramIdx = request.getRequestURI().indexOf(URI_INDEXOF_TXT);
 		//String requestURIPath = request.getRequestURI().substring(0, paramIdx);
 		//System.out.println("requestURIPath : "+requestURIPath);
 		
@@ -37,9 +35,14 @@ public class CommController {
 		
 		String getServletPath = request.getServletPath().toString();//		/main.do
 		System.out.println("getServletPath : "+getServletPath);
-		
-		String jsPath = getServletPath;
+
+		int idx = getServletPath.indexOf(URI_INDEXOF_TXT);
+		String jsPath = getServletPath.substring(0,idx);
+		jsPath = "default/app/js"+jsPath+".js";
 		System.out.println("jsPath : "+jsPath);
+
+		model.addAttribute("clientJs",jsPath);
+		
 		
 		return retVal;
 	}
@@ -50,7 +53,13 @@ public class CommController {
 	
 	
 	
-	
+	@RequestMapping("/error.do")  
+	public String error(HttpServletRequest request, Model model) {
+		String retVal = "error";
+		
+		
+		return retVal;
+	}
 	
 	
 	

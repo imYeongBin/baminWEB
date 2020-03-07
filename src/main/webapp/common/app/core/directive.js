@@ -10,7 +10,7 @@
  * 媛뺥솚湲� 2015-08-12 First Draft
  */
 (function(angular, mz) {
-
+	 
 	// A Tag Click �쒖뼱
 	mz.core.directive('a', function() {
 		return {
@@ -36,5 +36,5 @@
 			}
 		};
 	});
-debugger;
+ 
 })(angular, mz);

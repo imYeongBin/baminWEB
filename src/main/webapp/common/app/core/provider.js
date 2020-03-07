@@ -10,18 +10,18 @@
  * 媛뺥솚湲� 2015-08-12 First Draft
  */
 (function(angular, mz) {
-
+	 
 	// route provider
 	mz.core.provider('route', function() {
-
+		 
 		var _resolve = {};
 
 		this.$get = mz.mold(function() {
 			return {};
 		});
-
+		 
 		this.route = function(data) {
-			debugger;
+			 
 			return {
 				controller: data.name,
 				controllerAs: data.as || 'vm',
@@ -34,5 +34,5 @@
 			_resolve = v || _resolve;
 		};
 	});
-
+	 
 })(angular, mz);

@@ -10,7 +10,7 @@
  * 媛뺥솚湲� 2015-08-12 First Draft
  */
 (function(angular,mz){
-
+	
 	mz.core.config(mz.mold(function(blockUIConfig) {
 		blockUIConfig.templateUrl = mz.path('/views/comm/loading.tpl', true);
 	}));
@@ -46,5 +46,5 @@
 			})
 		});
 	}));
-
+	
 })(angular,mz);

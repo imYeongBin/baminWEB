@@ -13,7 +13,7 @@
 (function(angular, mz) {
 
 	// uiHeader
-	mz.comm.directive('uiHeader', mz.mold(function() {
+	/*mz.comm.directive('uiHeader', mz.mold(function() {
 		var o = {};
 
 		o.templateUrl = mz.path('/views/comm/uiHeader.tpl', true);
@@ -42,7 +42,7 @@
 				document.title = title + " | 硫붾━痢좏솕��";
 			}
 			getBanner();
-			/*
+			
 			//�� 諛곕꼫 �몄텧 �꾩떆��
 			var html = ""
 				  html+="<div class='top_bnnr' style='background:#ededed;text-align:center;'><!-- class='default' bgcolor blue -->";
@@ -65,7 +65,7 @@
 				  if (eval(today) >= eval(startDt)  && eval(today) <= eval(endDt))  {  
 					  $(".top_bnnr").css("display","block");
 				  }
-			*/
+			
 			function getBanner(){
 				
 				var pageId = path.getPageId();
@@ -147,7 +147,7 @@
 							$("#header").before(html);
 							$(".top_bnnr").css("display","block");
 								// 01 > �먮윭 , 02 > 怨듭� 諛곕꼫
-								/*
+								
 								var putupTrrtDivCd = ctnBanrList[0].putupTrrtDivCd == '01' ? 'error_type' : 'notice_type';
 								if(util.trim(ctnBanrList[0].linkUrl) == '' || typeof ctnBanrList[0].linkUrl == 'undefined'){
 									html +=' <div class="system_banner clfix">';
@@ -166,7 +166,7 @@
 							angular.element("#header").css("padding-top", "0px");
 							$(".top_bnnr").prepend(html);
 							$(".top_bnnr").css("display","block");
-							*/
+							
 								
 							
 						}
@@ -177,9 +177,9 @@
 				}
 			});
 			}
-			/**
+			*//**
 			 * �ㅼ씠�됲듃 �곌껐
-			 */
+			 *//*
 			$scope.getDirectUrl = function() {
 				return util.getDirectHost();
 			};
@@ -191,9 +191,9 @@
 				window.location.href = dircHost + 'pet/main.do';
 			}
 			
-			/**
+			*//**
 			 * 硫붾돱�대룞泥섎━		
-			 */
+			 *//*
 			$scope.moveMenu = function(menuId) {
 				if (util.isNull(menuId) || menuId == 0) {
 					//硫붿씤 �대룞
@@ -207,9 +207,9 @@
 				}
 			};
 			
-			/**
+			*//**
              * 濡쒓렇�� �대깽�� 泥섎━
-             */
+             *//*
             $scope.isLogin = false;
             $scope.$on('event-comm-session', function(event, userInfo) {
                 if (userInfo) {
@@ -231,10 +231,10 @@
 		});
 
 		return o;
-	}));
+	}));*/
 
 	// uiSnb
-	mz.comm.directive('uiSnb', mz.mold(function() {
+	/*mz.comm.directive('uiSnb', mz.mold(function() {
 		
 		var o = {};
 		o.templateUrl = mz.path('/views/comm/uiSnb.tpl', true);
@@ -325,35 +325,35 @@
 		});
 		
 		return o;
-	}));
+	}));*/
 
 	// uiContents
-	mz.comm.directive('uiContents', mz.mold(function() {
+/*	mz.comm.directive('uiContents', mz.mold(function() {
 		return {
 			templateUrl: mz.path('/views/comm/uiContents.tpl', true)
 		};
-	}));
+	}));*/
 
 	//荑좏궎濡쒓렇 �곸옱 �곸뿭
-	mz.comm.directive('logStorageArea', [function() {
+/*	mz.comm.directive('logStorageArea', [function() {
 		return {
 			controller : mz.mold(function(co, $scope){
 				var crossStorage = '';
 				if(co.get('crossStorage')){
 					crossStorage = co.get('crossStorage');
-					/***
+					*//***
 					 * CrossStorage
 					 * ����-吏곹뙋 �뚮옯�쇨컙 荑좏궎怨듭쑀 諛� �덉뒪�좊━ �곸옱 湲곕뒫
-					 */
+					 *//*
 					crossStorage.init();
 					crossStorage.insrtLog();
 				};
 			})
 		}
-	}]);
+	}]);*/
 	
 	// uiFooter
-	mz.comm.directive('uiFooter', mz.mold(function() {
+	/*mz.comm.directive('uiFooter', mz.mold(function() {
 		var o = {};
 		o.templateUrl = mz.path('/views/comm/uiFooter.tpl', true);
 		o.controller = mz.mold(function(co, $scope, crossStorage, $q) {
@@ -363,9 +363,9 @@
 			var util = co.get('util');
 			var wakeup = co.get('wakeup');
 
-			/**
+			*//**
 			 * 硫붾돱�대룞泥섎━		
-			 */
+			 *//*
 			$scope.moveMenu = function(menuId) {
 				if (util.isNull(menuId) || menuId == 0) {
 					//硫붿씤 �대룞
@@ -385,10 +385,10 @@
 				}
 			};
 
-			/***
+			*//***
 			 * CrossStorage
 			 * ����-吏곹뙋 �뚮옯�쇨컙 荑좏궎怨듭쑀 諛� �덉뒪�좊━ �곸옱 湲곕뒫
-			 */
+			 *//*
 			crossStorage.init();
 			crossStorage.insrtLog();
 			
@@ -396,7 +396,7 @@
 			
 		});
 		return o;
-	}));
+	}));*/
 
 	mz.comm.directive('mzSelect', mz.mold(function(util) {
 		return {
@@ -715,567 +715,567 @@
 	});
 
 	// uiConsReq
-	mz.comm.directive('uiConsReq', mz.mold(function() {
-		var o = {};
-		o.scope = {
-				callback: '&callback'
-		};
-		o.templateUrl = mz.path('/views/comm/uiConsReq.tpl', true);
-		o.controller = mz.mold(function(co, $scope, $rootScope) {
-			var log = co.get('logger').getLogger('uiConsReq');
-			var http = co.get('http');
-			var util = co.get("util");
-			var bind = co.get("bind");
-			var layerPop = co.get("layerPop");
-			var $timeout = co.get("$timeout");
-			var tmServ = co.get("tmService");
-			var mkt = co.get("mkt");
-			var serviceSlzDate = co.get("slzDate");
-			var SysParking = '0';
-			
-			var $data = $scope[$("[data-ui-cons-req]").attr("id")];
-
-			init();
-
-			function init() {
-				
-				if(		
-								window.location.pathname == '/auto-and-driver/auto/direct-auto-tm.do'
-							|| window.location.pathname == '/auto-and-driver/auto/personal-auto.do' 	
-					){
-					$scope.dircAutoYN = true;
-				}else{
-					$scope.dircAutoYN = false;
-				}
-				
-				$timeout(function() {
-					$("input:radio[name=csSex]").each(function(idx){
-						$(this).parent('div').removeClass(" on");
-					});
-					$("input:radio[name=csSex]").eq(0).prop("checked", true);
-					$("input:radio[name=csSex]:checked").parent('div').addClass(" on");
-				}, 500);
-				
-				$scope.csPdCd = $("[data-ui-cons-req]").attr("pdCd");
-				$scope.csCmCnsTpCd = $("[data-ui-cons-req]").attr("cmCnsTpCd");
-				$scope.isBusiness = $("[data-ui-cons-req]").attr("isBusiness");
-				
-				$scope.csValid = getValid();
-				if ($scope.isBusiness) {
-					$scope.csValid.csBusiness.valid = true;
-					$scope.csValid.csBirth.valid = false;
-				}
-				$scope.csInfo = {};
-
-				retrieveDriAmt();
-				$timeout(function() {
-					styleFormMethod();
-					
-					/**
-					 * �좎쭨�좏깮�� �곕Ⅸ �곷떞�쒓컙 �좏깮媛��� 媛� �ㅼ젙
-					 */
-					bind.select($scope, "csReqDate");
-					$(document.body).on('change',"#csReqDate",function (e) {
-						   var optVal= $("#csReqDate option:selected").val();
-						   $scope.csReqDate = optVal;
-						   $scope.csReqTime= retrieveCsReqTime();
-						   isNowInit();
-					});
-				}, 400);
-				
-				var pam = {bizNtfyLctgCd : 'CF', path : 'path_sysOnOff'};
-				var sysParking = tmServ.getSysOnOff(pam);
-				
-				sysParking.then(function(data){
-					SysParking = data;
-				});
-			}
-
-			/**
-			 * �쒓컙 �ㅼ젙 
-			 */
-			function isNowInit() {
-				if ($scope.csReqDate == $scope.today) {
-					$scope.isNow = true;
-				} else {
-					$scope.isNow = false;
-				}
-				$timeout(function() {
-					replaceSelect($("#csReqTime"));
-				}, 100);
-			}
-			$scope.isShowTime = function(t) {
-				if ($scope.csReqDate != $scope.today) {
-					return true;
-				} else {
-					if ($scope.currentTime < t) {
-						return true;
-					} else {
-						return false;
-					}
-				}
-			}
-
-			$timeout(function() {
-				replaceSelect($("#csReqDate"));
-				replaceSelect($("#csReqTime"));
-				styleFormMethod();
-			}, 400);
-			
-			/**
-			 * @method retrieveDriAmt - �곷떞�щ쭩�쇱떆
-			 */
-			function retrieveDriAmt() {
-
-				//�붾㈃�� 蹂댁뿬吏��� �곷떞�쒓컙
-				$scope.weekDaySlzTime = $rootScope.weekDaySlzTime;
-				$scope.saturdaySlzTime = $rootScope.saturdaySlzTime;
-				$scope.sundaySlzTime = $rootScope.sundaySlzTime;
-				
-				$scope.inCallNmWeek = $rootScope.inCallNmWeek;
-				$scope.inCallNmSat = $rootScope.inCallNmSat;
-				
-				//�좏깮�곷떞�쇱옄
-				$scope.cmDay = $rootScope.cmDay;
-				$scope.csReqDate = angular.isUndefined($scope.cmDay) ? $rootScope.today : $scope.cmDay[0].dt;
-				
-				//�곷떞�쒓컙�ㅼ젙
-				$scope.csReqTime = retrieveCsReqTime();
-			}
-			
-			/**
-			 * 16.11.17 �곷떞�쒓컙�ㅼ젙
-			 */
-			function retrieveCsReqTime() {
-				return serviceSlzDate.retrieveCsReqTime($scope.csReqDate);
-			}
-
-			function getAgree(agr){
-				var arr = new Array();
-				var agrs = agr;
-				this.errMsgCon = "";
-				
-				if(agrs !== undefined){
-					angular.forEach(agrs, function(v, k) {
-						if (v != "Y") {
-							agrYn = 'N';
-							this.errMsgCon = 'NAGRM';
-						}
-						arr.push(v);
-					});
-				}
-				
-				return arr;
-			}
-			
-			function telBan(){
-				
-				if(SysParking === '1'){
-					return "1";
-				}else if(this.errMsgCon === 'NAGRM'){
-					return "1";
-				}else{
-					return "0";
-				}
-				
-				return "0";
-			}
-			
-			/**
-			 * @method registInetCns - �곷떞�좎껌
-			 */
-			function registInetCns(logParam) {
-				var proc = "0";
-				proc = telBan();
-				
-				var pm = {
-					cmCnsParentTpCd: '2101', //�곷떞�좏삎��遺꾨쪟
-					cmCnsTpCd: $scope.csCmCnsTpCd, //�곷떞�좏삎�뚮텇瑜�
-					cmCnsParentTpNm: '蹂댄뿕媛���',
-					pdCd: $scope.csPdCd, //�곹뭹肄붾뱶
-					cmReplyMdCd: '2', //�곷떞諛⑸쾿(1:�대찓��, 2:�꾪솕)
-					cmTelDivCd: '23', //�꾪솕援щ텇(23:�대��꾪솕, 21:�먰깮, 22:吏곸옣)
-					telNo: util.phoneFormat($scope.csInfo.csPhone),
-//					rqeDt: $("#csReqDate option:selected").val(), //�붿껌�쇱떆(yyyyMMdd)
-//					ctcPsbStTm: $("#csReqTime option:selected").val(), //�붿껌�쒖옉�쒓컙
-					rqeDt: (util.formatDate(new Date(),'yyyymmdd')), //�붿껌�쇱떆(yyyyMMdd)
-					ctcPsbStTm: (util.formatDate(new Date(),'hh24')+'0000'), //�붿껌�쒖옉�쒓컙
-					
-					ctcPsbEdTm: '', //�붿껌醫낅즺�쒓컙
-					pdNm: util.trim($(".top_tit ").text()), //�곹뭹紐�
-					cnsCon: util.trim($(".top_tit ").text()), //�댁슜
-					sndTMDivCd: '1', //TM�꾩넚�щ�
-					cusNm: $scope.csInfo.csName, // 怨좉컼紐�
-					cnsScrPath : 'S',       
-					accountDvrg	:	"3",							//硫뷀떚�� 遺꾧린泥섎━(1:湲곗〈,2:�좉퇋,3:�묒そ)
-					metisFlag				: proc,					//1�대㈃ 硫뷀떚�� �ㅽ뻾 �덈릺寃� �섎㉧吏�媛믪� �꾨� �덉슜
-					smsFlag					: proc					//1�대㈃ 臾몄옄�꾩넚 �ㅽ뻾 �덈릺寃� �섎㉧吏�媛믪� �꾨� �덉슜
-				};
-				if(logParam){
-					pm['ctcMdiaNo'] = logParam.ctcMdiaNo;
-				}
-				if ($scope.csInfo.csBirth != null && $scope.csInfo.csBirth != '') {
-					pm.rsIdNo = $scope.csInfo.csBirth.substr(2, 6) + $("[name=csSex]:checked").val() + "000000";
-				} else {
-					pm.rsIdNo = "000000" + $("[name=csSex]:checked").val() + "000000";
-				}
-
-				if (pm.cmCnsTpCd == "2102") {
-					pm.cmCnsTpNm = "�먮룞李�";
-				} else if (pm.cmCnsTpCd == "2103") {
-					pm.cmCnsTpNm = "�댁쟾��/嫄닿컯/�대┛��";
-				} else if (pm.cmCnsTpCd == "2104") {
-					pm.cmCnsTpNm = "�곌툑/��異�";
-					rtnMdiaInfo(logParam.ctcMdiaNo , pm);
-				} else if (pm.cmCnsTpCd == "2105") {
-					pm.cmCnsTpNm = "�붿옱/�앺솢";
-					rtnMdiaInfo(logParam.ctcMdiaNo , pm);
-				}
-				if ($scope.isBusiness) { 
-					pm.cnsCon = util.trim($(".top_tit ").text()) + " " + $("#csBusiness").val();
-				}
-				
-				http.post("f.cg.he.ct.ts.o.bc.InetCnsBc.registInetCns", pm).then(function(result) {
-					log.out(result.body.SMS.con);
-					if (result) {
-						if (result.header && result.header.prcesResultDivCd == '0') {
-							$scope.callback && $scope.callback(
-									{
-										data: {
-											agrees : getAgree(logParam.agrees),
-											ctcStgeCd : '3090',
-											errMsgCon : result.body.errMsgCon
-										}
-									}
-							);
-							if("60777|60846|60848|60851|60855|60856|71501".indexOf($scope.csPdCd) > -1)//�대깽�몄젣��(�곌툑,��異�,耳��댄봽由�,�щЪ,�깃났,M-PLEX,�먮룞李쮂M)
-								pm.event = false;
-							else pm.event = true; 
-							
-							$scope.inqComplete(pm);
-						} else {
-							layerPop.alert(result.msg.standMsg);
-						}
-					}
-					$timeout(function() {
-						styleFormMethod();
-					}, 100);
-				});
-			}
-
-			// �곷떞�좎껌�꾨즺
-			$scope.inqComplete = function(item) {
-				var ctcMdiaNo = item.ctcMdiaNo;
-				layerPop.open('lypop_pdInquiry', 'biz/pd/pd/comm/lypop_pdInquiry', item).then(function(result) {
-					if(ctcMdiaNo == 'TAN1703NI000001' || ctcMdiaNo == 'TSY1703NI000001') {
-						$('#ly_dir_cs input[type="text"]').val("");	
-					} else {
-						closeCsEvents();
-					}
-					//$route.reload();
-					
-				});
-			};
-
-			function rtnMdiaInfo(ctcMdiaNo, param){
-				if(ctcMdiaNo != undefined && param != undefined){
-					if(ctcMdiaNo == 'THF1703NI000001'){
-						param.ctcMdiaNm = "硫붾━痢� �곕━吏묐낫�� M-House";
-					}else if(ctcMdiaNo == 'TPM1703NI000001'){
-						param.ctcMdiaNm = "硫붾━痢� �щЪ蹂댄뿕 �깃났硫붿씠��";
-					}else if(ctcMdiaNo == 'TPL1703NI000001'){
-						param.ctcMdiaNm = "硫붾━痢� �깃났�ъ뾽�� 醫낇빀蹂댄뿕";
-					}else if(ctcMdiaNo == 'TPX1703NI000001'){
-						param.ctcMdiaNm = "臾대같�� 硫붾━痢� M-PLEX�щЪ蹂댄뿕";
-					}else if(ctcMdiaNo == 'TAN1703NI000001'){
-						param.ctcMdiaNm = "�곌툑��異뺤넀�대낫�� �명썑�앺솢吏��댁씠蹂댄뿕";
-					}else if(ctcMdiaNo == 'TSY1703NI000001'){
-						param.ctcMdiaNm = "紐⑥븘Rich��異뺣낫��";
-					}else{
-						return;
-					}
-					
-					param.accountDvCd = "PI";
-					param.infwDivCd = "2001";
-					param.infwDivNm = "吏곸젒諛⑸Ц";
-				}
-			}
-			
-			// 17.03.07 �곷떞�좎껌 �뱀젙 李⑤떒 �꾪솕踰덊샇 ( �룹옄由� 0000 �ы븿 �쒖뼱)
-			function blockTelNo(val) {
-				var flag = false;
-				var blockNoObj = ["01020000000"];
-				
-				if(blockNoObj.indexOf(val)>-1){
-					flag = true;
-				}else if((util.isRangeLength(val, 9, 11)==true)&&val.substring(7, 11) =="0000"){ 
-					flag = true;
-				}
-				return flag;
-			}
-			
-			
-			// 蹂댁옣�댁슜
-			$scope.goGuarantee = function() {
-				util.goScroll('guarantee');
-			};
-			
-			
-			// 媛��낆삁��
-			$scope.showInfo = function() {				
-				if($scope.csPdCd == '60122' || $scope.csPdCd == '61522'){					// �명썑�앺솢吏��댁씠蹂댄뿕
-					layerPop.open('lypop_odagLifeGrdnIns', 'biz/pd/pa/annsavins/lypop_odagLifeGrdnIns',{pdCd:"60122"}).then(function(result) {});
-				}else if($scope.csPdCd == '60425' || $scope.csPdCd == '61521'){		// 紐⑥븘 Rich��異뺣낫��
-					layerPop.open('lyPop_savIns', 'biz/pd/pa/savins/lyPop_savIns',{pdCd:"60425"}).then(function(result) {});
-				}else if($scope.csPdCd == '60455' || $scope.csPdCd == '61516'){		// �곕━吏묐낫�� M-House
-					layerPop.open('lypop_husInsMHouse', 'biz/pd/pf/fireins/lypop_husInsMHouse',{pdCd:"60455"}).then(function(result) {});
-				}else if($scope.csPdCd == '60771' || $scope.csPdCd == '61517'){		// �щЪ蹂댄뿕 �깃났硫붿씠��
-					layerPop.open('lypop_propIns', 'biz/pd/pf/fireins/lypop_propIns',{pdCd:"60771"}).then(function(result) {});
-				}else if($scope.csPdCd == '60549' || $scope.csPdCd == '61274'){		// M-PLEX�щЪ蹂댄뿕
-					layerPop.open('lypop_mPlexPropIns', 'biz/pd/pf/fireins/lypop_mPlexPropIns',{pdCd:"60549"}).then(function(result) {});
-				}else if($scope.csPdCd == '60571' || $scope.csPdCd == '60901'){		// The利먭굅�� �쒕땲�대낫�λ낫��
-					layerPop.open('lypop_seniGurtIns', 'biz/pd/ph/diszins/lypop_seniGurtIns',{pdCd:"60571"}).then(function(result) {});
-				}else if($scope.csPdCd == '60684' || $scope.csPdCd == '61515'){		// �깃났�ъ뾽��
-					layerPop.open('lypop_sucBizpeSythIns', 'biz/pd/pf/fireins/lypop_sucBizpeSythIns',{pdCd:"60684"}).then(function(result) {});
-				}
-			};
-			
-			// �곷떞�덉빟�좎껌
-			$scope.reservation = function(parent) {
-				
-//				var chekName  = "";
-//				var chekBirth    = "";
-//				var chekPhone = "";
-				
-//				if($scope.csPdCd == '60425' || $scope.csPdCd == '61521' || $scope.csPdCd == '60122' || $scope.csPdCd == '61277'){
-//					
-//					
-//					
-//					chekName = angular.element('#csName').val();
-//					chekBirth = angular.element('#csBirth').val();
-//					chekPhone = angular.element('#csPhone').val();
-//					
-//					// uiConsReq.tpl濡� �먮윭媛� �섍꺼二쇰뒗 濡쒖쭅 �꾩슂
-//					
-//					$data.er.csName = !chekName;
-//					$data.er.csBirth = !chekBirth;
-//					$data.er.csPhone = !chekPhone;
-//					
-//					//$scope.csInfo = !chekName;
-//					
-//					
-//					/** 湲곗〈諛⑹떇
-//					 *  js�뚯씪
-//					 *    var $data = $scope[$("[data-ui-tm-sub]").attr("id")]; �좎뼵 ��
-//					 *    
-//					 *    var chekName = valiSpace(angular.element('#ccName').val());
-//					 *    $data.er.name = !chekName;					//�대쫫
-//					 *    
-//					 *    tpl�뚯씪
-//					 *    <div class="bx_valid {{tm.er.name? 'error' : ''}}">
-//					 */
+//	mz.comm.directive('uiConsReq', mz.mold(function() {
+//		var o = {};
+//		o.scope = {
+//				callback: '&callback'
+//		};
+//		o.templateUrl = mz.path('/views/comm/uiConsReq.tpl', true);
+//		o.controller = mz.mold(function(co, $scope, $rootScope) {
+//			var log = co.get('logger').getLogger('uiConsReq');
+//			var http = co.get('http');
+//			var util = co.get("util");
+//			var bind = co.get("bind");
+//			var layerPop = co.get("layerPop");
+//			var $timeout = co.get("$timeout");
+//			var tmServ = co.get("tmService");
+//			var mkt = co.get("mkt");
+//			var serviceSlzDate = co.get("slzDate");
+//			var SysParking = '0';
+//			
+//			var $data = $scope[$("[data-ui-cons-req]").attr("id")];
+//
+//			init();
+//
+//			function init() {
+//				
+//				if(		
+//								window.location.pathname == '/auto-and-driver/auto/direct-auto-tm.do'
+//							|| window.location.pathname == '/auto-and-driver/auto/personal-auto.do' 	
+//					){
+//					$scope.dircAutoYN = true;
+//				}else{
+//					$scope.dircAutoYN = false;
 //				}
-				
-				if(blockTelNo($scope.csInfo.csPhone)){
-					layerPop.alert('�곕씫泥섎� �뺥솗�� �낅젰�섏꽭��.');  
-					return ;
-				}
-				parent = parent.$parent;
-				if ($scope.csValidation()) {
-					// 14�� 誘몃쭔 �좎껌遺덇�.(�ㅽ겕由쏀듃 �ㅻ쪟... �뚯뒪�몃� �꾪빐�� �꾩떆 二쇱꽍)
-//					if(birthChk()) {
+//				
+//				$timeout(function() {
+//					$("input:radio[name=csSex]").each(function(idx){
+//						$(this).parent('div').removeClass(" on");
+//					});
+//					$("input:radio[name=csSex]").eq(0).prop("checked", true);
+//					$("input:radio[name=csSex]:checked").parent('div').addClass(" on");
+//				}, 500);
+//				
+//				$scope.csPdCd = $("[data-ui-cons-req]").attr("pdCd");
+//				$scope.csCmCnsTpCd = $("[data-ui-cons-req]").attr("cmCnsTpCd");
+//				$scope.isBusiness = $("[data-ui-cons-req]").attr("isBusiness");
+//				
+//				$scope.csValid = getValid();
+//				if ($scope.isBusiness) {
+//					$scope.csValid.csBusiness.valid = true;
+//					$scope.csValid.csBirth.valid = false;
+//				}
+//				$scope.csInfo = {};
+//
+//				retrieveDriAmt();
+//				$timeout(function() {
+//					styleFormMethod();
+//					
+//					/**
+//					 * �좎쭨�좏깮�� �곕Ⅸ �곷떞�쒓컙 �좏깮媛��� 媛� �ㅼ젙
+//					 */
+//					bind.select($scope, "csReqDate");
+//					$(document.body).on('change',"#csReqDate",function (e) {
+//						   var optVal= $("#csReqDate option:selected").val();
+//						   $scope.csReqDate = optVal;
+//						   $scope.csReqTime= retrieveCsReqTime();
+//						   isNowInit();
+//					});
+//				}, 400);
+//				
+//				var pam = {bizNtfyLctgCd : 'CF', path : 'path_sysOnOff'};
+//				var sysParking = tmServ.getSysOnOff(pam);
+//				
+//				sysParking.then(function(data){
+//					SysParking = data;
+//				});
+//			}
+//
+//			/**
+//			 * �쒓컙 �ㅼ젙 
+//			 */
+//			function isNowInit() {
+//				if ($scope.csReqDate == $scope.today) {
+//					$scope.isNow = true;
+//				} else {
+//					$scope.isNow = false;
+//				}
+//				$timeout(function() {
+//					replaceSelect($("#csReqTime"));
+//				}, 100);
+//			}
+//			$scope.isShowTime = function(t) {
+//				if ($scope.csReqDate != $scope.today) {
+//					return true;
+//				} else {
+//					if ($scope.currentTime < t) {
+//						return true;
+//					} else {
+//						return false;
+//					}
+//				}
+//			}
+//
+//			$timeout(function() {
+//				replaceSelect($("#csReqDate"));
+//				replaceSelect($("#csReqTime"));
+//				styleFormMethod();
+//			}, 400);
+//			
+//			/**
+//			 * @method retrieveDriAmt - �곷떞�щ쭩�쇱떆
+//			 */
+//			function retrieveDriAmt() {
+//
+//				//�붾㈃�� 蹂댁뿬吏��� �곷떞�쒓컙
+//				$scope.weekDaySlzTime = $rootScope.weekDaySlzTime;
+//				$scope.saturdaySlzTime = $rootScope.saturdaySlzTime;
+//				$scope.sundaySlzTime = $rootScope.sundaySlzTime;
+//				
+//				$scope.inCallNmWeek = $rootScope.inCallNmWeek;
+//				$scope.inCallNmSat = $rootScope.inCallNmSat;
+//				
+//				//�좏깮�곷떞�쇱옄
+//				$scope.cmDay = $rootScope.cmDay;
+//				$scope.csReqDate = angular.isUndefined($scope.cmDay) ? $rootScope.today : $scope.cmDay[0].dt;
+//				
+//				//�곷떞�쒓컙�ㅼ젙
+//				$scope.csReqTime = retrieveCsReqTime();
+//			}
+//			
+//			/**
+//			 * 16.11.17 �곷떞�쒓컙�ㅼ젙
+//			 */
+//			function retrieveCsReqTime() {
+//				return serviceSlzDate.retrieveCsReqTime($scope.csReqDate);
+//			}
+//
+//			function getAgree(agr){
+//				var arr = new Array();
+//				var agrs = agr;
+//				this.errMsgCon = "";
+//				
+//				if(agrs !== undefined){
+//					angular.forEach(agrs, function(v, k) {
+//						if (v != "Y") {
+//							agrYn = 'N';
+//							this.errMsgCon = 'NAGRM';
+//						}
+//						arr.push(v);
+//					});
+//				}
+//				
+//				return arr;
+//			}
+//			
+//			function telBan(){
+//				
+//				if(SysParking === '1'){
+//					return "1";
+//				}else if(this.errMsgCon === 'NAGRM'){
+//					return "1";
+//				}else{
+//					return "0";
+//				}
+//				
+//				return "0";
+//			}
+//			
+//			/**
+//			 * @method registInetCns - �곷떞�좎껌
+//			 */
+//			function registInetCns(logParam) {
+//				var proc = "0";
+//				proc = telBan();
+//				
+//				var pm = {
+//					cmCnsParentTpCd: '2101', //�곷떞�좏삎��遺꾨쪟
+//					cmCnsTpCd: $scope.csCmCnsTpCd, //�곷떞�좏삎�뚮텇瑜�
+//					cmCnsParentTpNm: '蹂댄뿕媛���',
+//					pdCd: $scope.csPdCd, //�곹뭹肄붾뱶
+//					cmReplyMdCd: '2', //�곷떞諛⑸쾿(1:�대찓��, 2:�꾪솕)
+//					cmTelDivCd: '23', //�꾪솕援щ텇(23:�대��꾪솕, 21:�먰깮, 22:吏곸옣)
+//					telNo: util.phoneFormat($scope.csInfo.csPhone),
+////					rqeDt: $("#csReqDate option:selected").val(), //�붿껌�쇱떆(yyyyMMdd)
+////					ctcPsbStTm: $("#csReqTime option:selected").val(), //�붿껌�쒖옉�쒓컙
+//					rqeDt: (util.formatDate(new Date(),'yyyymmdd')), //�붿껌�쇱떆(yyyyMMdd)
+//					ctcPsbStTm: (util.formatDate(new Date(),'hh24')+'0000'), //�붿껌�쒖옉�쒓컙
+//					
+//					ctcPsbEdTm: '', //�붿껌醫낅즺�쒓컙
+//					pdNm: util.trim($(".top_tit ").text()), //�곹뭹紐�
+//					cnsCon: util.trim($(".top_tit ").text()), //�댁슜
+//					sndTMDivCd: '1', //TM�꾩넚�щ�
+//					cusNm: $scope.csInfo.csName, // 怨좉컼紐�
+//					cnsScrPath : 'S',       
+//					accountDvrg	:	"3",							//硫뷀떚�� 遺꾧린泥섎━(1:湲곗〈,2:�좉퇋,3:�묒そ)
+//					metisFlag				: proc,					//1�대㈃ 硫뷀떚�� �ㅽ뻾 �덈릺寃� �섎㉧吏�媛믪� �꾨� �덉슜
+//					smsFlag					: proc					//1�대㈃ 臾몄옄�꾩넚 �ㅽ뻾 �덈릺寃� �섎㉧吏�媛믪� �꾨� �덉슜
+//				};
+//				if(logParam){
+//					pm['ctcMdiaNo'] = logParam.ctcMdiaNo;
+//				}
+//				if ($scope.csInfo.csBirth != null && $scope.csInfo.csBirth != '') {
+//					pm.rsIdNo = $scope.csInfo.csBirth.substr(2, 6) + $("[name=csSex]:checked").val() + "000000";
+//				} else {
+//					pm.rsIdNo = "000000" + $("[name=csSex]:checked").val() + "000000";
+//				}
+//
+//				if (pm.cmCnsTpCd == "2102") {
+//					pm.cmCnsTpNm = "�먮룞李�";
+//				} else if (pm.cmCnsTpCd == "2103") {
+//					pm.cmCnsTpNm = "�댁쟾��/嫄닿컯/�대┛��";
+//				} else if (pm.cmCnsTpCd == "2104") {
+//					pm.cmCnsTpNm = "�곌툑/��異�";
+//					rtnMdiaInfo(logParam.ctcMdiaNo , pm);
+//				} else if (pm.cmCnsTpCd == "2105") {
+//					pm.cmCnsTpNm = "�붿옱/�앺솢";
+//					rtnMdiaInfo(logParam.ctcMdiaNo , pm);
+//				}
+//				if ($scope.isBusiness) { 
+//					pm.cnsCon = util.trim($(".top_tit ").text()) + " " + $("#csBusiness").val();
+//				}
+//				
+//				http.post("f.cg.he.ct.ts.o.bc.InetCnsBc.registInetCns", pm).then(function(result) {
+//					log.out(result.body.SMS.con);
+//					if (result) {
+//						if (result.header && result.header.prcesResultDivCd == '0') {
+//							$scope.callback && $scope.callback(
+//									{
+//										data: {
+//											agrees : getAgree(logParam.agrees),
+//											ctcStgeCd : '3090',
+//											errMsgCon : result.body.errMsgCon
+//										}
+//									}
+//							);
+//							if("60777|60846|60848|60851|60855|60856|71501".indexOf($scope.csPdCd) > -1)//�대깽�몄젣��(�곌툑,��異�,耳��댄봽由�,�щЪ,�깃났,M-PLEX,�먮룞李쮂M)
+//								pm.event = false;
+//							else pm.event = true; 
+//							
+//							$scope.inqComplete(pm);
+//						} else {
+//							layerPop.alert(result.msg.standMsg);
+//						}
+//					}
+//					$timeout(function() {
+//						styleFormMethod();
+//					}, 100);
+//				});
+//			}
+//
+//			// �곷떞�좎껌�꾨즺
+//			$scope.inqComplete = function(item) {
+//				var ctcMdiaNo = item.ctcMdiaNo;
+//				layerPop.open('lypop_pdInquiry', 'biz/pd/pd/comm/lypop_pdInquiry', item).then(function(result) {
+//					if(ctcMdiaNo == 'TAN1703NI000001' || ctcMdiaNo == 'TSY1703NI000001') {
+//						$('#ly_dir_cs input[type="text"]').val("");	
+//					} else {
+//						closeCsEvents();
+//					}
+//					//$route.reload();
+//					
+//				});
+//			};
+//
+//			function rtnMdiaInfo(ctcMdiaNo, param){
+//				if(ctcMdiaNo != undefined && param != undefined){
+//					if(ctcMdiaNo == 'THF1703NI000001'){
+//						param.ctcMdiaNm = "硫붾━痢� �곕━吏묐낫�� M-House";
+//					}else if(ctcMdiaNo == 'TPM1703NI000001'){
+//						param.ctcMdiaNm = "硫붾━痢� �щЪ蹂댄뿕 �깃났硫붿씠��";
+//					}else if(ctcMdiaNo == 'TPL1703NI000001'){
+//						param.ctcMdiaNm = "硫붾━痢� �깃났�ъ뾽�� 醫낇빀蹂댄뿕";
+//					}else if(ctcMdiaNo == 'TPX1703NI000001'){
+//						param.ctcMdiaNm = "臾대같�� 硫붾━痢� M-PLEX�щЪ蹂댄뿕";
+//					}else if(ctcMdiaNo == 'TAN1703NI000001'){
+//						param.ctcMdiaNm = "�곌툑��異뺤넀�대낫�� �명썑�앺솢吏��댁씠蹂댄뿕";
+//					}else if(ctcMdiaNo == 'TSY1703NI000001'){
+//						param.ctcMdiaNm = "紐⑥븘Rich��異뺣낫��";
+//					}else{
+//						return;
+//					}
+//					
+//					param.accountDvCd = "PI";
+//					param.infwDivCd = "2001";
+//					param.infwDivNm = "吏곸젒諛⑸Ц";
+//				}
+//			}
+//			
+//			// 17.03.07 �곷떞�좎껌 �뱀젙 李⑤떒 �꾪솕踰덊샇 ( �룹옄由� 0000 �ы븿 �쒖뼱)
+//			function blockTelNo(val) {
+//				var flag = false;
+//				var blockNoObj = ["01020000000"];
+//				
+//				if(blockNoObj.indexOf(val)>-1){
+//					flag = true;
+//				}else if((util.isRangeLength(val, 9, 11)==true)&&val.substring(7, 11) =="0000"){ 
+//					flag = true;
+//				}
+//				return flag;
+//			}
+//			
+//			
+//			// 蹂댁옣�댁슜
+//			$scope.goGuarantee = function() {
+//				util.goScroll('guarantee');
+//			};
+//			
+//			
+//			// 媛��낆삁��
+//			$scope.showInfo = function() {				
+//				if($scope.csPdCd == '60122' || $scope.csPdCd == '61522'){					// �명썑�앺솢吏��댁씠蹂댄뿕
+//					layerPop.open('lypop_odagLifeGrdnIns', 'biz/pd/pa/annsavins/lypop_odagLifeGrdnIns',{pdCd:"60122"}).then(function(result) {});
+//				}else if($scope.csPdCd == '60425' || $scope.csPdCd == '61521'){		// 紐⑥븘 Rich��異뺣낫��
+//					layerPop.open('lyPop_savIns', 'biz/pd/pa/savins/lyPop_savIns',{pdCd:"60425"}).then(function(result) {});
+//				}else if($scope.csPdCd == '60455' || $scope.csPdCd == '61516'){		// �곕━吏묐낫�� M-House
+//					layerPop.open('lypop_husInsMHouse', 'biz/pd/pf/fireins/lypop_husInsMHouse',{pdCd:"60455"}).then(function(result) {});
+//				}else if($scope.csPdCd == '60771' || $scope.csPdCd == '61517'){		// �щЪ蹂댄뿕 �깃났硫붿씠��
+//					layerPop.open('lypop_propIns', 'biz/pd/pf/fireins/lypop_propIns',{pdCd:"60771"}).then(function(result) {});
+//				}else if($scope.csPdCd == '60549' || $scope.csPdCd == '61274'){		// M-PLEX�щЪ蹂댄뿕
+//					layerPop.open('lypop_mPlexPropIns', 'biz/pd/pf/fireins/lypop_mPlexPropIns',{pdCd:"60549"}).then(function(result) {});
+//				}else if($scope.csPdCd == '60571' || $scope.csPdCd == '60901'){		// The利먭굅�� �쒕땲�대낫�λ낫��
+//					layerPop.open('lypop_seniGurtIns', 'biz/pd/ph/diszins/lypop_seniGurtIns',{pdCd:"60571"}).then(function(result) {});
+//				}else if($scope.csPdCd == '60684' || $scope.csPdCd == '61515'){		// �깃났�ъ뾽��
+//					layerPop.open('lypop_sucBizpeSythIns', 'biz/pd/pf/fireins/lypop_sucBizpeSythIns',{pdCd:"60684"}).then(function(result) {});
+//				}
+//			};
+//			
+//			// �곷떞�덉빟�좎껌
+//			$scope.reservation = function(parent) {
+//				
+////				var chekName  = "";
+////				var chekBirth    = "";
+////				var chekPhone = "";
+//				
+////				if($scope.csPdCd == '60425' || $scope.csPdCd == '61521' || $scope.csPdCd == '60122' || $scope.csPdCd == '61277'){
+////					
+////					
+////					
+////					chekName = angular.element('#csName').val();
+////					chekBirth = angular.element('#csBirth').val();
+////					chekPhone = angular.element('#csPhone').val();
+////					
+////					// uiConsReq.tpl濡� �먮윭媛� �섍꺼二쇰뒗 濡쒖쭅 �꾩슂
+////					
+////					$data.er.csName = !chekName;
+////					$data.er.csBirth = !chekBirth;
+////					$data.er.csPhone = !chekPhone;
+////					
+////					//$scope.csInfo = !chekName;
+////					
+////					
+////					/** 湲곗〈諛⑹떇
+////					 *  js�뚯씪
+////					 *    var $data = $scope[$("[data-ui-tm-sub]").attr("id")]; �좎뼵 ��
+////					 *    
+////					 *    var chekName = valiSpace(angular.element('#ccName').val());
+////					 *    $data.er.name = !chekName;					//�대쫫
+////					 *    
+////					 *    tpl�뚯씪
+////					 *    <div class="bx_valid {{tm.er.name? 'error' : ''}}">
+////					 */
+////				}
+//				
+//				if(blockTelNo($scope.csInfo.csPhone)){
+//					layerPop.alert('�곕씫泥섎� �뺥솗�� �낅젰�섏꽭��.');  
+//					return ;
+//				}
+//				parent = parent.$parent;
+//				if ($scope.csValidation()) {
+//					// 14�� 誘몃쭔 �좎껌遺덇�.(�ㅽ겕由쏀듃 �ㅻ쪟... �뚯뒪�몃� �꾪빐�� �꾩떆 二쇱꽍)
+////					if(birthChk()) {
+////						if(parent.logSetPm){
+////							saveLog('CS','3010',parent.logSetPm);	
+////						}
+////						layerPop.open('lypop_privacyInq', 'biz/pd/pd/comm/lypop_privacyInq').then(function(result) {
+////							if (result.code) {
+////								registInetCns(parent.logSetPm);
+////							}
+////						});
+////					}else{
+////						layerPop.alert('留� 14�� 誘몃쭔�� 寃쎌슦 �좎껌�� 遺덇��⑸땲��.');
+////					}
+//					
+//					// �뚰듃�ㅻ� �꾪븳 �꾩떆 �묒뾽
+//					if($scope.csPdCd == "61115" || $scope.csPdCd == "61116" || $scope.csPdCd == "61087" || $scope.csPdCd == "61517") {			// �щЪ蹂댄뿕, �깃났�ъ뾽��, M-PLEX 蹂댄뿕�� �앸뀈�붿씪 �낅젰 �놁쓬						
 //						if(parent.logSetPm){
 //							saveLog('CS','3010',parent.logSetPm);	
 //						}
 //						layerPop.open('lypop_privacyInq', 'biz/pd/pd/comm/lypop_privacyInq').then(function(result) {
 //							if (result.code) {
+//								parent.logSetPm.agrees = result;
 //								registInetCns(parent.logSetPm);
 //							}
 //						});
-//					}else{
-//						layerPop.alert('留� 14�� 誘몃쭔�� 寃쎌슦 �좎껌�� 遺덇��⑸땲��.');
+//					} else {
+//						if(birthChk()) {
+//							if(parent.logSetPm){
+//								saveLog('CS','3010',parent.logSetPm);	
+//							}
+//							layerPop.open('lypop_privacyInq', 'biz/pd/pd/comm/lypop_privacyInq').then(function(result) {
+//								if (result.code) {
+//									if(!parent.logSetPm){
+//										parent.logSetPm = {};
+//									}
+//									parent.logSetPm.agrees = result;
+//									registInetCns(parent.logSetPm);
+//								}
+//							});
+//						}else{
+//							layerPop.alert('留� 14�� 誘몃쭔�� 寃쎌슦 �좎껌�� 遺덇��⑸땲��.');
+//						}
 //					}
-					
-					// �뚰듃�ㅻ� �꾪븳 �꾩떆 �묒뾽
-					if($scope.csPdCd == "61115" || $scope.csPdCd == "61116" || $scope.csPdCd == "61087" || $scope.csPdCd == "61517") {			// �щЪ蹂댄뿕, �깃났�ъ뾽��, M-PLEX 蹂댄뿕�� �앸뀈�붿씪 �낅젰 �놁쓬						
-						if(parent.logSetPm){
-							saveLog('CS','3010',parent.logSetPm);	
-						}
-						layerPop.open('lypop_privacyInq', 'biz/pd/pd/comm/lypop_privacyInq').then(function(result) {
-							if (result.code) {
-								parent.logSetPm.agrees = result;
-								registInetCns(parent.logSetPm);
-							}
-						});
-					} else {
-						if(birthChk()) {
-							if(parent.logSetPm){
-								saveLog('CS','3010',parent.logSetPm);	
-							}
-							layerPop.open('lypop_privacyInq', 'biz/pd/pd/comm/lypop_privacyInq').then(function(result) {
-								if (result.code) {
-									if(!parent.logSetPm){
-										parent.logSetPm = {};
-									}
-									parent.logSetPm.agrees = result;
-									registInetCns(parent.logSetPm);
-								}
-							});
-						}else{
-							layerPop.alert('留� 14�� 誘몃쭔�� 寃쎌슦 �좎껌�� 遺덇��⑸땲��.');
-						}
-					}
-					//test end					
-					
-				}
-			};
-			
-			function birthChk() {
-				
-				var date = new Date();
-				var year = date.getFullYear();
-				var month = (date.getMonth()+1);
-				var day = date.getDate();
-				if(month < 10) month = '0'+month;
-				if(day <10) day = '0'+day;
-				var monthDay = month + day;
+//					//test end					
+//					
+//				}
+//			};
+//			
+//			function birthChk() {
+//				
+//				var date = new Date();
+//				var year = date.getFullYear();
+//				var month = (date.getMonth()+1);
+//				var day = date.getDate();
+//				if(month < 10) month = '0'+month;
+//				if(day <10) day = '0'+day;
+//				var monthDay = month + day;
+//
+//				var birth = $scope.csInfo.csBirth;
+//				var birthdayy = birth.substr(0,4);
+//				var birthdaymd = birth.substr(4,4);
+//
+//				var age = monthDay < birthdaymd ? year - birthdayy - 1 : year - birthdayy;
+//
+//	 			if(age < 15) {
+//	 				return false;
+//	 			}else{
+//	 				return true;
+//	 			}
+//			}
+//
+//			function saveLog(divCd,ctcStgeCd,logSetPm){
+//				logSetPm['ctcStgeCd'] = ctcStgeCd;
+//				logSetPm['divCd'] = divCd;
+//				logSetPm.dsgDivCd = '2';
+//				var logParam = mkt.setLogParam(logSetPm);
+//				logParam.telArNo = '';
+//				logParam.telSnoDect = '';
+//				logParam.telofNo = '';
+//				mkt.saveLog(logParam);
+//			}
+//
+//			/**
+//			 * Validation
+//			 */
+//			function getValid() {
+//				var valid = {
+//					csName: {
+//						error: false,
+//						msg: '�대쫫�� �뺥솗�� �낅젰�섏꽭��.',
+//						select: false,
+//						valid: true,
+//						intxt:'#csName'
+//					},
+//					csBirth: {
+//						error: false,
+//						msg: '�앸뀈�붿씪�� �뺥솗�� �낅젰�섏꽭��.',
+//						select: false,
+//						valid: true,
+//						intxt:'#csBirth'
+//					},
+//					csBusiness: {
+//						error: false,
+//						msg: '�낆쥌�� �좏깮�섏꽭��.',
+//						select: true,
+//						valid: false,
+//						intxt:'#csBusiness'
+//					},
+//					csPhone: {
+//						error: false,
+//						msg: '�곕씫泥섎� �뺥솗�� �낅젰�섏꽭��.',
+//						select: false,
+//						valid: true,
+//						intxt:'#csPhone'
+//					}
+//				};
+//				return valid;
+//			}
+//
+//			$scope.csValidation = function($event) {
+//				var isAll = true;
+//				if ($event) {
+//					isAll = false;
+//				}
+//				var validResult = true;
+//				if (!isAll) {
+//					validResult = valid($event.currentTarget);
+//				} else {
+//					var resArr = new Array();
+//					var sr = true;
+//					_.each($scope.csValid, function(v, k) {
+//						if (v.valid) {
+//							if (sr) {
+//								sr = valid('#' + k);
+//								resArr.push(sr);
+//								if (!sr) {
+//									$(v.intxt).focus();
+//								}
+//							}
+//						}
+//					});
+//					if (_.contains(resArr, false)) {
+//						validResult = false;
+//					}
+//				}
+//
+//				$timeout(function() {
+//					errorMthod();
+//				}, 50);
+//
+//				function valid(target) {
+//					var elem = $(target);
+//					var id = elem.attr("id");
+//					var val;
+//
+//					/**
+//					 * ���됲듃 諛뺤뒪 泥섎━
+//					 */
+//					if ($scope.csValid[id].select) {
+//						val = elem.val();
+//					} else {
+//						val = $scope.csInfo[id];
+//					}
+//
+//					var result = true;
+//					if (_.isUndefined(val) || _.isNull(val) || val == '') {
+//						$scope.csValid[id].error = true;
+//						result = false;
+//					} else {
+//						$scope.csValid[id].error = false;
+//						if ('csBirth' == id && !util.isDate(val)) {
+//							$scope.csValid[id].error = true;
+//							result = false;
+//						} else if ('csPhone' == id && (!util.isNumeric(val) || !util.isRangeLength(val, 9, 11))) {
+//							$scope.csValid[id].error = true;
+//							result = false;
+//						} else if ('csAgree1' == id && !elem.prop('checked')) {
+//							$scope.csValid[id].error = true;
+//							result = false;
+//						} else if ('csAgree2' == id && !elem.prop('checked')) {
+//							$scope.csValid[id].error = true;
+//							result = false;
+//						}
+//					}
+//					return result;
+//				}
+//
+//				return validResult;
+//			};
+//		});
+//		return o;
+//	}));
 
-				var birth = $scope.csInfo.csBirth;
-				var birthdayy = birth.substr(0,4);
-				var birthdaymd = birth.substr(4,4);
-
-				var age = monthDay < birthdaymd ? year - birthdayy - 1 : year - birthdayy;
-
-	 			if(age < 15) {
-	 				return false;
-	 			}else{
-	 				return true;
-	 			}
-			}
-
-			function saveLog(divCd,ctcStgeCd,logSetPm){
-				logSetPm['ctcStgeCd'] = ctcStgeCd;
-				logSetPm['divCd'] = divCd;
-				logSetPm.dsgDivCd = '2';
-				var logParam = mkt.setLogParam(logSetPm);
-				logParam.telArNo = '';
-				logParam.telSnoDect = '';
-				logParam.telofNo = '';
-				mkt.saveLog(logParam);
-			}
-
-			/**
-			 * Validation
-			 */
-			function getValid() {
-				var valid = {
-					csName: {
-						error: false,
-						msg: '�대쫫�� �뺥솗�� �낅젰�섏꽭��.',
-						select: false,
-						valid: true,
-						intxt:'#csName'
-					},
-					csBirth: {
-						error: false,
-						msg: '�앸뀈�붿씪�� �뺥솗�� �낅젰�섏꽭��.',
-						select: false,
-						valid: true,
-						intxt:'#csBirth'
-					},
-					csBusiness: {
-						error: false,
-						msg: '�낆쥌�� �좏깮�섏꽭��.',
-						select: true,
-						valid: false,
-						intxt:'#csBusiness'
-					},
-					csPhone: {
-						error: false,
-						msg: '�곕씫泥섎� �뺥솗�� �낅젰�섏꽭��.',
-						select: false,
-						valid: true,
-						intxt:'#csPhone'
-					}
-				};
-				return valid;
-			}
-
-			$scope.csValidation = function($event) {
-				var isAll = true;
-				if ($event) {
-					isAll = false;
-				}
-				var validResult = true;
-				if (!isAll) {
-					validResult = valid($event.currentTarget);
-				} else {
-					var resArr = new Array();
-					var sr = true;
-					_.each($scope.csValid, function(v, k) {
-						if (v.valid) {
-							if (sr) {
-								sr = valid('#' + k);
-								resArr.push(sr);
-								if (!sr) {
-									$(v.intxt).focus();
-								}
-							}
-						}
-					});
-					if (_.contains(resArr, false)) {
-						validResult = false;
-					}
-				}
-
-				$timeout(function() {
-					errorMthod();
-				}, 50);
-
-				function valid(target) {
-					var elem = $(target);
-					var id = elem.attr("id");
-					var val;
-
-					/**
-					 * ���됲듃 諛뺤뒪 泥섎━
-					 */
-					if ($scope.csValid[id].select) {
-						val = elem.val();
-					} else {
-						val = $scope.csInfo[id];
-					}
-
-					var result = true;
-					if (_.isUndefined(val) || _.isNull(val) || val == '') {
-						$scope.csValid[id].error = true;
-						result = false;
-					} else {
-						$scope.csValid[id].error = false;
-						if ('csBirth' == id && !util.isDate(val)) {
-							$scope.csValid[id].error = true;
-							result = false;
-						} else if ('csPhone' == id && (!util.isNumeric(val) || !util.isRangeLength(val, 9, 11))) {
-							$scope.csValid[id].error = true;
-							result = false;
-						} else if ('csAgree1' == id && !elem.prop('checked')) {
-							$scope.csValid[id].error = true;
-							result = false;
-						} else if ('csAgree2' == id && !elem.prop('checked')) {
-							$scope.csValid[id].error = true;
-							result = false;
-						}
-					}
-					return result;
-				}
-
-				return validResult;
-			};
-		});
-		return o;
-	}));
-
-	// uiInsCalc
+	/*// uiInsCalc
 	mz.comm.directive('uiInsCalc', mz.mold(function() {
 		var o = {};
 		o.templateUrl = mz.path('/views/comm/uiInsCalc.tpl', true);
@@ -1340,9 +1340,9 @@
 				return arr;
 			}
 			
-			/**
+			*//**
 			 * @method retrieveInsCalc - 怨꾩궛
-			 */
+			 *//*
 			function retrieveInsCalc(logParam) {
 				var pm = {
 					pdCd: rtnChangePdcd($scope.ccPdCd), //�곹뭹肄붾뱶
@@ -1439,7 +1439,7 @@
 				} else if (pm.cmCnsTpCd == "2105") {
 					pm.cmCnsTpNm = "�붿옱/�앺솢";
 				}
-				// debugger;
+				// 
 				http.post("f.cg.he.ct.ts.o.bc.InetCnsBc.premInetCns", pm).then(function(result) {
 					if (result) {
 						if (result.header && result.header.prcesResultDivCd == '0') {
@@ -1575,9 +1575,9 @@
 				mkt.saveLog(logParam);
 			}
 
-			/**
+			*//**
 			 * Validation
-			 */
+			 *//*
 			function getValid() {
 				var valid = {
 					ccName: {
@@ -1659,11 +1659,11 @@
 			};
 		});
 		return o;
-	}));
+	}));*/
 	
 	// 2016.10.13
 	// LNB �ㅻ쭏�몄삤�� 硫붾돱蹂� �쒗뵆由� �ㅼ젙
-	mz.comm.directive('uiSnbLower', mz.mold(function(co) {
+	/*mz.comm.directive('uiSnbLower', mz.mold(function(co) {
 		var o = {};
 
 		o.templateUrl = mz.path('/views/comm/snbLower/uiSnbLower.tpl', true);
@@ -1712,10 +1712,10 @@
 			return { ercmMenu : ercmMenu }
 		}());
 		return o;
-	}));
+	}));*/
 
 	// uiEcrmPd
-	mz.comm.directive('uiEcrmPd', mz.mold(function() {
+	/*mz.comm.directive('uiEcrmPd', mz.mold(function() {
 		var o = {};
 		o.templateUrl = function(elem, attr) {
 			var tplNm = "uiEcrmPd";
@@ -1982,9 +1982,9 @@
 				}
 			};
 			
-			/**
+			*//**
 			 * �대┃��, ecrm log �꾩넚
-			 */
+			 *//*
 			function transferEcrmLog(pm) {
 				//wiselog.ecrmClickLogging(pm.clickUrl);
 				$.ajax({
@@ -1994,10 +1994,10 @@
 			}
 		});
 		return o;
-	}));
+	}));*/
 	
 	// uiEcrmSnb
-	mz.comm.directive('uiEcrmSnb', mz.mold(function() {
+	/*mz.comm.directive('uiEcrmSnb', mz.mold(function() {
 		var o = {};
 		o.templateUrl =  mz.path('/views/comm/uiEcrmSnb.tpl', true);
 				
@@ -2016,10 +2016,10 @@
 			$scope.ecrm = {};
 			
 			var menuIdns ={
-				/*
+				
 				 * ctrDivCd
 				 * �쇰컲 : 1, �κ린 : 6, �먮룞李� : 7
-				 * */
+				 * 
 				2100 : {dpid: "Hidden_B", ctrDivCd: "7"}, // 怨꾩빟蹂�寃�
        			2122 : {dpid: "Hidden_A", ctrDivCd: "6"}, // �⑹엯/�섍툒
        			2065 : {dpid: "Hidden_C", ctrDivCd: "6"}  // �곹빐/吏덈퀝 蹂댁긽
@@ -2045,10 +2045,10 @@
 		});
 		
 		return o;
-	}));
+	}));*/
 
 	// uiEcrmSnbSub
-	mz.comm.directive('uiEcrmSnbSub', mz.mold(function() {
+	/*mz.comm.directive('uiEcrmSnbSub', mz.mold(function() {
 		var o = {};
 		o.templateUrl = function(elem, attr) {
 			var tplNm = "uiEcrmSnbSub";
@@ -2242,9 +2242,9 @@
 				}
 			};
 			
-			/**
+			*//**
 			 * �대┃��, ecrm log �꾩넚
-			 */
+			 *//*
 			function transferEcrmLog(pm) {
 				//wiselog.ecrmClickLogging(pm.clickUrl);
 				$.ajax({
@@ -2254,9 +2254,9 @@
 			}
 		});
 		return o;
-	}));	
+	}));	*/
 	
-	
+	/*
 	mz.comm.directive('faqList', mz.mold(function() {
 		var o = {};
 		
@@ -2570,11 +2570,11 @@
 			$scope.showPdInfo = function(item) {
 				//click event �꾩넚
 				transferEcrmLog(item);
-				/*
+				
 				if (item.webUrl) {
 					$window.open(item.webUrl);
 				}
-				*/
+				
 				var url = item.webUrl; 
 				var cusId = $scope.ecrm.cusId;
 				if(	cusId != "" && $scope.ecrm.reCom == "auto") {
@@ -2669,6 +2669,6 @@
 			}			
 		});		
 		return o;		
-	}));
-
+	}));*/
+	
 })(angular, mz);

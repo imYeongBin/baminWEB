@@ -10,7 +10,7 @@
  * 媛뺥솚湲� 2015-08-12 First Draft
  */
 (function(angular, mz) {
-
+ 
 	// �ㅼ젙
 	mz.core.config(mz.mold(function($httpProvider, blockUIConfig) {
 		blockUIConfig.autoBlock = false;
@@ -54,5 +54,5 @@
 			}
 		};
 	}));
-
+ 
 })(angular, mz);

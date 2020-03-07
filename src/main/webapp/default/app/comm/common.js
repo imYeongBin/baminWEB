@@ -871,7 +871,7 @@ var sliderPublic = function() {
             $sliderList = $slider.find(' > li');
 
         if ($sliderObj.length) {
-            //debugger;
+            //
             var $limgL = Math.abs($sliderList.filter(':last-child').css('margin-left').split('px')[0]),
                 $ceil = $sliderList.width() + $limgL;
             var isitMove = false;

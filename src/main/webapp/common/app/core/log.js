@@ -1,7 +1,7 @@
 //濡쒓렇 �곸옱 �쒕퉬��
-(function(angular, mz) {
+(function(angular, mz) { 
 	//�듯빀�숈쓽�뺣낫 ���� �쒕퉬��
-	mz.comm.factory('agrInf', function(co , $q){
+	/*mz.comm.factory('agrInf', function(co , $q){
 		var log = co.get('logger').getLogger('agrInf');
 		var http = co.get('http');
 		var o = {};
@@ -25,7 +25,7 @@
 		}
 		
 		return o;
-	});
+	});*/
 
 	// 留덉��� 濡쒓렇 �좉퇋 怨듯넻 �쒕퉬��
 //	mz.comm.factory('mktLog', function(co, $q){

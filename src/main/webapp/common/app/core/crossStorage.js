@@ -11,13 +11,13 @@
  */
 //���쏱C
 (function(angular, mz) {
-
+	 
 	// 紐⑤뱢 濡쒕뱶
 	mz.load('common/js/crossStorage/', [
 	    	                      	    'es6-promise.auto.min.js',                           
 	    	                      	    'client.min.js'
-	    	                      	],true);
-	
+	    	                      	],true); 
+/*	
 	mz.comm.service('crossStorage', function(co, $window, $q, $injector){
 		var log = co.get('logger').getLogger('crossStorage');
 		var o = {};
@@ -193,5 +193,5 @@
 			return {dsgTrgCd : dsgTrgCd, dsgDivCd : dsgDivCd};
 		}
 		return o;
-	})
+	})*/
 })(angular, mz);

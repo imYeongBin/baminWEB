@@ -11,7 +11,7 @@
  */
 (function(angular, mz) {
 	
-	mz.load('default/app/biz/ct/to/insctrlon/', ['comInsCtrLon.js'], true);
+	//mz.load('default/app/biz/ct/to/insctrlon/', ['comInsCtrLon.js'], true);
 
 	/**
 	 * @method commController - 怨듯넻 而⑦듃濡ㅻ윭
@@ -170,12 +170,14 @@
 		 * @method init - 珥덇린��
 		 */
 		function init() {
+			
 			//16.12.13 �곷떞�쒓컙�ㅼ젙
 			co.get('slzDate').init();
 		}
 	}));
 	
 	mz.comm.controller('layerBankController', mz.mold(function(co, $scope) {
+		
 		var log       = co.get('logger').getLogger('layerBankController');
 		var layerPop  = co.get('layerPop');
 		var util      = co.get('util');
@@ -197,6 +199,7 @@
 		};
 		
 		function init() {
+			
 			var param = layerPop.getParam($scope);
 			
 			$scope.param  = {}; //�섏뼱�� �뺣낫.
