@@ -2,6 +2,7 @@ package com.ppp.bamin.Controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ppp.bamin.DAO.MemberMapper;
@@ -46,17 +48,41 @@ public class mainController {
 		return retVal;
 	}
 	
+	@RequestMapping("**/moveInsertMember.do")  
+	public String moveInsertMember(HttpServletRequest request, Model model) {
+		String retVal = "insertMember";
+		System.out.println("go insertMember Page");
+		return retVal;
+	}
 	
 	
-	  @RequestMapping(value="/retrieveMemberList.do") 
-	  @ResponseBody
-	  public List retrieveMemberList(HttpServletRequest request, Model model) {
+	@RequestMapping("**/completeInsert.do")  
+	public String completeInsert(HttpServletRequest request, Model model) {
+		String retVal = "completeInsert";
+		System.out.println("go completeInsert Page");
+		return retVal;
+	}
+	
+	@RequestMapping(value="**/insertMember.do", method = RequestMethod.GET)  
+	@ResponseBody
+	public String insertMember(HttpServletRequest request, Model model, @RequestParam("memberNo")String memberNo) {
+		System.out.println("$$$$$$$$$$$$$$$$$$");
+		
+		//MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+
+		System.out.println("###### memberNo "+memberNo);
+		return "success insert member";
+	}
+	
+	@RequestMapping(value="/retrieveMemberList.do") 
+	@ResponseBody
+	public List retrieveMemberList(HttpServletRequest request, Model model) {
 	  
-	  MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-	  List list =  new ArrayList<>();
-	  list = mapper.retrieveMemberList();
-	  return  list; 
-	  }
+		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+		List list =  new ArrayList<>();
+		list = mapper.retrieveMemberList();
+		return  list; 
+	}
 	
 	@RequestMapping("**/error.do")  
 	public String error(HttpServletRequest request, Model model) {

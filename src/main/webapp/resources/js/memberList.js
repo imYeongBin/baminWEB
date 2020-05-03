@@ -10,6 +10,9 @@ app.controller('comm', function($scope, $http, $location,$q,$timeout) {
 	$scope.moveMain = function(){
 		location.href="./main.do";
 	}
+	$scope.moveInsertMember = function(){
+		location.href="./moveInsertMember.do";
+	}
 	
 	$scope.retrieveM = function (){
 		

@@ -8,10 +8,12 @@ public class MemberBcImpl implements MemberBc {
 
 	@Override
 	public void retrieveMemberList(Model model) {
-		
-		
 	}
 
+	@Override
+	public void memberReg(Model model) {
+		
+	}
 
 	
 

@@ -11,7 +11,7 @@
 	String path = request.getContextPath();
 	String getServletPath = request.getServletPath().toString();//		/main.do
 	String defaultLayout = getServletPath.replace("/", "").replace(".do", "");
-	System.out.println("Here is memberList.jsp!!!");
+	System.out.println("Here is insertMember.jsp!!!");
 %>
 <script type="text/javascript" src="${webRoot}/common/js/underscore/underscore-min.js"></script>
 <script type="text/javascript" src="${webRoot}/common/js/jquery/jquery.min.js"></script>
@@ -21,39 +21,54 @@
 <script type="text/javascript" src="${webRoot}/common/js/angular/angular-animate.js"></script>
 <script type="text/javascript" src="${webRoot}/common/js/angular-block-ui/angular-block-ui.min.js"></script>
 
-<script src="${webRoot}/resources/js/memberList.js"></script>
+<script src="${webRoot}/resources/js/insertMember.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body data-ng-app="myApp" data-ng-controller="comm"> 
-<h3> welcome memberList page!!</h3>
-<a href="#" data-ng-click="retrieveM()">조회하기</a>
-<div data-ng-show="memberListFlag==true">
-	<h3>memberList List</h3>
+	<h3> welcome insertMember page!!</h3>
+	
+	<!-- input area -->
 	<table>
 		<tr>
-			<th>번호</th>
-			<th>이름</th>
-			<th>지역</th>
-			<th>성별</th>
-			<th>나이</th>
-			<th>연락처</th>
-			<th>잔여회비</th>
+			<th>회원번호</th>
+			<td><input type="text" data-ng-model="memberNo" name="memberNo" id="memberNo"></td>
 		</tr>
-		<tr data-ng-repeat="mem in memberList">
-		<td>{{mem.memberNo}}</td>
-		<td>{{mem.memberNm}}</td>
-		<td>{{mem.lctn}}</td>
-		<td>{{mem.gndr}}</td>
-		<td>{{mem.age}}</td>
-		<td>{{mem.telNo}}</td>
-		<td>{{mem.feeBalance}}</td>
+		<tr>
+			<th>이름</th>
+			<td><input type="text" data-ng-model="memberNm" name="memberNm" id="memberNm"></td>
+		</tr>
+		<tr>
+			<th>참석수</th>
+			<td><input type="text" data-ng-model="attCnt" name="attCnt" id="attCnt"></td>
+		</tr>		
+		<tr>
+			<th>연락처</th>
+			<td><input type="text" data-ng-model="telNo" name="telNo" id="telNo"></td>
+		</tr>
+		<tr>
+			<th>지역</th>
+			<td><input type="text" data-ng-model="lctn" name="lctn" id="lctn"></td>
+		</tr>
+		<tr>
+			<th>성별</th>
+			<td><input type="text" data-ng-model="gndr" name="gndr" id="gndr"></td>
+		</tr>
+		<tr>
+			<th>나이</th>
+			<td><input type="text" data-ng-model="age" name="age" id="age"></td>
+		</tr>
+		<tr>
+			<th>회비잔액</th>
+			<td><input type="text" data-ng-model="feeBalance" name="feeBalance" id="feeBalance"></td>
 		</tr>
 	</table>
-</div>
-
-<a href="#" data-ng-click="moveInsertMember()">Go to reg Member</a>
-<a href="#" data-ng-click="moveMain()">Go to main</a>
-
+	
+	<!-- button area -->
+	<div>
+		<a href="#" class="btn btn_confirm" data-ng-click="addMember()">confirmed</a>
+		<a href="#" class="btn btn_cancel" data-ng-click="cancelReg()">cancelled</a>
+		<a href="#" class="btn" data-ng-click="moveMain()">Go to main</a>
+	</div>
 </body>
 </html>
