@@ -7,7 +7,7 @@ import com.ppp.bamin.BC.MemberBc;
 public class MemberBcImpl implements MemberBc {
 
 	@Override
-	public void memberList(Model model) {
+	public void retrieveMemberList(Model model) {
 		
 		
 	}

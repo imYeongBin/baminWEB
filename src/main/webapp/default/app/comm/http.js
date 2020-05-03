@@ -12,7 +12,7 @@
 (function(angular, mz) {
 
 	mz.comm.factory('http', mz.mold(function(co) {
-		var log          		= co.get('logger').getLogger('http');
+		//var log          		= co.get('logger').getLogger('http');
 		var ajax 		 		= co.get('ajax');
 		var util 		 		= co.get('util');
 		var path 		 		= co.get('path');
@@ -23,7 +23,7 @@
 		var $q 					= co.get('$q');
 		var path     	 		= co.get('path');
 		var SERVICE_URL  		= mz.DOMAIN + mz.WEBROOT + '/json.smart';
-		var ERROR_CODE   		= ['FNGFW100062','FNGFW100048', 'FCGCMH00004', 'FCGCMH00005', "FCGCMH00006"];
+		//var ERROR_CODE   		= ['FNGFW100062','FNGFW100048', 'FCGCMH00004', 'FCGCMH00005', "FCGCMH00006"];
 
 		/* - public ------------------------------- */
 
@@ -31,7 +31,7 @@
 
 		o.post = function(id, param, flag) {
 			if (!_.isString(id) || !param) {
-				alert("�붿껌�꾨Ц �쒕퉬�짪D媛믪쓣 �뺤씤�� 二쇱꽭��.");
+				alert(" ");
 				return;
 			}
 			
@@ -127,7 +127,7 @@
 		/* - private ------------------------------ */
 		
 		function moveErrorPage() {
-			$window.location.href = "/error.do";
+			$window.location.href = "/bamin/error.do";
 			return;
 		}
 

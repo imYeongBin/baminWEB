@@ -1,4 +1,4 @@
-// skip navigation
+/*// skip navigation
 function skip_navigating() {
     if ($("body").attr("data-scraction") != 0) {
         if ($('.layer_wrap').css('visibility') == 'visible') {
@@ -1507,7 +1507,7 @@ window.sickMethod = (function() {
 
                 $('html,body').animate({
                     scrollTop: $('.sick_menu').offset().top
-                }); /* 180515 $('html,body').animate({ scrollTop : 566 }); */
+                });  180515 $('html,body').animate({ scrollTop : 566 }); 
 
             }, 150);
 
@@ -1591,7 +1591,7 @@ window.sickMethod = (function() {
             }).jScrollPane({
                 mouseWheelSpeed: 100,
                 hijackInternalLinks: true,
-                /*animateScroll: true*/
+                animateScroll: true
             });
         }
     }
@@ -3213,12 +3213,12 @@ window.uiItgrInsPop = (function() {
     }
 })();
 
-/* 170605 留덉씠�댁뭅�댄듃 �뚮줈�낅같�� */
+ 170605 留덉씠�댁뭅�댄듃 �뚮줈�낅같�� 
 var myAccount_floating = (function() {
     var num = 0;
 
     return {
-        /* 170714
+         170714
 
         move2:function(){
         	$('.bodyCon>ul').children('li').eq(num).children('.textCon').css('margin-top','50px');
@@ -3230,7 +3230,7 @@ var myAccount_floating = (function() {
         		num=0;
         	}
         }
-        */
+        
         move2: function() {
             //console.log("num::::::::::"+num);
 
@@ -3249,7 +3249,7 @@ var myAccount_floating = (function() {
 
 if (typeof window.etribe === 'undefined') window.etribe = {};
 
-/* 梨꾪똿李� 由ъ궗�댁쫰 & �쒕옒洹� */
+ 梨꾪똿李� 由ъ궗�댁쫰 & �쒕옒洹� 
 window.etribe.chatDragResize = (function() {
     var window_resize_disable;
     var before_min_height;
@@ -3360,7 +3360,7 @@ window.etribe.chatDragResize = (function() {
             .resizable({
                 containment: 'document',
                 handles: 'all',
-                /* handles: '.ui-resizable-handle', */
+                 handles: '.ui-resizable-handle', 
                 maxHeight: 750,
                 maxWidth: 550,
                 minHeight: default_height,
@@ -3425,10 +3425,10 @@ window.etribe.chatDragResize = (function() {
             if (window_resize_disable) {
                 return;
             }
-            /*
+            
              * chattion_win.position({ of: 'body', my: 'right bottom', at:
              * 'right bottom', collision: 'fit fit', top:'unset', left:'unset' })
-             */
+             
             saveData();
         });
     }
@@ -3490,10 +3490,10 @@ window.etribe.chatDragResize = (function() {
             if (window_resize_disable) {
                 return;
             }
-            /*
+            
              * chattion_win.position({ of: 'body', my: 'right bottom', at:
              * 'right bottom', collision: 'fit fit', top:'unset', left:'unset' })
-             */
+             
             saveData();
         });
     }
@@ -3575,7 +3575,7 @@ window.etribe.chatDragResize = (function() {
             before_min_height = chat_size.before_min_height;
 
             if (chat_size.height < after_min_height || chat_size.height == null) {
-                /* ���대컢 ��뼱�몄꽌 height媛� 紐� �쎌뼱���� 1濡� �섏뼱�� 寃쎌슦 ��鍮� */
+                 ���대컢 ��뼱�몄꽌 height媛� 紐� �쎌뼱���� 1濡� �섏뼱�� 寃쎌슦 ��鍮� 
                 chat_size.width = default_width;
                 $('#chatbot_wrap').find('.chattion_win').css({
                     'top': 'auto',
@@ -3710,9 +3710,9 @@ window.chk_errmeritz = (function () {
 
 
     var ns = window.etribe.chatbot
-    /**
+    *//**
      * �곷떞濡쒕큸 紐щ뵒�� �됰룞�� �쒖뼱�쒕떎
-     */
+     *//*
     ns.mondiManager = (function() {
         var type1, type2, type3, type4, popTween;
         var chatTextArr = [
@@ -4477,9 +4477,9 @@ window.chk_errmeritz = (function () {
 
         return {
             init: function() {
-                /**
+                *//**
                  * �쟧nitialize
-                 */
+                 *//*
                 // console.debug('mondi, int.');
                 //       impl.init()
             },
@@ -4508,11 +4508,11 @@ window.chk_errmeritz = (function () {
             },
             changeup: function(text, num) {
 
-                /**
+                *//**
                  * �≪쫱�쒖쟾�� �쒕굹由ъ삤 �ㅽ뻾
                  *
                  * @arguments - text (array) �몄텧�� 臾몄옄��
-                 */
+                 *//*
                 if (text && text.length) {
                     text = aryDefine(text);
                     changeupTextArr = text;
@@ -4535,11 +4535,11 @@ window.chk_errmeritz = (function () {
             },
             nudge: function(text, num) {
 
-                /**
+                *//**
                  * ��꽋吏� �쒕굹由ъ삤 �ㅽ뻾
                  *
                  * @arguments - text (array) �몄텧�� 臾몄옄��
-                 */
+                 *//*
                 if (text && text.length) {
                     text = aryDefine(text);
                     nudgeTextArr = text;
@@ -4564,11 +4564,11 @@ window.chk_errmeritz = (function () {
             },
             changeup2: function(text, num) {
 
-                /**
+                *//**
                  * �� �쏆� �ㅼ쓬 �쒕굹由ъ삤 �ㅽ뻾 (利됱떆�꾪솚 �쒕굹由ъ삤�� ��吏곸엫�� 媛숈븘�� 2濡� 紐낅챸)
                  *
                  * @arguments - text (array) �몄텧�� 臾몄옄��
-                 */
+                 *//*
                 if (text && text.length) {
                     text = aryDefine(text);
                     changeupTextArr2 = text;
@@ -4788,7 +4788,7 @@ window.chk_errmeritz = (function () {
 
 
     nsUiComm.focusSet_ontoError2 = (function() {
-        /* tm�� */
+         tm�� 
         var impl = {
             init: function() {
                 var errorBox = $('.txt_error');
@@ -5173,7 +5173,7 @@ $(function() {
 
         chk_errmeritz.init(); //2020.02.18 �뱀젒洹쇱꽦 愿��� �곹뭹�덈궡 �섏씠吏� �곗륫, 以묎컙 "�� 蹂댄뿕猷� �뺤씤" error �ъ빱��
 
-        /* ie 10�댄븯 泥댄겕 */
+         ie 10�댄븯 泥댄겕 
         if (window.document.documentMode > 10 || window.document.documentMode == undefined) {
             window.etribe.chatDragResize.init();
         } else {
@@ -5208,7 +5208,7 @@ $(function() {
     }, 1500);
 
 
-    /* 180129 */
+     180129 
     setTimeout(function() {
         skip_navigating();
         uiFrTab.init();
@@ -5248,4 +5248,4 @@ function historyTit(){
         historyTit.parent().removeClass("on");
         $(this).parent('h3').parent().addClass("on");
     });
-}
+}*/

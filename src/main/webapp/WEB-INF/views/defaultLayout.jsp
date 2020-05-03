@@ -42,12 +42,6 @@ var mz={
 </head>
 <body data-ng-controller="commController as comm">
 
-	<div id="wrap">
-		<div id="container">
-			<div data-ui-snb class="snb" id="snb"></div>
-			<div data-ng-view id="content"></div>
-		</div>
-	</div>
 
 
 

@@ -291,6 +291,7 @@
 	 * @param {o}    bc # - 鍮꾩쫰�덉뒪 �몄텧 紐⑤뱢 �좎뼵
 	 */
 	mz.init = function(cfg, bc) {
+		
 		var lib = [],
 			mdules = ['comm'];
 
@@ -308,8 +309,8 @@
 			mdules = _.compact(_.flatten(mdules));
 		}
 
-		mz.app = angular.module('app', mdules);
-
+		//mz.app = angular.module('app', mdules);
+		mz.app = angular.module('myApp', mdules); 
 		if (bc) {
 			mz.service('bc', ['co', function(co) {
 				var http = co.get('http'),
@@ -320,7 +321,6 @@
 						return http.post(v, param);
 					};
 				});
-
 				return o;
 			}]);
 		}
@@ -336,9 +336,11 @@
 	 */
 	mz.config = function(data, otherwise) {
 		mz.paths = [];
+		debugger;
 		mz.app.config(['$routeProvider', 'routeProvider', function($routeProvider, routeProvider) {
 			$routeProvider.otherwise({
 				redirectTo: otherwise
+				
 			});
 
 			_.each(data, function(v) {
@@ -347,6 +349,8 @@
 				$routeProvider.when(v.path, routeProvider.route(v));
 			});
 		}]);
+		
+		debugger;
 	};
 
 	/**

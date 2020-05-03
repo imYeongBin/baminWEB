@@ -33,7 +33,7 @@
 		<div id="container">
 			<div data-ui-snb class="snb" id="snb"></div>
 			
-			<h1>에러 페이지 입니다.</h1>
+			<h1>Error Page~</h1>
 			
 			
 			<div data-ng-view id="content"></div>

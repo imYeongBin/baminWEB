@@ -4,5 +4,5 @@ import org.springframework.ui.Model;
 
 public interface MemberBc {
 
-	public void memberList(Model model);
+	public void retrieveMemberList(Model model);
 }

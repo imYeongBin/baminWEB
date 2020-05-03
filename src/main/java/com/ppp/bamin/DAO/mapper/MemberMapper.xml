@@ -16,7 +16,7 @@
     </resultMap>
     
     
-    <select id="memberList" resultMap="selectMap">
+    <select id="retrieveMemberList" resultMap="selectMap">
    	SELECT
    	MEMBERNO AS MEMBER_NO
    	,MEMBERNM AS MEMBER_NM
@@ -27,6 +27,7 @@
    	,AGE AS AGE
    	,FEEBALANCE AS FEE_BALANCE
    	FROM MEMBER
+   	order by MEMBERNO asc
     </select>
     
     <insert id="memberReg">

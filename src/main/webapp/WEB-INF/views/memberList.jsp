@@ -6,63 +6,52 @@
 <!DOCTYPE html>
 <html> 
 <head>
-
+<c:set var="webRoot" value="${pageContext.request.contextPath}"/>
 <%
-String path = request.getContextPath();
-String getServletPath = request.getServletPath().toString();//		/main.do
-String defaultLayout = getServletPath.replace("/", "").replace(".do", "");
+	String path = request.getContextPath();
+	String getServletPath = request.getServletPath().toString();//		/main.do
+	String defaultLayout = getServletPath.replace("/", "").replace(".do", "");
+	System.out.println("Here is memberList.jsp!!!");
 %>
+<script type="text/javascript" src="${webRoot}/common/js/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="${webRoot}/common/js/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="${webRoot}/common/js/jquery/jquery.form.min.js"></script>
+<script type="text/javascript" src="${webRoot}/common/js/angular/angular.js"></script>
+<script type="text/javascript" src="${webRoot}/common/js/angular/angular-route.js"></script>
+<script type="text/javascript" src="${webRoot}/common/js/angular/angular-animate.js"></script>
+<script type="text/javascript" src="${webRoot}/common/js/angular-block-ui/angular-block-ui.min.js"></script>
 
-
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/memberList.js"></script>
-
-<% 
-%>
-
-
+<script src="${webRoot}/resources/js/memberList.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body> 
-<div ng-app="myApp" ng-controller="memberList">
-	
-	<script type="text/javascript">
-	$scope.memberList = <% request.getAttribute("memberList"); %>
-	</script>
-	<h1>회원관리</h1>
-	<div>
-		<table>
-			<tr>
-				<th>회원번호</th>
-				<th>이름</th>
-				<th>참석수</th>
-				<th>연락처</th>
-				<th>거주지역</th>
-				<th>성별</th>
-				<th>나이</th>
-				<th>잔여회비</th>
-			</tr>
-			<tr ng-repeat="item in memberList">
-				<td>{{item.memberNo}}</td>
-				<td>{{item.memberNm}}</td>
-				<td>{{item.attCnt}}</td>
-				<td>{{item.telNo}}</td>
-				<td>{{item.lctn}}</td>
-				<td>{{item.gndr}}</td>
-				<td>{{item.age}}</td>
-				<td>{{item.feeBalance}}</td>
-			</tr>
-				
-			
-		</table>
-	</div>
+<body data-ng-app="myApp" data-ng-controller="comm"> 
+<h3> welcome memberList page!!</h3>
+<a href="#" data-ng-click="retrieveM()">조회하기</a>
+<div data-ng-show="memberListFlag==true">
+	<h3>memberList List</h3>
+	<table>
+		<tr>
+			<th>번호</th>
+			<th>이름</th>
+			<th>지역</th>
+			<th>성별</th>
+			<th>나이</th>
+			<th>연락처</th>
+			<th>잔여회비</th>
+		</tr>
+		<tr data-ng-repeat="mem in memberList">
+		<td>{{mem.memberNo}}</td>
+		<td>{{mem.memberNm}}</td>
+		<td>{{mem.lctn}}</td>
+		<td>{{mem.gndr}}</td>
+		<td>{{mem.age}}</td>
+		<td>{{mem.telNo}}</td>
+		<td>{{mem.feeBalance}}</td>
+		</tr>
+	</table>
+</div>
 
-
-
-
-</div><!-- end of controller -->
+<a href="#" data-ng-click="moveMain()">Go to main</a>
 </body>
 </html>
