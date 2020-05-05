@@ -21,7 +21,7 @@
 <script type="text/javascript" src="${webRoot}/common/js/angular/angular-animate.js"></script>
 <script type="text/javascript" src="${webRoot}/common/js/angular-block-ui/angular-block-ui.min.js"></script>
 
-<script src="${webRoot}/resources/js/memberList.js"></script>
+<script src="${webRoot}/resources/js/completeInsert.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -32,5 +32,6 @@
 	</div>
 
 <a href="#" data-ng-click="moveMain()">Go to main</a>
+<a href="#" data-ng-click="moveMemberList()">Go to check memberList</a>
 </body>
 </html>

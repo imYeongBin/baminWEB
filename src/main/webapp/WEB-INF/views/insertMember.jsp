@@ -26,49 +26,66 @@
 <title>Insert title here</title>
 </head>
 <body data-ng-app="myApp" data-ng-controller="comm"> 
+	<form action="./insertMember.do" name="regForm" method="post" accept-charset="utf-8">
 	<h3> welcome insertMember page!!</h3>
-	
 	<!-- input area -->
-	<table>
-		<tr>
-			<th>회원번호</th>
-			<td><input type="text" data-ng-model="memberNo" name="memberNo" id="memberNo"></td>
-		</tr>
-		<tr>
-			<th>이름</th>
-			<td><input type="text" data-ng-model="memberNm" name="memberNm" id="memberNm"></td>
-		</tr>
-		<tr>
-			<th>참석수</th>
-			<td><input type="text" data-ng-model="attCnt" name="attCnt" id="attCnt"></td>
-		</tr>		
-		<tr>
-			<th>연락처</th>
-			<td><input type="text" data-ng-model="telNo" name="telNo" id="telNo"></td>
-		</tr>
-		<tr>
-			<th>지역</th>
-			<td><input type="text" data-ng-model="lctn" name="lctn" id="lctn"></td>
-		</tr>
-		<tr>
-			<th>성별</th>
-			<td><input type="text" data-ng-model="gndr" name="gndr" id="gndr"></td>
-		</tr>
-		<tr>
-			<th>나이</th>
-			<td><input type="text" data-ng-model="age" name="age" id="age"></td>
-		</tr>
-		<tr>
-			<th>회비잔액</th>
-			<td><input type="text" data-ng-model="feeBalance" name="feeBalance" id="feeBalance"></td>
-		</tr>
-	</table>
-	
+		<table>
+			<tr>
+				<th>이름</th>
+				<td><input type="text" data-ng-model="memberNm" name="memberNm" id="memberNm"></td>
+			</tr>
+			<tr>
+				<th>참석수1</th>
+				<td><input type="text" data-ng-model="attCnt" value="0" name="attCnt" id="attCnt"></td>
+			</tr>		
+			<tr>
+				<th>연락처1</th>
+				<td><input type="text" data-ng-model="telNo" name="telNo" id="telNo"></td>
+			</tr>
+			<tr>
+				<th>지역</th>
+				<td>
+				<!-- <input type="text" data-ng-model="lctn" name="lctn" id="lctn"> -->
+				 
+				<select data-ng-model="selectedLctn1" name="selectedLctn1" data-ng-change="selectChange()">
+					<option data-ng-repeat="lctn in selectLctn1" value="{{lctn.CODEKEY}}">{{lctn.CODEVALUE}}</option>
+				</select>
+				
+				<select data-ng-show="showGangseoFlag==true" name="selectedLctn2" data-ng-model="selectedLctn2">
+					<option data-ng-repeat="lctn in selectLctn2" value="{{lctn.CODEKEY}}">{{lctn.CODEVALUE}}</option>
+				</select>
+				
+				</td> 
+				
+				
+			</tr>
+			<tr>
+				<th>성별</th>
+				<td>
+				<!-- <input type="text" data-ng-model="gndr" name="gndr" id="gndr"> -->
+					<input type="radio" data-ng-model="gndr" name="gndr" value="M" id="M">
+					<label for="M">남</label>
+					<input type="radio" data-ng-model="gndr" name="gndr" value="F" id="F">
+					<label for="F">여</label>
+
+				</td>
+			</tr>
+			<tr>
+				<th>나이</th>
+				<td><input type="text" data-ng-model="age" name="age" id="age"></td>
+			</tr>
+			<tr>
+				<th>회비잔액</th>
+				<td><input type="text" data-ng-model="feeBalance" name="feeBalance" id="feeBalance"></td>
+			</tr>
+		</table>
 	<!-- button area -->
 	<div>
+		<input type="submit">
 		<a href="#" class="btn btn_confirm" data-ng-click="addMember()">confirmed</a>
 		<a href="#" class="btn btn_cancel" data-ng-click="cancelReg()">cancelled</a>
 		<a href="#" class="btn" data-ng-click="moveMain()">Go to main</a>
 	</div>
+	</form>
 </body>
 </html>

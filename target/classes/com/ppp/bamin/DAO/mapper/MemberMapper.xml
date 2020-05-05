@@ -9,7 +9,8 @@
     	<id property="memberNm" column="MEMBER_NM"/>
     	<id property="attCnt" column="ATT_CNT"/>
     	<id property="telNo" column="TEL_NO"/>
-    	<id property="lctn" column="LCTN"/>
+    	<id property="lctn1" column="LCTN1"/>
+    	<id property="lctn2" column="LCTN2"/>
     	<id property="gndr" column="GNDR"/>
     	<id property="age" column="AGE"/>
     	<id property="feeBalance" column="FEE_BALANCE"/>    
@@ -22,7 +23,8 @@
    	,MEMBERNM AS MEMBER_NM
    	,ATTCNT AS ATT_CNT
    	,TELNO AS TEL_NO
-   	,LCTN AS LCTN
+   	,LCTN1 AS LCTN1
+   	,LCTN2 AS LCTN2
    	,GNDR AS GNDR
    	,AGE AS AGE
    	,FEEBALANCE AS FEE_BALANCE
@@ -31,9 +33,43 @@
     </select>
     
     <insert id="memberReg">
-    INSERT INTO MEMBER VALUES
-    (#{memberNo},#{memberNm},#{attCnt},#{telNo},#{lctn},#{gndr},#{age},#{feeBalance});
+    INSERT INTO MEMBER (memberNo, memberNm, attCnt, telNo, lctn1, lctn2, gndr, age, feeBalance) VALUES
+    (
+	    memberRegSeq.nextval
+	    ,#{memberNm}
+	    ,#{attCnt}
+	    ,#{telNo}
+	    ,#{lctn1}
+	    ,#{lctn2}
+	    ,#{gndr}
+	    ,#{age}
+	    ,#{feeBalance}
+    )
     
     </insert>
 	
+	
+	 <resultMap id="selectLctnMap" type="java.util.Map">
+    	<id property="regNo" column="REG_NO"/>
+    	<id property="codeKey" column="CODE_KEY"/>
+    	<id property="codeValue" column="CODE_VALUE"/>
+    </resultMap>
+    
+	<select id="retrieveLctn1Code" resultMap="selectLctnMap">
+  	SELECT 
+	  	REGNO
+	  	,CODEKEY
+	  	,CODEVALUE
+	FROM COMMCD 
+  	WHERE DIVCD ='3000'
+    </select>
+    
+    	<select id="retrieveLctn2Code" resultMap="selectLctnMap">
+  	SELECT 
+	  	REGNO
+	  	,CODEKEY
+	  	,CODEVALUE
+	FROM COMMCD 
+  	WHERE DIVCD ='3001'
+    </select>
 </mapper>

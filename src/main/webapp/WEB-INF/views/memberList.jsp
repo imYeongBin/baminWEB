@@ -43,7 +43,7 @@
 		<tr data-ng-repeat="mem in memberList">
 		<td>{{mem.memberNo}}</td>
 		<td>{{mem.memberNm}}</td>
-		<td>{{mem.lctn}}</td>
+		<td>{{mem.lctn1+" "+mem.lctn2}}</td>
 		<td>{{mem.gndr}}</td>
 		<td>{{mem.age}}</td>
 		<td>{{mem.telNo}}</td>
