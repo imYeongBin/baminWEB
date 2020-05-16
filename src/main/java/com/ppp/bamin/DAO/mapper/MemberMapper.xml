@@ -29,7 +29,7 @@
    	,AGE AS AGE
    	,FEEBALANCE AS FEE_BALANCE
    	FROM MEMBER
-   	order by MEMBERNO asc
+   	order by MEMBERNO ASC
     </select>
     
     <insert id="memberReg">

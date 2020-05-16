@@ -3,6 +3,7 @@ package com.ppp.bamin.Controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.ppp.bamin.DAO.MeetingMapper;
 import com.ppp.bamin.DAO.MemberMapper;
 import com.sun.xml.internal.ws.client.ResponseContext;
 
@@ -54,7 +61,12 @@ public class mainController {
 		System.out.println("go insertMember Page");
 		return retVal;
 	}
-	
+	@RequestMapping("**/moveInsertMeeting.do")  
+	public String moveInsertMeeting(HttpServletRequest request, Model model) {
+		String retVal = "insertMeeting";
+		System.out.println("go insertMeeting Page");
+		return retVal;
+	}
 	
 	@RequestMapping("**/completeInsert.do")  
 	public String completeInsert(HttpServletRequest request, Model model) {
@@ -105,7 +117,7 @@ public class mainController {
 		try {
 			response.sendRedirect(retVal);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -114,28 +126,98 @@ public class mainController {
 	
 	@RequestMapping(value="/retrieveMemberList.do") 
 	@ResponseBody
-	public List retrieveMemberList(HttpServletRequest request, Model model) {
-	  
+	public ArrayList<Map<String, Object>> retrieveMemberList(HttpServletRequest request, Model model, @RequestBody String inDsMap) {
+		System.out.println("#########");
+	  	System.out.println(inDsMap);
+	  	Map aaa = new HashMap();
+	  	
+	  	aaa = StringToMap(inDsMap);
+		
+	  	System.out.println("^^^^^^^");
+	  	System.out.println(aaa);
+		
+	  	String name = MapUt.getString(aaa, "name");
+	  	
+	  	System.out.println("#############################");
+	  	System.out.println(name);
+	  	
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-		List list =  new ArrayList<>();
+		ArrayList<Map<String, Object>> list =  new ArrayList<>();
 		list = mapper.retrieveMemberList();
 		return  list; 
 	}
 	
+	public Map<String, Object> StringToMap(String inputString) {
+		ObjectMapper mapper = new ObjectMapper();
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>(); 
+		
+		try {
+			returnMap = mapper.readValue(inputString, new TypeReference<Map<String, String>>(){});
+			
+			System.out.println("$$$$$$$");
+			System.out.println(returnMap);
+			
+			
+			
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return returnMap;
+	
+	}
 	
 	@RequestMapping(value="/retrieveLctnCode.do") 
 	@ResponseBody
-	public Map retrieveLctnCode(HttpServletRequest request, Model model) {
+	public Map<String, Object> retrieveLctnCode(HttpServletRequest request, Model model) {
 	  
 		Map<String,Object> returnMap = new HashMap<String,Object>();
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-		List lctn1List =  new ArrayList<>();
-		List lctn2List =  new ArrayList<>();
+		ArrayList<Map<String, Object>> lctn1List =  new ArrayList<>();
+		ArrayList<Map<String, Object>> lctn2List =  new ArrayList<>();
 		lctn1List = mapper.retrieveLctn1Code();
 		lctn2List = mapper.retrieveLctn2Code();
 		
 		returnMap.put("lctn1List",lctn1List);
 		returnMap.put("lctn2List",lctn2List);
+		return  returnMap; 
+	}
+	
+	
+	
+	
+	@RequestMapping("**/meetingList.do")  
+	public String moveMeetingList(HttpServletRequest request, Model model) {
+		String retVal = "meetingList";
+		System.out.println("go meetingList Page");
+		return retVal;
+	}
+	
+	@RequestMapping(value="/retrieveMeetingList.do") 
+	@ResponseBody
+	public ArrayList<Map<String, Object>> retrieveMeetingList(HttpServletRequest request, Model model) {
+	  System.out.println("#########");
+	  System.out.println(model);
+	  
+		MeetingMapper mapper = sqlSession.getMapper(MeetingMapper.class);
+		ArrayList<Map<String, Object>> list =  new ArrayList<Map<String, Object>>();
+		list = mapper.retrieveMeetingList();
+		return  list; 
+	}
+	
+	
+	@RequestMapping(value="/retrieveMeetingDetail.do") 
+	@ResponseBody
+	public Map<String, Object> retrieveMeetingDetail(HttpServletRequest request, Model model) {
+	  
+		MeetingMapper mapper = sqlSession.getMapper(MeetingMapper.class);
+		Map<String, Object> returnMap =  new HashMap<String, Object>();
+		Map<String, Object> inDsMap = new HashMap<String, Object>();
+		returnMap = mapper.retrieveMeetingDetail(inDsMap);
 		return  returnMap; 
 	}
 	

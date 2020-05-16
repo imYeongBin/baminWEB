@@ -2,37 +2,52 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ppp.bamin.DAO.MemberMapper">
+<mapper namespace="com.ppp.bamin.DAO.MeetingMapper">
     
     <resultMap id="selectMap" type="java.util.Map">
-    	<id property="memberNo" column="MEMBER_NO"/>
-    	<id property="memberNm" column="MEMBER_NM"/>
+    	<id property="meetingNo" column="MEETING_NO"/>
+    	<id property="meetingDate" column="MEETING_DATE"/>
+    	<id property="lctn" column="LCTN"/>
     	<id property="attCnt" column="ATT_CNT"/>
-    	<id property="telNo" column="TEL_NO"/>
-    	<id property="lctn1" column="LCTN1"/>
-    	<id property="lctn2" column="LCTN2"/>
-    	<id property="gndr" column="GNDR"/>
-    	<id property="age" column="AGE"/>
-    	<id property="feeBalance" column="FEE_BALANCE"/>    
+    	<id property="memberFee" column="MEMBER_FEE"/>
+    	<id property="guestCnt" column="GUEST_CNT"/>
+    	<id property="guestFee" column="GUEST_FEE"/>
+    	<id property="totFee" column="TOT_FEE"/>
     </resultMap>
     
     
-    <select id="retrieveMemberList" resultMap="selectMap">
+    <select id="retrieveMeetingList" resultMap="selectMap">
    	SELECT
-   	MEMBERNO AS MEMBER_NO
-   	,MEMBERNM AS MEMBER_NM
-   	,ATTCNT AS ATT_CNT
-   	,TELNO AS TEL_NO
-   	,LCTN1 AS LCTN1
-   	,LCTN2 AS LCTN2
-   	,GNDR AS GNDR
-   	,AGE AS AGE
-   	,FEEBALANCE AS FEE_BALANCE
-   	FROM MEMBER
-   	order by MEMBERNO ASC
+	   	MEETINGNO AS MEETING_NO
+		, MEETINGDATE AS MEETING_DATE
+		, LCTN AS LCTN
+		, ATTCNT AS ATT_CNT
+		, MEMBERFEE AS MEMBER_FEE
+		,GUESTCNT AS GUEST_CNT
+		,GUESTFEE AS GUEST_FEE
+		,TOTFEE AS TOT_FEE
+   	FROM MEETING
+   	order by MEETINGNO ASC
     </select>
     
-    <insert id="memberReg">
+    
+    <select id="retrieveMeetingDetail" resultMap="selectMap">
+   	SELECT
+	   	MEETINGNO AS MEETING_NO
+		, MEETINGDATE AS MEETING_DATE
+		, LCTN AS LCTN
+		, ATTCNT AS ATT_CNT
+		, MEMBERFEE AS MEMBER_FEE
+		,GUESTCNT AS GUEST_CNT
+		,GUESTFEE AS GUEST_FEE
+		,TOTFEE AS TOT_FEE
+   	FROM MEETING
+   	WHERE MEETINGNO = #{meetingNo}
+   	order by MEETINGNO ASC
+    </select>
+    
+    
+    <insert id="insertMeeting">
     INSERT INTO MEMBER (memberNo, memberNm, attCnt, telNo, lctn1, lctn2, gndr, age, feeBalance) VALUES
     (
 	    memberRegSeq.nextval

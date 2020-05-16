@@ -30,6 +30,7 @@
 		var o = {};
 
 		o.post = function(id, param, flag) {
+			debugger;
 			if (!_.isString(id) || !param) {
 				alert(" ");
 				return;
