@@ -10,6 +10,7 @@ public interface MemberMapper {
 	
 	public void memberReg(Map<String, Object> inDsMap);
 	
+	public Map<String,Object> retrieveMemberInfo();
 	//지역코드-대분류 조회
 	public ArrayList<Map<String,Object>> retrieveLctn1Code();
 	//지역코드-소분류 조회

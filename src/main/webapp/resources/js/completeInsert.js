@@ -4,7 +4,7 @@ app.controller('comm', function($scope) {
 	var url = "./completeInsert.do";
 	
 	$scope.moveMain = function(){
-		location.href="/main.do";
+		location.href="./main.do"; 
 	}
 	
 	$scope.moveMemberList = function(){

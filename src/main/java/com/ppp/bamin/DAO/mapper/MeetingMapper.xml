@@ -8,11 +8,16 @@
     	<id property="meetingNo" column="MEETING_NO"/>
     	<id property="meetingDate" column="MEETING_DATE"/>
     	<id property="lctn" column="LCTN"/>
-    	<id property="attCnt" column="ATT_CNT"/>
+    	<id property="memberCnt" column="MEMBER_CNT"/>
     	<id property="memberFee" column="MEMBER_FEE"/>
+    	<id property="totalMemberFee" column="TOTAL_MEMBER_FEE"/>
     	<id property="guestCnt" column="GUEST_CNT"/>
     	<id property="guestFee" column="GUEST_FEE"/>
-    	<id property="totFee" column="TOT_FEE"/>
+    	<id property="totalGuestFee" column="TOTAL_GUEST_FEE"/>
+    	<id property="totalFee" column="TOTAL_FEE"/>
+    	<id property="totalCnt" column="TOTAL_CNT"/>
+    	<id property="guestYn" column="GUEST_YN"/>
+    	<id property="meetingLogSeq" column="MEETING_LOG_SEQ"/>
     </resultMap>
     
     
@@ -21,47 +26,95 @@
 	   	MEETINGNO AS MEETING_NO
 		, MEETINGDATE AS MEETING_DATE
 		, LCTN AS LCTN
-		, ATTCNT AS ATT_CNT
+		, MEMBERCNT AS MEMBER_CNT
 		, MEMBERFEE AS MEMBER_FEE
+		,TOTALMEMBERFEE AS TOTAL_MEMBER_FEE
 		,GUESTCNT AS GUEST_CNT
 		,GUESTFEE AS GUEST_FEE
-		,TOTFEE AS TOT_FEE
+		,TOTALGUESTFEE AS TOTAL_GUEST_FEE
+		,TOTALCNT AS TOTAL_CNT
+		,TOTALFEE AS TOTAL_FEE
    	FROM MEETING
    	order by MEETINGNO ASC
     </select>
-    
     
     <select id="retrieveMeetingDetail" resultMap="selectMap">
-   	SELECT
-	   	MEETINGNO AS MEETING_NO
-		, MEETINGDATE AS MEETING_DATE
-		, LCTN AS LCTN
-		, ATTCNT AS ATT_CNT
-		, MEMBERFEE AS MEMBER_FEE
-		,GUESTCNT AS GUEST_CNT
-		,GUESTFEE AS GUEST_FEE
-		,TOTFEE AS TOT_FEE
-   	FROM MEETING
-   	WHERE MEETINGNO = #{meetingNo}
-   	order by MEETINGNO ASC
+	   	SELECT 
+		   	B.MEETINGNO AS MEETING_NO
+		   	, B.MEETINGDATE AS MEETING_DATE
+		   	, A.MEMBERNO AS MEMBER_NO
+		   	, A.MEMBERFEE AS MEMBER_FEE
+		   	, A.GUESTFEE AS GUEST_FEE
+		   	, B.LCTN AS LCTN
+		   	, A.GUESTYN AS GUEST_YN
+		FROM MEETINGLOG A INNER JOIN MEETING B 
+			ON A.MEETINGNO = B.MEETINGNO 
+		WHERE B.MEETINGNO = #{meetingNo} 
+		ORDER BY 
+			a.GUESTYN
+			, A.MEMBERNO ASC
     </select>
     
     
-    <insert id="insertMeeting">
-    INSERT INTO MEMBER (memberNo, memberNm, attCnt, telNo, lctn1, lctn2, gndr, age, feeBalance) VALUES
-    (
-	    memberRegSeq.nextval
-	    ,#{memberNm}
-	    ,#{attCnt}
-	    ,#{telNo}
-	    ,#{lctn1}
-	    ,#{lctn2}
-	    ,#{gndr}
-	    ,#{age}
-	    ,#{feeBalance}
-    )
+    <insert id="meetingReg">
+		INSERT INTO MEETING (
+			MEETINGNO
+			, MEETINGDATE 
+			, LCTN 
+			, MEMBERCNT
+			, MEMBERFEE
+			, TOTALMEMBERFEE
+			, GUESTCNT 
+			, GUESTFEE 
+			, TOTALGUESTFEE 
+			, TOTALCNT 
+			, TOTALFEE 
+		) VALUES (
+		MEETINGNOSEQ.nextval
+		, #{meetingDate}
+		, #{lctn}
+		, #{memberCnt}
+		, #{memberFee}
+		, #{totalMemberFee}
+		, #{guestCnt}
+		, #{guestFee}
+		, #{totalGuestFee}
+		, #{totalCnt}
+		, #{totalFee}
+		)
     
     </insert>
+    
+    
+    
+    
+    <select id="retrieveLatestMeetingRegSeq" resultMap="selectMap">
+
+    </select>
+    
+    
+   <insert id="insertMeetingLog">
+	INSERT INTO MEETINGLOG (
+		MEETINGLOGSEQ 
+		, MEETINGNO 
+		, MEMBERNO 
+		, GUESTYN 
+		, MEMBERFEE 
+		, GUESTFEE 
+	) VALUES (	
+		MEETINGLOGSEQ.nextval
+		, #{meetingNo}
+		,#{memberNo}
+		,#{guestYn}
+		,#{memberFee}
+		,#{guestFee}
+		)
+    </insert> 
+    
+    
+    
+    
+    
 	
 	
 	 <resultMap id="selectLctnMap" type="java.util.Map">

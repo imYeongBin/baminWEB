@@ -2,7 +2,7 @@ var app = angular.module('myApp',[]);
 
 app.controller('comm', function($scope, $http, $location) {
 	
-	var URL = "/main.do";
+	var URL = "./main.do";
 	$scope.pageName = "main Page111111";
 	
 	

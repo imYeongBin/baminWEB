@@ -14,6 +14,11 @@ app.controller('comm', function($scope, $http, $location,$q,$timeout) {
 		location.href="./moveInsertMember.do";
 	}
 	
+	$scope.showDetailMember = function(member){
+		alert("dddd");
+		location.href="./moveModifyMemberInfo.do?memberNo="+member.memberNo;
+	}
+	
 	$scope.retrieveM = function (){
 		
 		$scope.memberListFlag = true;

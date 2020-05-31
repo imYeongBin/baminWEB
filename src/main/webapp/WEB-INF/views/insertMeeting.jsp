@@ -34,7 +34,7 @@
 				<table>
 					<tr>
 						<th>date</th>
-						<td><input type="text" data-ng-model="meetingDate" name="meetingDate" id="meetingDate"></td>
+						<td><input type="text" data-ng-model="meetingDate" name="meetingDate" id="meetingDate" ></td>
 					</tr>
 					<tr>
 						<th>Location</th>
@@ -44,38 +44,63 @@
 						<th>member</th>
 						<td><a href="#" data-ng-click="addMember()">참가자등록</a></td>
 					</tr>
-
+					<tr data-ng-show="addedMemberList.length >0 ">
+						<th>memberList</th>
+						<td>
+							<h3>total : <span id="memberCnt" >{{addedMemberList.length}}</span> 명</h3>
+							<ul>
+								<li data-ng-repeat="member in addedMemberList">{{member.memberNm}}</li>
+							</ul>
+					
+						</td>
+					</tr>
+					
+					<tr>
+						<th>memberFee</th>
+						<td><input type="text" data-ng-model="memberFee" id="memberFee" name="memberFee" data-ng-change="calc()"></td>
+					</tr>
+					<tr>
+						<th>totalMemberFee</th>
+						<td>{{totalMemberFee}} 원</td>
+					</tr>
+					
 					<tr>
 						<th>guestCnt</th>
 						<td>
-							<input type="text" data-ng-model="guestCnt" name="guestCnt" id="guestCnt">
+							<input type="text" data-ng-model="guestCnt" name="guestCnt" id="guestCnt" data-ng-change="calc()">
 						</td>
 					</tr>
 					<tr>
 						<th>guestFee</th>
 						<td>
-							<input type="text" data-ng-model="guestCnt" name="guestCnt" id="guestCnt">
+							<input type="text" data-ng-model="guestFee" name="guestFee" id="guestFee" data-ng-change="calc()">
 						</td>
+					</tr>
+					<tr>
+						<th>totalGuestFee</th>
+						<td>{{totalGuestFee}} 원</td>
 					</tr>
 					<tr>
 						<th>totalCnt</th>
 						<td>
-							<input type="text" data-ng-model="totalCnt" name="totalCnt" id="totalCnt">
+							<input type="text" data-ng-model="totalCnt" name="totalCnt" id="totalCnt" data-ng-change="calc()">
 						</td>
 					</tr>
 					<tr>
 						<th>totalFee</th>
 						<td>
-							<input type="text" data-ng-model="totalFee" name="totalFee" id="totalFee">
+							<input type="hidden" name="totalFee" id="totalFee" data-ng-model="totalFee">
+							{{totalFee}}원
 						</td>
 					</tr>
 				</table>
 				<!-- button area -->
 				<div>
 					<input type="submit">
-					<a href="#" class="btn btn_confirm" data-ng-click="regMeeting()">confirmed</a>
+					<a href="#" class="btn btn_confirm" data-ng-click="regMeeting(regForm)">confirmed</a>
 					<a href="#" class="btn btn_cancel" data-ng-click="cancelReg()">cancelled</a>
 					<a href="#" class="btn" data-ng-click="moveMain()">Go to main</a>
+					<a href="#" class="btn" data-ng-click="checkCheckList()">check the List</a>
 				</div>
 			</form>
 		</div>
@@ -83,8 +108,14 @@
 		<div class="show_memberList"style="float:left" data-ng-if="showMemberListFlag==true">	<!-- show memberList -->
 			<h3>memberList</h3>
 			<table>
+				<tr>
+					<th>memberName</th>
+					<th>feeBalance</th>
+				</tr>
 				<tr data-ng-repeat="member in memberList">
-					<td>{{member.memberNm}}</td>
+					<td data-ng-click="add(member)">{{member.memberNo+'. '+member.memberNm}}</td>
+					<td>{{member.feeBalance}}</td>
+					
 				</tr>
 			</table>
 		</div>

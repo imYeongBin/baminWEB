@@ -16,7 +16,20 @@
     	<id property="feeBalance" column="FEE_BALANCE"/>    
     </resultMap>
     
-    
+        <select id="retrieveMemberInfo" resultMap="selectMap">
+   	SELECT
+   	MEMBERNO AS MEMBER_NO
+   	,MEMBERNM AS MEMBER_NM
+   	,ATTCNT AS ATT_CNT
+   	,TELNO AS TEL_NO
+   	,LCTN1 AS LCTN1
+   	,LCTN2 AS LCTN2
+   	,GNDR AS GNDR
+   	,AGE AS AGE
+   	,FEEBALANCE AS FEE_BALANCE
+   	FROM MEMBER
+   	WHERE MEMBERNO = #{memberNo}
+    </select>
     <select id="retrieveMemberList" resultMap="selectMap">
    	SELECT
    	MEMBERNO AS MEMBER_NO

@@ -40,7 +40,7 @@
 			<th>연락처</th>
 			<th>잔여회비</th>
 		</tr>
-		<tr data-ng-repeat="mem in memberList">
+		<tr data-ng-repeat="mem in memberList" data-ng-click="showDetailMember(mem)">
 		<td>{{mem.memberNo}}</td>
 		<td>{{mem.memberNm}}</td>
 		<td>{{mem.lctn1+" "+mem.lctn2}}</td>
