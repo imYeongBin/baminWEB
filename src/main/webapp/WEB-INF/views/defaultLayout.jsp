@@ -18,20 +18,25 @@
 <script type="text/javascript" src="${webRoot}/common/js/angular/angular.js"></script>
 <script type="text/javascript" src="${webRoot}/common/js/angular/angular-route.js"></script>
 <script type="text/javascript" src="${webRoot}/common/js/angular/angular-animate.js"></script>
-<script type="text/javascript" src="${webRoot}/common/js/angular-block-ui/angular-block-ui.min.js"></script>
+<%-- <script type="text/javascript" src="${webRoot}/common/js/angular-block-ui/angular-block-ui.min.js"></script> --%>
 <script type="text/javascript" src="${webRoot}/common/js/library_allinone.js"></script>
 <script type="text/javascript" src="${webRoot}/default/app/comm/common.js"></script>
 
 
 <script type="text/javascript">
-var mz={
+
+var mz = {
    DOMAIN :'',
    WEBROOT : '${webRoot}',
-   APPROOT : 'default',
+   MODE:{
+	    LOG:false,
+	    TRACE:true
+	},
+   APPROOT : 'resources',
    WEBPAGE : '${clientJs}',
-   MODE:{LOG:true}
 }
-
+console.log("##############################################");
+console.log(mz.WEBROOT+" : "+mz.WEBPAGE);
 </script>
 
 <script src="${webRoot}/common/app/app.js"></script>
@@ -40,8 +45,11 @@ var mz={
 <script src="${webRoot}/default/app/run.js"></script>
 
 </head>
-<body data-ng-controller="commController as comm">
 
+<body data-ng-controller="commController as comm">
+<div data-ng-view id="content">
+
+</div>
 
 
 

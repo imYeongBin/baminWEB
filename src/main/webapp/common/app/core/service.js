@@ -10,7 +10,6 @@
  * 媛뺥솚湲� 2015-08-12 First Draft
  */
 (function(angular, mz) {
- 
 	// co
 	mz.core.factory('co', mz.mold(function($injector) {
 		return {
@@ -36,6 +35,7 @@
 			},
 			
 			post: function(url, param) {
+				debugger;
 				var defered = $q.defer();
 				if (url && param) {
 					$http.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8';

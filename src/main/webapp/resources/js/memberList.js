@@ -16,13 +16,16 @@ app.controller('comm', function($scope, $http, $location,$q,$timeout) {
 	
 	$scope.showDetailMember = function(member){
 		alert("dddd");
+		console.log(member);
+		console.log(member.memberNo);
+		debugger;
 		location.href="./moveModifyMemberInfo.do?memberNo="+member.memberNo;
 	}
 	
 	$scope.retrieveM = function (){
 		
 		$scope.memberListFlag = true;
-		var fn= _$post;
+		var fn = _$post;
 		
 		return fn(url).then(function(result){
 			var r_tm = new Date();

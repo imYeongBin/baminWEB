@@ -4,33 +4,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.ui.Model;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ppp.bamin.BC.MemberBc;
+import com.ppp.bamin.DAO.MemberMapper;
 
+@Service
 public class MemberBcImpl implements MemberBc {
-
-	@Override
-	public void retrieveMemberList(Model model) {
-	}
-
-	@Override
-	public void memberReg(Model model) {
-		
-	}
+	
+	@Autowired
+	private SqlSession sqlSession;
 	
 	@Override
-	public ArrayList<Map<String,Object>> retrieveMeetingList (Map<String,Object> inDsMap){
-		Map<String,Object> returnMap = new HashMap<String,Object>();
-		
-		System.out.println("ddddd");
-		System.out.println(inDsMap);
-		
-		ArrayList<Map<String, Object>> meetingList = new ArrayList<Map<String,Object>>();
-		
-		
-		return meetingList ;
-	}
+	public HashMap<String, Object> retrieveMemberList() {
+		HashMap<String,Object> returnMap = new HashMap<>();
 	
+		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+		ArrayList<Map<String,Object>> memberList = mapper.retrieveMemberList();
+		
+		returnMap.put("memberList",memberList);
+		
+		return returnMap; 
+	}
 
 }

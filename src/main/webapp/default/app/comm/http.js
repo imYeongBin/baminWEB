@@ -2,17 +2,17 @@
  * COPYRIGHT (c) MERITZ Fire Insurance 2015
  * This software is the proprietary information of MERITZ Fire Insurance.
  * 
- * Modeler : 媛뺥솚湲�
+ * Modeler : 강환기
  *
  * Revision History
  * Author Date       Description
  * ------ ---------- -----------
- * 媛뺥솚湲� 2015-08-12 First Draft
+ * 강환기 2015-08-12 First Draft
  */
 (function(angular, mz) {
 
 	mz.comm.factory('http', mz.mold(function(co) {
-		//var log          		= co.get('logger').getLogger('http');
+		var log          		= co.get('logger').getLogger('http');
 		var ajax 		 		= co.get('ajax');
 		var util 		 		= co.get('util');
 		var path 		 		= co.get('path');
@@ -22,7 +22,8 @@
 		var $timeout    		= co.get('$timeout');
 		var $q 					= co.get('$q');
 		var path     	 		= co.get('path');
-		var SERVICE_URL  		= mz.DOMAIN + mz.WEBROOT + '/json.smart';
+		var SERVICE_URL  		= mz.DOMAIN + mz.WEBROOT;
+		//var SERVICE_URL  		= mz.DOMAIN + mz.WEBROOT;
 		//var ERROR_CODE   		= ['FNGFW100062','FNGFW100048', 'FCGCMH00004', 'FCGCMH00005', "FCGCMH00006"];
 
 		/* - public ------------------------------- */
@@ -30,9 +31,8 @@
 		var o = {};
 
 		o.post = function(id, param, flag) {
-			debugger;
 			if (!_.isString(id) || !param) {
-				alert(" ");
+				alert("요청전문 서비스ID값을 확인해 주세요.");
 				return;
 			}
 			
@@ -49,77 +49,28 @@
 				fn = ajax.post;
 			}
 
-			log.trace(tm(s_tm), ['S(', id, ')'].join('')+(flag?'+':'-'), param);
+			//log.trace(tm(s_tm), ['S(', id, ')'].join('')+(flag?'+':'-'), param);
 
-			return fn(SERVICE_URL, input).then(function(result){
+			return fn(SERVICE_URL, input).then(function(result){	
 				var r_tm = new Date();
-
 				if (!result) {
-					// �ㅽ듃�뚰겕�μ븷
-					log.trace(tm(r_tm), ['R(', p_id, ')'].join('')+(flag?'+':'-'), result);
+					// 네트워크장애
+					//log.trace(tm(r_tm), ['R(', p_id, ')'].join('')+(flag?'+':'-'), result);
 					moveErrorPage();
 					return;
 				}
 
 				if (result.status != 200) {
-					// 404, 500 �먮윭
-					log.trace(tm(r_tm), ['R(', p_id, ')'].join('')+(flag?'+':'-'), 'status:'+result.status);
+					// 404, 500 에러
+					//log.trace(tm(r_tm), ['R(', p_id, ')'].join('')+(flag?'+':'-'), 'status:'+result.status);
 					moveErrorPage();
 					return;
 				}
 
-				log.trace(tm(r_tm), ['R(', p_id, ':',result.status, ')'].join('')+(flag?'+':'-'), result.data);
+				//log.trace(tm(r_tm), ['R(', p_id, ':',result.status, ')'].join('')+(flag?'+':'-'), result.data);
 
 				return result;
 			}).then(function(result){
-				if(!result.data.header || !result.data.msg){
-					// �꾨Ц洹쒓꺽 �먮윭
-					moveErrorPage();
-					return;
-				}
-				
-				var error = _.find(ERROR_CODE, function(v){
-					return v == result.data.msg.standCd;
-				});
-					
-				if(error){
-					//'FCGCMH00004', 'FCGCMH00005'
-					//�ъ씠�� �듭젣
-					if(error == "FCGCMH00004") {
-						$window.location.replace(path.getPageId());
-						return;
-					}
-					//以묐났濡쒓렇�몄껜��
-					if(error == "FCGCMH00005") {
-						//$window.location.replace("");
-						log.out("以묐났濡쒓렇�� �듭젣.. #####");
-						$window.location.replace("/logout.do");
-						return;
-					}
-					
-					//沅뚰븳泥댄겕(FCGCMH00006)
-					if(error == "FCGCMH00006") {
-						//mz.config path /desc媛� 議댁옱�섎㈃ sample page濡� �대룞
-						//�꾨땲硫� 沅뚰븳�놁쓬 page濡� �대룞
-						if(-1 < _.indexOf(mz.paths, '/desc')) {
-							$window.location.replace(path.targetUrl(path.getPageId(), "/desc"));
-						} else {
-							$window.location.replace('/certification-center/user-authentication.do');
-						}
-						return;
-					}
-					
-					// �쒖뒪�� �먮윭
-					//alert(result.data.msg.standMsg);
-					// error page
-					//location.go('/err.do');
-					moveErrorPage();
-					return;
-				}
-
-				result.data.body = result.data.body || {};
-
-				return result.data;
 			});
 		};
 
@@ -128,6 +79,7 @@
 		/* - private ------------------------------ */
 		
 		function moveErrorPage() {
+			alert("http error!!!!!!!");
 			$window.location.href = "/bamin/error.do";
 			return;
 		}
@@ -167,8 +119,6 @@
 					hgrkDptCd: '',
 					nxupDptCd: '',
 					transGrpCd: 'F',
-					screenId: path.getPageId(),
-					lowrnkScreenId: path.getViewId(),
 					resveLet: ''
 				},
 				body: param
@@ -179,7 +129,8 @@
 			var deferred = $q.defer();
 			$timeout(function() {
 				$.ajax({
-					type: 'POST', url: url + '?v=' + mz.v(),
+					type: 'POST', 
+					url: url ,
 					contentType: 'application/json; charset=UTF-8',
 					data: JSON.stringify(param),
 					success: function(data) {

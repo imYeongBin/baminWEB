@@ -22,10 +22,6 @@
 <script type="text/javascript" src="${webRoot}/common/js/library_allinone.js"></script>
 <script type="text/javascript" src="${webRoot}/default/app/comm/common.js"></script>
 
-<script src="${webRoot}/common/app/app.js"></script>
-<script src="${webRoot}/common/app/core/core.js"></script>
-<script src="${webRoot}/default/app/comm/comm.js"></script>
-
 </head>
 <body >
 

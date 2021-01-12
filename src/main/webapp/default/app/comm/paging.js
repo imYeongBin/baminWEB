@@ -1,10 +1,9 @@
-(function(angular, mz) {
-	/** ATTR DATA-PAGING : �섏씠吏� */
+(function(angular, mz) {/*
+	*//** ATTR DATA-PAGING : 페이징 *//*
 	mz.comm.directive('paging', mz.mold(function() {
-		/**
-		 * �붾젆�곕툕 �대� scope�� 媛믪쓣 �뗮똿�쒕떎.
-		 */
-		
+		*//**
+		 * 디렉티브 내부 scope에 값을 셋팅한다.
+		 *//*
 		function setScopeValues(scope, attrs) {
 			scope.List = [];
 			scope.Hide = false;
@@ -53,9 +52,9 @@
 			};
 		}
 
-		/**
-		 * �뗮똿 媛� �좏슚�� 泥댄겕
-		 */
+		*//**
+		 * 셋팅 값 유효성 체크
+		 *//*
 		function validateScopeValues(scope, pageCount) {
 			if (scope.page > pageCount) {
 				scope.page = pageCount;
@@ -71,9 +70,9 @@
 			}
 		}
 
-		/**
-		 * �≪뀡諛쒖깮�� �몄텧�섎ŉ �곸쐞 controller�� �몄옄瑜� �꾨떖�섎뒗 �≪뀡�� 痍⑦븳��.
-		 */
+		*//**
+		 * 액션발생시 호출되며 상위 controller에 인자를 전달하는 액션을 취한다.
+		 *//*
 		function internalAction(scope, page) {
 			if (scope.page != page) {
 				scope.page = page;
@@ -86,9 +85,9 @@
 			}
 		}
 
-		/**
-		 * 蹂댁뿬以� �섏씠吏��� 踰붿쐞瑜� �ㅼ젙
-		 */
+		*//**
+		 * 보여줄 페이지의 범위를 설정
+		 *//*
 		function addRange(start, finish, scope) {
 			var i = start;
 			for (; i <= finish; i++) {
@@ -108,10 +107,10 @@
 			}
 		}
 
-		/**
-		 * �붾젆�곕툕 �앹꽦�� 理쒖큹 �몄텧
-		 * �섏씠吏� �곸뿭�� �앹꽦�쒕떎.
-		 */
+		*//**
+		 * 디렉티브 생성시 최초 호출
+		 * 페이징 영역을 생성한다.
+		 *//*
 		function build(scope, attrs) {
 			if (!scope.pageSize || scope.pageSize < 0) {
 				return;
@@ -170,5 +169,4 @@
 			}
 		};
 	}));
-	
-})(angular, mz);
+*/})(angular, mz);

@@ -9,9 +9,7 @@
  * ------ ---------- -----------
  * 媛뺥솚湲� 2015-08-12 First Draft
  */
-(function(angular, mz) {
- 
-	// �ㅼ젙
+(function(angular, mz) {/*
 	mz.core.config(mz.mold(function($httpProvider, blockUIConfig) {
 		blockUIConfig.autoBlock = false;
 		blockUIConfig.delay = 0;
@@ -55,4 +53,4 @@
 		};
 	}));
  
-})(angular, mz);
+*/})(angular, mz);

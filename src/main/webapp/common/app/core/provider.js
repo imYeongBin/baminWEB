@@ -21,7 +21,6 @@
 		});
 		 
 		this.route = function(data) {
-			 
 			return {
 				controller: data.name,
 				controllerAs: data.as || 'vm',

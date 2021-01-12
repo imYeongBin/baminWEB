@@ -1,4 +1,4 @@
-/*// skip navigation
+// skip navigation
 function skip_navigating() {
     if ($("body").attr("data-scraction") != 0) {
         if ($('.layer_wrap').css('visibility') == 'visible') {
@@ -61,7 +61,7 @@ function replaceRadio() {
     });
 }
 
-// 2019.02.15 : �쇰뵒�ㅻ쾭�� �좏깮 �� 珥덉젏泥댄겕 �⑥닔
+// 2019.02.15 : 라디오버튼 선택 후 초점체크 함수
 function _radioFocusCheck(_obj, _name) {
     if (_obj.is(":focus") == true) return false;
     if (_obj.parent().hasClass("on") && _obj.attr("name") == _name) {
@@ -74,17 +74,17 @@ function makeRadio(obj) {
     if (obj.parent().hasClass("radio_style")) {
         return false;
     }
-    // 遺�紐� 媛먯떥湲�
+    // 부모 감싸기
     obj.wrap('<div class="radio_style"></div>');
 
     var radioStyle = obj.parent();
-    // 泥댄겕�뚯븙
+    // 체크파악
     radioStyle.each(function() {
         
         if ($(this).find('.radio').is(':checked') == true) {
             $(this).closest('.radio_style').addClass('on');
         }
-        // �좏깮 遺덇�
+        // 선택 불가
         if ($(this).find('.radio').is(':disabled') == true) {
             $(this).closest('.radio_style').addClass('disable');
         }
@@ -121,17 +121,17 @@ function makeCheckbox(obj) {
         return false;
     }
 
-    // 遺�紐� 媛먯떥湲�
+    // 부모 감싸기
     obj.wrap('<div class="check_style"></div>');
 
     var checkbox = obj.parent();
 
-    // 泥댄겕�뚯븙
+    // 체크파악
     checkbox.each(function() {
         if ($(this).find('.checkbox').is(':checked') == true) {
             $(this).closest('.check_style').addClass('on');
         }
-        // �좏깮 遺덇�
+        // 선택 불가
         if ($(this).find('.checkbox').is(':disabled') == true) {
             $(this).closest('.check_style').addClass('disable');
         }
@@ -187,7 +187,7 @@ function makeSelect(obj) {
     if (obj.parent().hasClass("select_style")) {
         return false;
     }
-    // 遺�紐� 媛먯떥湲�
+    // 부모 감싸기
     obj.wrap('<div class="select_style"></div>');
     obj.after('<div class="slc_drop"></div>');
 
@@ -202,7 +202,7 @@ function makeSelect(obj) {
     var blankNum = 0;
 
     $iptSlc.find('.select_style').each(function() {
-        //select媛� selected�쇰븣 a留곹겕 異붿텧
+        //select가 selected일때 a링크 추출
         if ($(this).find('.select').attr("id") == "mDate") {
             $(this).find('.select').after('<a href="#" class="slc_target" title="' + $(this).find('.select').attr("title") + '">' + $(this).find('.select option').eq(0).text() + '</a>');
         } else {
@@ -219,7 +219,7 @@ function makeSelect(obj) {
     });
 
     obj.each(function() {
-        // 媛믪뿉 �곕Ⅸ label �쒖꽦��
+        // 값에 따른 label 활성화
         var $label = null;
         if ($(this).find('option:selected').val()) {
             $(this).next('.slc_target').addClass('select');
@@ -232,7 +232,7 @@ function makeSelect(obj) {
         click: function(e) {
             e.preventDefault();
 
-            // ���됲듃媛� ���됱씪 寃쎌슦 踰꾪듉�앹쑝濡� 蹂�寃�
+            // 셀렉트가 은행일 경우 버튼식으로 변경
             if ($(this).prev('select.select_bank').length) {
                 var rem = 0;
                 if ($(this).closest('.select_style').find('select >option').length <= 6) {
@@ -262,9 +262,9 @@ function makeSelect(obj) {
                     $(this).addClass('open').next('.slc_drop').stop().slideDown(200);
                 }
             }
-            // 洹� �댁쇅�먮뒗 ���됲듃濡� 蹂�寃�(6媛� �댁긽�쇰븣�� �ㅽ겕濡�)
+            // 그 이외에는 셀렉트로 변경(6개 이상일때는 스크롤)
             else {
-                // option 6媛� �댁긽�쇰븣 "scroll_view" �대옒�� 異붽�
+                // option 6개 이상일때 "scroll_view" 클래스 추가
                 if ($(this).closest('.select_style').find('select >option').length > 6) {
                     $(this).next('.slc_drop').addClass('scroll_view');
                 }
@@ -274,7 +274,7 @@ function makeSelect(obj) {
                     $('.slc_drop').stop().slideUp(200);
                     $('.slc_target').removeClass('open');
                     $(this).addClass('open').next('.slc_drop').stop().slideDown(200, function() {
-                        // option 6媛� �댁긽�쇰븣 �ㅽ겕濡� �앹꽦
+                        // option 6개 이상일때 스크롤 생성
                         if ($(this).closest('.select_style').find('select >option').length > 6) {
                             $(this).show().jScrollPane({
                                 mouseWheelSpeed: 50
@@ -284,17 +284,17 @@ function makeSelect(obj) {
                 }
             }
 
-            // ��耳볦씠 諛붽묑�� 寃쎌슦
+            // 타켓이 바깥일 경우
             $(document).on('click', function(e) {
                 if ($(e.target).next(".slc_drop").size() == 0) {
                     $('.slc_drop').stop().slideUp(200);
                     $('.slc_target').removeClass('open');
-                    //�대깽�� �댁젣
+                    //이벤트 해제
                     $(document).off("click");
                 }
             });
 
-            //select媛� disabled �쇰븣
+            //select가 disabled 일때
             if ($(this).prev('.select').is(':disabled')) {
                 $(this).removeClass('open').next('.slc_drop').hide();
             }
@@ -312,13 +312,13 @@ function makeSelect(obj) {
             div.find('.slc_target').eq(0).removeClass('open');
             $(this).closest('.slc_drop').stop().slideUp(200);
 
-            //selected 珥덇린��..
+            //selected 초기화..
             div.find('.select option').attr('selected', false);
             if (div.find('.select option').hasClass('dis')) {
                 div.find('.select option').eq(idx + 1).attr('selected', 'selected');
             } else {
                 //div.find('.select option').eq(idx).attr('selected' , 'selected');
-                // 2016.12.09 �곷떞�쇱옄 value �ㅻ쪟
+                // 2016.12.09 상담일자 value 오류
                 div.find('.select option').eq(idx).prop('selected', true);
             }
             div.find('.slc_target').eq(0).focus();
@@ -327,7 +327,7 @@ function makeSelect(obj) {
             }
             $(this).closest('.select_style').find('.slc_target').focus();
 
-            // 媛믪뿉 �곕Ⅸ label �쒖꽦��
+            // 값에 따른 label 활성화
             var $label = null;
             if (div.find('.select option:selected').val()) {
                 $(this).closest('.select_style').find('.slc_target').addClass('select');
@@ -344,28 +344,28 @@ var styleFormMethod = function(obj) {
         $iptSlc = $('.ipt_select');
 
     var root = obj || $("body");
-    // �쇰뵒�� 寃쎌슦
+    // 라디오 경우
     if ($('input[type="radio"]').hasClass('radio') == true) {
         $('input.radio').each(function(i) {
             makeRadio($(this));
         });
     }
 
-    // 泥댄겕 諛뺤뒪 寃쎌슦
+    // 체크 박스 경우
     if ($('input[type="checkbox"]').hasClass('checkbox') == true) {
         $('input.checkbox').each(function(i) {
             makeCheckbox($(this));
         });
     }
 
-    // ���됲듃 諛뺤뒪 寃쎌슦
+    // 셀렉트 박스 경우
     if ($('select').hasClass('select') == true) {
         $('select.select').each(function(i) {
             makeSelect($(this));
         });
     }
 
-    // 湲곕낯 �명뭼 �띿뒪��
+    // 기본 인풋 텍스트
     root.find('.ipt_style').each(function() {
         $(this).on({
             focusin: function() {
@@ -376,7 +376,7 @@ var styleFormMethod = function(obj) {
                 if ($(this).closest('td').length) {
                     $(this).closest('td').addClass('bx_foc').append('<span class="foc"></span>');
                 }
-                // �볤� �묒꽦 input
+                // 댓글 작성 input
                 if ($(this).closest('.reply').length) {
                     if ($(this).closest('.reply_name').length) {
                         $(this).closest('.reply_name').addClass('bx_foc').append('<span class="foc"></span>');
@@ -386,12 +386,12 @@ var styleFormMethod = function(obj) {
                         $focWidth = '720px';
                     }
                 }
-                // �섏젙 �볤� input
+                // 수정 댓글 input
                 if ($(this).closest('.reply_list').length) {
                     $(this).closest('li').addClass('bx_foc').append('<span class="foc"></span>');
                     $focWidth = '770px';
                 }
-                //寃��� input
+                //검색 input
                 if ($(this).closest('.search').length) {
                     $(this).closest('.search').addClass('bx_foc').append('<span class="foc"></span>');
                 }
@@ -408,17 +408,17 @@ var styleFormMethod = function(obj) {
                     $(this).closest('td').removeClass('bx_foc');
                     $(this).closest('td').find('.foc').remove();
                 }
-                // �볤� �묒꽦 input
+                // 댓글 작성 input
                 if ($(this).closest('.reply').length) {
                     $(this).closest('.reply').removeClass('bx_foc');
                     $(this).closest('.reply').find('.foc').remove();
                 }
-                // �섏젙 �볤� input
+                // 수정 댓글 input
                 if ($(this).closest('.reply_list').length) {
                     $(this).closest('.reply_list').find('li').removeClass('bx_foc');
                     $(this).closest('.reply_list').find('li').find('.foc').remove();
                 }
-                //寃���
+                //검색
                 if ($(this).closest('.search').length) {
                     $(this).closest('.search').removeClass('bx_foc');
                     $(this).closest('.search').find('.foc').remove();
@@ -485,7 +485,7 @@ var styleFormMethod = function(obj) {
     });
 
 
-    // �뚯씪 泥⑤� �덉쓣 寃쎌슦
+    // 파일 첨부 있을 경우
     if (root.find('.btn_addfile').length) {
         var $btnFile = root.find('.btn_addfile'),
             $inputFile = root.find('.add_file'),
@@ -515,20 +515,20 @@ var styleFormMethod = function(obj) {
 
                 if (fileName.length) {
                     $(this).prev('.txt_file').val(allFileName);
-                    //ie8 or ie9�� 寃쎌슦 �대옒�� placeholdersjs �쒓굅
+                    //ie8 or ie9일 경우 클래스 placeholdersjs 제거
                     if ($('.ie8').length || $('.ie9').length) {
                         $(this).prev('.txt_file').removeClass('placeholdersjs');
                     }
                 } else {
                     $(this).prev('.txt_file').val('');
-                    //ie8 or ie9�� 寃쎌슦 �대옒�� placeholdersjs 異붽�
+                    //ie8 or ie9일 경우 클래스 placeholdersjs 추가
                     if ($('.ie8').length || $('.ie9').length) {
                         $(this).prev('.txt_file').addClass('placeholdersjs');
                     }
                 }
 
 
-                // 媛믪뿉 �곕Ⅸ label �쒖꽦��
+                // 값에 따른 label 활성화
                 if ($(this).prev('.txt_file').val()) {
                     var $label = $(this).prev('.txt_file').attr('id');
                     $('label').each(function() {
@@ -548,7 +548,7 @@ var styleFormMethod = function(obj) {
         });
     }
 
-    //textarea �먮룞�믪씠 議곗젅
+    //textarea 자동높이 조절
     if (root.find('textarea').length) {
         var textarea = root.find('textarea');
         var txtareaFnc = function() {
@@ -556,7 +556,7 @@ var styleFormMethod = function(obj) {
             textarea.on({
                 focusout: function() {
                     if ($(this).val().length == false) {
-                        // �볤�
+                        // 댓글
                         if ($(this).closest('.reply_list').length || $(this).closest('.reply_box').length) {
                             $(this).outerHeight(47);
                         } else {
@@ -569,7 +569,7 @@ var styleFormMethod = function(obj) {
         txtareaFnc();
     }
 
-    //�명뭼 �섏젙�� 而ㅼ꽌 �대룞
+    //인풋 수정시 커서 이동
     root.find('.btn_edit').on({
         click: function(e) {
             e.preventDefault();
@@ -577,7 +577,7 @@ var styleFormMethod = function(obj) {
         }
     });
 
-    //textarea �ㅽ겕濡� �붿옄��
+    //textarea 스크롤 디자인
     if (root.find('.txtarea').length) {
         if (root.find('.txtarea').hasClass('none') == false) {
             root.find('.txtarea .view').jScrollPane({
@@ -590,10 +590,12 @@ var styleFormMethod = function(obj) {
     if ((".et_datepicker").length > 0) {
         window.etribe.ui.comm.datePicker.init();
     } //180412 hjl
+
+    scrollReset();
 }
 
 
-// 200219 : BHY : �뱀젒洹쇱꽦 �� �ъ빱�� �쒖꽦�� (怨듯넻) : 媛쒕컻�뚯씪�먯꽌 �몄텧
+// 200219 : BHY : 웹접근성 탭 포커스 활성화 (공통) : 개발파일에서 호출
 var companyTabFuc = function () {
     var $ciTab = $(".tab , .commTab"),
         $li = $ciTab.find("li");
@@ -606,7 +608,7 @@ var companyTabFuc = function () {
     });
 }
 
-// 200220 : BHY : �뱀젒洹쇱꽦 error�ъ빱�� input�쇰줈 �대룞 (怨듯넻) : 媛쒕컻�뚯씪�먯꽌 �몄텧
+// 200220 : BHY : 웹접근성 error포커스 input으로 이동 (공통) : 개발파일에서 호출
 var commFocusMove = function () {
     var $errText = $(".bx_error , .txt_error");
     var $childTarget = $errText.first().find('em');
@@ -617,6 +619,133 @@ var commFocusMove = function () {
             $(this).removeAttr('tabindex');
             $errText.prev().find("input").first().focus();
         });
+    }
+}
+
+// 200224 : BHY : 웹접근성 error포커스 input으로 이동 (공통)
+var multiFocusMove = function () {
+    var $errText = $(".bx_error , .txt_error");
+    var $childTarget = $errText.find('em');
+    var elArry = []
+    
+    $childTarget.each(function (idx) {
+        var $this = $(this);
+        
+        if ($this.hasClass("ng-animate")) {
+            if ($this.hasClass("ng-hide") === false) {
+                elArry.push($this);
+            }
+        } else {
+            // 협력업체 지급보험금조회 로그인 포커스 체크
+            if ($this.parents(".txt_error").is(":visible") || $this.is(":visible")) {
+                elArry.push($this);
+            }
+        }
+    });
+    
+    
+    (function focusEventHandler() {
+        if (elArry[0] == null) {
+            $(".blank_btn").find("a").focus();
+            return false;
+        }; 
+
+        elArry[0].attr('tabindex', '0').focus();
+        elArry[0].on('focusout', function (e) {
+            var $this = $(this),
+                $target = $this.parents($errText).prev();
+            
+            if ($target.find("input").hasClass("checkbox")) {
+                checkboxCheck($this);
+            }
+            if ($target.find("input").hasClass("radio")) {
+                radioCheck($this);
+            }
+            if ($target.find("textarea").hasClass("ipt_style")) {
+                textareaCheck($this);
+            }
+            if ($target.find("input").hasClass("ipt_style")) {
+                textCheck($this);
+            }
+            if ($target.find("a").hasClass("slc_target") || $target.find("a").hasClass("btn_bank")) {
+                selectCheck($target);
+            }
+            $(this).removeAttr('tabindex');
+        });        
+    }());  
+
+    // checkbox check
+    function checkboxCheck(_this) {
+        var $prevEl = _this.parents(".bx_error").prev(),
+            $checkbox = $prevEl.find("input[type=checkbox]");
+
+        if ($checkbox.length > 1) {
+            $checkbox.not(":checked").first().focus();
+        } else {
+            moveFocus($checkbox);
+        }
+    }
+
+    // radio check
+    function radioCheck(_this) {
+        var $prevEl = _this.parents(".bx_error").prev(),
+            $radio = $prevEl.find("input[type=radio]"),
+            $radioFirst = $prevEl.find(".ipt").find("input[type=radio]"),
+            $radioSec = $prevEl.find(".ipt_con").find("input[type=radio]"),
+            isRadioFirst = ($radioFirst.parent().hasClass("on")) ? true : false,
+            isRadioSecond = ($radioSec.parent().hasClass("on")) ? true : false;
+
+        if ($radio.length > 0) {
+            if (isRadioFirst === false && isRadioSecond === false) {
+                moveFocus($radioFirst);
+            } else if (isRadioFirst === true && isRadioSecond === false) {
+                moveFocus($radioSec);
+            }
+        }
+    }
+
+    // textarea check
+    function textareaCheck(_this) {
+        var $prevEl = _this.parents(".bx_error").prev(),
+            $textarea = $prevEl.find("textarea");
+
+        if ($textarea.length > 0) {
+            moveFocus($textarea);
+        }
+    }
+
+    // text check
+    function textCheck(_this) {
+        var $prevEl = _this.parents(".bx_error , .txt_error").prev(),
+            $text = $prevEl.find("input[type=text]");
+
+        if ($text.length > 0) {
+            if (_this.hasClass("payinsu_pass")) {
+                $prevEl.find("td").last().find("input").focus();
+            } else {
+                moveFocus($text);
+            }
+        }
+    }
+
+    // select check
+    function selectCheck($target) {
+        var $select = $target.find("a.slc_target , a.btn_bank");
+
+        if ($select.length > 0) {
+            $select.each(function (idx) {
+                if ($select.eq(0).hasClass("select")) {
+                    $select.last().focus();
+                } else {
+                    moveFocus($select);
+                }
+                
+            })
+        }
+    }
+   
+    function moveFocus(_target) {
+        _target.first().focus();
     }
 }
 
@@ -644,7 +773,7 @@ var errorMthod = function() {
         });
     }());
 
-    // 200220 : BHY : �뱀젒洹쇱꽦 error�ъ빱�� input�쇰줈 �대룞
+    // 200220 : BHY : 웹접근성 error포커스 input으로 이동
     function errorFocus() {
         tag.$boxEm.attr('tabindex', '0').focus();
         tag.$boxEm.on('focusout', function (e) {
@@ -733,7 +862,7 @@ var tooltipMethod = function() {
     });
 
 
-    // �リ린 踰꾪듉 �대┃��
+    // 닫기 버튼 클릭시
     $obj.on('click', '.layer_tip .btn_tooltip_close', function(e) {
         $(this).closest('.layer_tip').attr({
             'style': '',
@@ -749,10 +878,10 @@ var accordionMethod = function() {
         //$(".faq_list dl dt a , .actru_list dl dt a").on('click', function(e){
         e.preventDefault();
         if ($(this).closest('dt').hasClass('open') == true) {
-            $(this).attr('title', '�쇱튂湲�').closest('dt').removeClass('open').next('dd').stop().slideUp(100);
+            $(this).attr('title', '펼치기').closest('dt').removeClass('open').next('dd').stop().slideUp(100);
         } else {
-            $(this).attr('title', '�쇱튂湲�').closest($('div')).find('dl dt').removeClass('open').next('dd').stop().slideUp(100);
-            $(this).attr('title', '�묎린').closest('dt').addClass('open').next('dd').stop().slideDown(100);
+            $(this).attr('title', '펼치기').closest($('div')).find('dl dt').removeClass('open').next('dd').stop().slideUp(100);
+            $(this).attr('title', '접기').closest('dt').addClass('open').next('dd').stop().slideDown(100);
         }
     });
 }
@@ -768,12 +897,12 @@ var faqMethod = function() {
 
         if ($(this).closest('dt').hasClass('open') == true) {
             $(this).closest('dt').removeClass('open').next('dd').stop().slideUp(100);
-            $(this).closest('dt').find('.ui_status').text('�쇱튂湲�');
+            $(this).closest('dt').find('.ui_status').text('펼치기');
         } else {
             $faq.find('dt').removeClass('open').next('dd').stop().slideUp(100);
             $(this).closest('dt').addClass('open').next('dd').stop().slideDown(100);
-            $faq.find('dt').find('.ui_status').text('�쇱튂湲�');
-            $(this).closest('dt').find('.ui_status').text('�묎린');
+            $faq.find('dt').find('.ui_status').text('펼치기');
+            $(this).closest('dt').find('.ui_status').text('접기');
         }
     });
 
@@ -789,10 +918,10 @@ var requireSlide = function() {
             $cont = $requireDoc.find('.cont');
 
         if ($(this).hasClass('open') == true) {
-            $(this).attr('title', '�묓옒').removeClass('open').next($cont).stop().slideUp(100);
+            $(this).attr('title', '접힘').removeClass('open').next($cont).stop().slideUp(100);
         } else {
-            $requireDoc.find('li > a').attr('title', '�묓옒').removeClass('open').next($cont).hide();
-            $(this).attr('title', '�쇱묠, �좏깮��').addClass('open').next($cont).stop().slideDown(100);
+            $requireDoc.find('li > a').attr('title', '접힘').removeClass('open').next($cont).hide();
+            $(this).attr('title', '펼침, 선택됨').addClass('open').next($cont).stop().slideDown(100);
         }
     });
 
@@ -839,7 +968,7 @@ var tabContent = function() {
         $('.tab_btn a').attr('class', 'btn btn_w02');
         $(this).attr('class', 'btn btn_n01');
         $('.tab_btn a').find('span').nextAll().remove('i').remove('span');
-        $(this).find('span').after('<i class="i_next"></i><span class="hide_txt">_�좏깮</span>');
+        $(this).find('span').after('<i class="i_next"></i><span class="hide_txt">_선택</span>');
 
         // show / hide
         $('.tab_area').removeClass('on');
@@ -852,7 +981,7 @@ var tabContent = function() {
 
 }
 
-// �볤� �묒꽦
+// 댓글 작성
 var replyMethod = function() {
     var $replyList = $('.reply_list > ul > li');
 
@@ -863,7 +992,7 @@ var replyMethod = function() {
     });
 }
 
-// �щ씪�대뜑 �띾낫�쇳꽣
+// 슬라이더 홍보센터
 var sliderPublic = function() {
     setTimeout(function() {
         var $sliderObj = $('.slide_advbox'),
@@ -871,7 +1000,7 @@ var sliderPublic = function() {
             $sliderList = $slider.find(' > li');
 
         if ($sliderObj.length) {
-            //
+            //debugger;
             var $limgL = Math.abs($sliderList.filter(':last-child').css('margin-left').split('px')[0]),
                 $ceil = $sliderList.width() + $limgL;
             var isitMove = false;
@@ -881,9 +1010,9 @@ var sliderPublic = function() {
                 //init
                 $slideThis.find($slider).css('left', 0);
 
-                // �щ씪�대뱶 由ъ뒪�멸� 3媛쒖씠�곸씪 寃쎌슦�먮쭔 �곸슜
+                // 슬라이드 리스트가 3개이상일 경우에만 적용
                 if ($slideThis.find($sliderList).length > 3) {
-                    // �댁쟾 踰꾪듉
+                    // 이전 버튼
                     $slideThis.on('click', '.btn_prev', function(e) {
                         e.preventDefault();
                         if (isitMove == false && $slideThis.find($slider).css('left') < '0px') {
@@ -900,7 +1029,7 @@ var sliderPublic = function() {
                         return false;
                     });
 
-                    // �ㅼ쓬 踰꾪듉
+                    // 다음 버튼
                     $slideThis.on('click', '.btn_next', function(e) {
                         e.preventDefault();
                         if (isitMove == false && parseInt($slideThis.find($slider).css('left')) > -$ceil * ($slideThis.find($sliderList).length - 3)) {
@@ -922,24 +1051,24 @@ var sliderPublic = function() {
     }, 500);
 }
 
-//�댁쟾�� 踰붿쐞 �좏깮
+//운전자 범위 선택
 var driveScopeSlc = function() {
     var $driver_range = $('.driver_range'),
         $privacy = $driver_range.find('.bx_coverage > div.range06'),
         $driver_detail = $('.driver_detail');
 
-    // 吏��� 1��(����)�� �쒖쇅�� �댁쟾�� 踰붿쐞 �좏깮��
+    // 지정 1인(타인)을 제외한 운전자 범위 선택시
     $driver_range.on('change', '.driver_select .ipt_radio input[type="radio"]', function() {
         var $idx = $(this).closest('.ipt_radio').attr('class').split('ipt_radio driver_chk0')[1];
 
-        //20180110 �ㅻ쪟�쒓굅
-        // 2016.10.01 吏���1�� �쒖젙�뱀빟�먯�
+        //20180110 오류제거
+        // 2016.10.01 지정1인 한정특약폐지
         //var insValdt = $('#insValdt').val();
         //if(($idx == 2 || $idx == 3) && insValdt > 20160930) {
         //	$idx = 4;
         //}
 
-        // 媛�議� + �뺤젣�먮ℓ / �꾧뎄�� �좏깮�� (湲곕챸1�� �쒖쇅 �꾩껜濡� 蹂�寃� 20180110)
+        // 가족 + 형제자매 / 누구나 선택시 (기명1인 제외 전체로 변경 20180110)
         if ($idx == 2 || $idx == 3 || $idx == 4 || $idx == 5) {
             $driver_range.find('.driver_select .ipt_check input[type="checkbox"]').removeAttr('checked');
             $driver_range.find('.driver_select .ipt_check input[type="checkbox"]').attr({
@@ -953,7 +1082,7 @@ var driveScopeSlc = function() {
             $driver_range.find('.driver_coverage .bx_coverage > div.range0' + $idx).addClass('on');
 
         }
-        // 洹몄씠��
+        // 그이외
         else {
             $driver_range.find('.driver_coverage .bx_coverage > div.range0601').removeClass('on');
             $driver_range.find('.driver_coverage .bx_coverage > div.range0602').removeClass('on');
@@ -967,7 +1096,7 @@ var driveScopeSlc = function() {
             $driver_range.find('.driver_coverage .bx_coverage > div').not($privacy).removeClass('on');
             $driver_range.find('.driver_coverage .bx_coverage > div.range0' + $idx).addClass('on')
 
-            // 吏��� 1��(����) �좏깮��
+            // 지정 1인(타인) 선택시
             $driver_range.on('change', '.driver_select .ipt_check input[type="checkbox"]', function() {
                 if ($(this).closest('.check_style').hasClass('on') == false) {
                     $driver_range.find('.driver_coverage .bx_coverage > div').removeClass('on');
@@ -987,7 +1116,7 @@ var driveScopeSlc = function() {
         // init
         init();
 
-        // �섎떒 �낅젰
+        // 하단 입력
         $driver_detail.removeClass('on');
         $('[class*="driver_chk"]').removeClass('on').find('.bx_tooltip').removeClass('on');
         $driver_detail.filter('.driver_detail0' + $idx).addClass('on');
@@ -1006,7 +1135,7 @@ var driveScopeSlc = function() {
 
 }
 
-// 蹂댁옣 �댁슜 蹂�寃�
+// 보장 내용 변경
 var guaranteeChange = function() {
     var $guarantee = $('.guarantee_list');
 
@@ -1019,13 +1148,13 @@ var guaranteeChange = function() {
             if ($(this).hasClass('on')) {
                 $('.guarantee_cont > a').removeClass('on');
                 $guarantee.find('> dl .guarantee_change').stop().slideUp(200);
-                $(this).closest('dd').find('.hide_txt').text('�쇱튂湲�');
+                $(this).closest('dd').find('.hide_txt').text('펼치기');
             } else {
                 $('.guarantee_cont > a').removeClass('on');
                 $guarantee.find('> dl .guarantee_change').stop().slideUp(200);
                 $(this).addClass('on').closest('.guarantee_cont').next('.guarantee_change').stop().slideDown(200);
-                $guarantee.find('dd').find('.hide_txt').text('�쇱튂湲�');
-                $(this).closest('dd').find('.hide_txt').text('�묎린');
+                $guarantee.find('dd').find('.hide_txt').text('펼치기');
+                $(this).closest('dd').find('.hide_txt').text('접기');
             }
         }
     });
@@ -1038,7 +1167,7 @@ var guaranteeChange = function() {
     });
 }
 
-// 諛붾줈怨꾩궛
+// 바로계산
 window.uiReckoning = (function() {
     var el, btnRec, showRec, showRecFocus;
 
@@ -1099,7 +1228,7 @@ window.uiSnb = (function() {
     }
 })();
 
-//蹂댁옣�댁슜 踰꾪듉 �대┃ �대깽��
+//보장내용 버튼 클릭 이벤트
 window.idScroll = (function() {
     var el, elBtn, guarantBtn;
 
@@ -1114,7 +1243,7 @@ window.idScroll = (function() {
     function bindEvent() {
         guarantBtn.on('click', function(e) {
             e.preventDefault();
-            if ($(this).find('span').text() == "蹂댁옣�댁슜") {
+            if ($(this).find('span').text() == "보장내용") {
                 $('html, body').animate({
                     scrollTop: $('#guarantee').offset().top
                 });
@@ -1127,7 +1256,7 @@ window.idScroll = (function() {
     }
 })();
 
-//�곹뭹�곸꽭 瑗� �뚯븘�먯떎 �ы빆
+//상품상세 꼭 알아두실 사항
 window.anchorVeiw = (function() {
     var el, anchorLst, anchorVw;
 
@@ -1154,17 +1283,21 @@ window.anchorVeiw = (function() {
             anchorVw.hide();
             anchorVw.eq(eq).show();
 
-            // 200217 : BHY : �뱀젒洹쇱꽦 �ъ빱�� 愿��� 異붽�
-            anchorVw.eq(eq).attr('tabindex', '0').focus();
-            anchorVw.eq(eq).focusout(function () {
-                $(this).removeAttr("tabindex")                
-            });
-
             $('.doscroll .layer_content').jScrollPane({
                 mouseWheelSpeed: 100,
                 hijackInternalLinks: true
             });
+            anchirFocusMove($(this));
         })
+    }
+
+    // 200217 : BHY : 웹접근성 포커스 관련 추가
+    function anchirFocusMove(_this) {
+        var $this = _this,
+            waText = "<span class='hide_txt'>현재 탭 활성화</span>";
+
+        anchorLstA.find("span").remove();
+        $this.append(waText);    
     }
 
     return {
@@ -1172,7 +1305,7 @@ window.anchorVeiw = (function() {
     }
 })();
 
-// �ъ씠�몃㏊ �꾩껜硫붾돱 怨좎젙
+// 사이트맵 전체메뉴 고정
 var siteFixMenu = function() {
     var $siteMenu = $('.site_nav');
 
@@ -1180,40 +1313,40 @@ var siteFixMenu = function() {
         $(window).scroll(function() {
             $siteMenu.find('li a').trigger('blur');
 
-            // 硫붾돱 怨좎젙
+            // 메뉴 고정
             if ($(this).scrollTop() > 211) {
                 $siteMenu.addClass('fixed');
             } else {
                 $siteMenu.removeClass('fixed');
             }
 
-            // 硫붾돱 �쒖꽦��
-            // �먮룞李�/�댁쟾��
+            // 메뉴 활성화
+            // 자동차/운전자
             if ($(this).scrollTop() <= $('#a2').offset().top - 176) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(0).addClass('on');
             }
-            // 嫄닿컯/�대┛��
+            // 건강/어린이
             else if ($(this).scrollTop() <= $('#a3').offset().top - 176) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(1).addClass('on');
             }
-            // �곌툑/��異�
+            // 연금/저축
             else if ($(this).scrollTop() <= $('#a4').offset().top - 176) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(2).addClass('on');
             }
-            // �앺솢/�덉�
+            // 생활/레저
             else if ($(this).scrollTop() <= $('#a5').offset().top - 176) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(3).addClass('on');
             }
-            // 蹂댁긽/蹂댄뿕湲덉껌援�
+            // 보상/보험금청구
             else if ($(this).scrollTop() <= $('#a6').offset().top - 176) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(4).addClass('on');
             }
-            //�명꽣�룰퀬媛앹꽱��
+            //인터넷고객센터
             else if ($(this).scrollTop() <= $('#a7').offset().top - 176) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(5).addClass('on');
@@ -1223,7 +1356,7 @@ var siteFixMenu = function() {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(6).addClass('on');
             }
-            // 蹂몄씤�몄쬆�쇳꽣
+            // 본인인증센터
             else if ($(this).scrollTop() <= $('#a9').offset().top - 176) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(7).addClass('on');
@@ -1257,39 +1390,54 @@ var siteFixMenu = function() {
     }
 }
 
-// �ъ씠�몃㏊ �꾩껜硫붾돱 怨좎젙
+// 사이트맵 전체메뉴 고정
 var siteFixMenu02 = function() {
+    
     var $siteMenu = $('.site_shortcut'),
-        $siteMenuH = $siteMenu.height();
-
+        $link = $siteMenu.find("li > a"),
+        $siteMenuH = $siteMenu.height(),
+        boxArray = [],
+        _bool = false;
+    
+    $(".sitemap_box").each(function () {
+        var _list = $(this).find("h3").attr("id");
+        boxArray.push(_list);
+    });
+    
+    if (boxArray.length === 11) {
+        setTimeout(function () {
+            _bool = true
+        }, 1500);
+    }
+    
     if ($siteMenu.length) {
         $(window).scroll(function() {
             $siteMenu.find('li a').trigger('blur');
 
-            // 硫붾돱 怨좎젙
+            // 메뉴 고정
             if ($(this).scrollTop() > 211) {
                 $siteMenu.addClass('fixed');
             } else {
                 $siteMenu.removeClass('fixed');
             }
 
-            // 硫붾돱 �쒖꽦��
-            // �먮룞李�/�댁쟾��
+            // 메뉴 활성화
+            // 자동차/운전자
             if ($(this).scrollTop() <= $('#a2').offset().top - ($siteMenuH + 22)) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(0).addClass('on');
             }
-            // 嫄닿컯/�대┛��
+            // 건강/어린이
             else if ($(this).scrollTop() <= $('#a3').offset().top - ($siteMenuH + 22)) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(1).addClass('on');
             }
-            // �곌툑/��異�
+            // 연금/저축
             else if ($(this).scrollTop() <= $('#a4').offset().top - ($siteMenuH + 22)) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(2).addClass('on');
             }
-            // �붿옱/�앺솢
+            // 화재/생활
             else if ($(this).scrollTop() <= $('#a6').offset().top - ($siteMenuH + 22)) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(3).addClass('on');
@@ -1299,47 +1447,51 @@ var siteFixMenu02 = function() {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(5).addClass('on');
             }
-            // �대깽��
+            // 이벤트
+            // else if ($(this).scrollTop() <= $('#a8').offset().top - ($siteMenuH + 22)) {
+            //     $siteMenu.find('li').removeClass('on')
+            //     $siteMenu.find('li').eq(6).addClass('on');
+            // }
+            // 인터넷고객센터
             else if ($(this).scrollTop() <= $('#a8').offset().top - ($siteMenuH + 22)) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(6).addClass('on');
             }
-            // �명꽣�룰퀬媛앹꽱��
+            // 보상/보험금청구
             else if ($(this).scrollTop() <= $('#a9').offset().top - ($siteMenuH + 22)) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(7).addClass('on');
             }
-            // 蹂댁긽/蹂댄뿕湲덉껌援�
+            // 본인인증센터
             else if ($(this).scrollTop() <= $('#a10').offset().top - ($siteMenuH + 22)) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(8).addClass('on');
             }
-            // 蹂몄씤�몄쬆�쇳꽣
+            //회사소개
             else if ($(this).scrollTop() <= $('#a11').offset().top - ($siteMenuH + 22)) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(9).addClass('on');
             }
-            //�뚯궗�뚭컻
+            //공시실
             else if ($(this).scrollTop() <= $('#a12').offset().top - ($siteMenuH + 22)) {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(10).addClass('on');
             }
-            //怨듭떆��
-            else if ($(this).scrollTop() <= $('#a13').offset().top - ($siteMenuH + 22)) {
+            //소비자보호광장
+            else {
                 $siteMenu.find('li').removeClass('on')
                 $siteMenu.find('li').eq(11).addClass('on');
             }
-            //�뚮퉬�먮낫�멸킅��
-            else {
-                $siteMenu.find('li').removeClass('on')
-                $siteMenu.find('li').eq(12).addClass('on');
-            }
         });
 
-        $siteMenu.on('click', 'li a', function(e) {
+        $link.on('click', function(e) {
             e.preventDefault();
+
+            if (_bool === false) return false;
+
             var $target = $(this).attr('href').split('#')[1];
             var eqa = $(this).parent('li').index()
+
             if ($target.length) {
                 $siteMenu.find('li').removeClass('on');
                 $(this).closest('li').addClass('on');
@@ -1355,16 +1507,13 @@ var siteFixMenu02 = function() {
                     }, 10);
 
                 }
-                //				$('h3').eq(eqa).attr({tabindex:-1}).focus()
-
             }
         });
-
         $(window).trigger('scroll');
     }
 }
 
-// �숈쁺�� �섎젅�댁뀡 蹂닿린
+// 동영상 나레이션 보기
 var movieNarShow = function() {
     var $obj = $('#container');
 
@@ -1379,7 +1528,7 @@ var movieNarShow = function() {
             $('.movie_narration').show();
         }
 
-        // �붿옄�� �ㅽ겕濡�
+        // 디자인 스크롤
         if ($('.txtarea').length) {
             if ($('.txtarea').hasClass('none') == false) {
                 $('.txtarea .view').jScrollPane({
@@ -1391,8 +1540,8 @@ var movieNarShow = function() {
     });
 }
 
-//20160218 �섏젙 : 踰꾪듉2媛� 踰꾩쟾 異붽�
-// �곸“�쒕퉬�� ��&�ㅼ슫
+//20160218 수정 : 버튼2개 버전 추가
+// 상조서비스 업&다운
 var prematToggle = function() {
     var $pdsvc_box = $('.pdsvc_box'),
         $btn = $pdsvc_box.find('.bx_btn a'),
@@ -1401,31 +1550,31 @@ var prematToggle = function() {
 
     $btn.on('click', function() {
         if ($(this).closest($pdsvc_box).hasClass('on') == true) {
-            $(this).attr('title', '�쇱튂湲�').closest($pdsvc_box).removeClass('on');
+            $(this).attr('title', '펼치기').closest($pdsvc_box).removeClass('on');
             $(this).find('i').attr('class', 'i_topen_r');
         } else {
-            $(this).attr('title', '�묎린').closest($pdsvc_box).addClass('on');
+            $(this).attr('title', '접기').closest($pdsvc_box).addClass('on');
             $(this).find('i').attr('class', 'i_tclose_r');
         }
     });
 
-    //index 媛믪쓣 紐산��몄삤�� �먮윭�덉쓬
+    //index 값을 못가져오는 에러있음
     $btn2.on('click', function() {
         $('.pdsvc_boxs .open').eq(0).toggle();
-        $(this).attr('title', $(this).attr('title') == '�쇱튂湲�' ? '�묎린' : '�쇱튂湲�').find('i').toggleClass('i_topen_r').toggleClass('i_tclose_r');
+        $(this).attr('title', $(this).attr('title') == '펼치기' ? '접기' : '펼치기').find('i').toggleClass('i_topen_r').toggleClass('i_tclose_r');
     });
     $btn3.on('click', function() {
         $('.pdsvc_boxs .open').eq(1).toggle();
-        $(this).attr('title', $(this).attr('title') == '�쇱튂湲�' ? '�묎린' : '�쇱튂湲�').find('i').toggleClass('i_topen_r').toggleClass('i_tclose_r');
+        $(this).attr('title', $(this).attr('title') == '펼치기' ? '접기' : '펼치기').find('i').toggleClass('i_topen_r').toggleClass('i_tclose_r');
     });
 
 
 }
 
-//  罹먮┃�� �좏깮
+//  캐릭터 선택
 var dollMethod = function() {
 
-    // 紐щ뵒��
+    // 몬디탭
     var $merrydoll_list = $('.merrydoll_list .doll');
 
     $merrydoll_list.each(function() {
@@ -1465,7 +1614,7 @@ var dollMethod = function() {
 
 
 
-// �좊퀝�� 嫄닿컯蹂댄뿕 �곷떞�쇳꽣
+// 유병자 건강보험 상담센터
 window.sickMethod = (function() {
     var $sickMenu, $sickCont, $sick_top, _thisHref;
 
@@ -1507,7 +1656,7 @@ window.sickMethod = (function() {
 
                 $('html,body').animate({
                     scrollTop: $('.sick_menu').offset().top
-                });  180515 $('html,body').animate({ scrollTop : 566 }); 
+                }); /* 180515 $('html,body').animate({ scrollTop : 566 }); */
 
             }, 150);
 
@@ -1591,7 +1740,7 @@ window.sickMethod = (function() {
             }).jScrollPane({
                 mouseWheelSpeed: 100,
                 hijackInternalLinks: true,
-                animateScroll: true
+                /*animateScroll: true*/
             });
         }
     }
@@ -1603,7 +1752,7 @@ window.sickMethod = (function() {
 
 //openLayerPopup
 var openLayerPopup = function(id) {
-    $('.skipnav').attr('tabIndex', 1); //�덉씠�� �댁쓣�� �ㅽ궢�ㅻ퉬濡� �대룞 諛⑹�
+    $('.skipnav').attr('tabIndex', 1); //레이어 떴을때 스킵네비로 이동 방지
 
     var $layer_pop = $('#' + id + " > div").eq(0);
 
@@ -1677,21 +1826,21 @@ window.uiFooter = (function() {
     function bindEvents() {
         f_btn.on('click', function() {
             if (!f_show.is(":visible")) {
-                f_btn.addClass('on'); //2015-12-21 異붽�
+                f_btn.addClass('on'); //2015-12-21 추가
                 f_show.slideDown(300);
                 $('html, body').animate({
                     scrollTop: $('#footer').offset().top
                 }, 300);
                 f_show.show();
-                f_btn.find('.hide_txt').text('�묎린') //2016-01-12 異붽�
+                f_btn.find('.hide_txt').text('접기') //2016-01-12 추가
                 setTimeout(function() {
                     showHeight = el.height() - 42;
                     f_show.css('height', showHeight);
                 }, 500)
             } else if (f_show.is(":visible")) {
-                f_btn.removeClass('on'); //2015-12-21 異붽�
+                f_btn.removeClass('on'); //2015-12-21 추가
                 f_show.slideUp(300, function() {
-                    f_btn.find('.hide_txt').text('�쇱튂湲�') //2016-01-12 異붽�
+                    f_btn.find('.hide_txt').text('펼치기') //2016-01-12 추가
                     f_show.hide();
                 })
             }
@@ -1702,7 +1851,7 @@ window.uiFooter = (function() {
     }
 })();
 
-//top踰꾪듉 �대깽��
+//top버튼 이벤트
 window.topEvent = (function() {
     var el, el2, el3;
 
@@ -1759,7 +1908,7 @@ window.topEvent = (function() {
     }
 })();
 
-// �� �몃꽕��
+// 탭 썸네일
 window.uiFrTab = (function() {
     var el, fr_tab_list, fr_tab_a;
 
@@ -1770,9 +1919,9 @@ window.uiFrTab = (function() {
 
         bindEvents();
     }
-    // 200217 : BHY : �뱀젒洹쇱꽦 �쒖꽦�� �� �뺣낫�쒓났 異붽�
+    // 200217 : BHY : 웹접근성 활성화 탭 정보제공 추가
     function bindEvents() {
-        var waText = "<span class='hide_txt'>�꾩옱 �� �쒖꽦��</span>";
+        var waText = "<span class='hide_txt'>현재 탭 활성화</span>";
 
         fr_tab_a.first().append(waText);
 
@@ -1827,7 +1976,7 @@ window.promotionEvent = (function() {
     }
 })();
 
-// �뚮쑑�� �� 蹂댄뿕猷� �뺤씤
+// 알뜰한 내 보험료 확인
 window.uiSideLayer = (function() {
     var el, layerCc, layerCs, layerCcBtn, layerCsBtn, showDirCc, showDirCs;
 
@@ -1879,7 +2028,7 @@ function closeCsEvents() {
     //$('#ly_dir_cs .radio_style:eq(1)').removeClass("on");
 }
 
-// �먮룞李� 蹂�寃�(李⑤웾��泥�) �좏깮
+// 자동차 변경(차량대체) 선택
 window.uiCarSearch = (function() {
     var el, index, steps, stepText, stepTexts;
 
@@ -1921,7 +2070,7 @@ window.uiCarSearch = (function() {
 
             if (index == 1 && step1CarIdx == 11) {
                 etcCarPosition(index, step1CarIdx);
-                $('.select_car_depth').find('li').eq(0).find('span').eq(0).text('�쒖“��');
+                $('.select_car_depth').find('li').eq(0).find('span').eq(0).text('제조사');
                 $('.select_car_depth').find('li').eq(0).removeClass('on');
             }
 
@@ -1967,7 +2116,7 @@ window.uiCarSearch = (function() {
 
         if (_this.find('.hide_txt').length <= 0) {
             $('.step0' + index).find('li a .hide_txt').remove();
-            _this.find('span').eq(0).after('<span class="hide_txt">_�좏깮</span>');
+            _this.find('span').eq(0).after('<span class="hide_txt">_선택</span>');
         }
 
         if ($('.step0' + index).hasClass('open')) {
@@ -2014,7 +2163,7 @@ window.uiCarSearch = (function() {
     function getCars(index, step1CarIdx, car) {
 
         if (index == 1) {
-            //var car ='<li><a href="#"><span class="prd_name">i30</span></a></li><li><a href="#"><span class="prd_name">i40</span></a></li><li><a href="#"><span class="prd_name">LF�뚮굹��</span></a></li><li><a href="#"><span class="prd_name">媛ㅻ줈��</span></a></li><li class=""><a href="#"><span class="prd_name">洹몃옖��</span></a></li><li><a href="#"><span class="prd_name">洹몃젅�댁뒪</span></a></li><li><a href="#"><span class="prd_name">�ㅼ씠�덉뒪��</span></a></li><li><a href="#"><span class="prd_name">留덈Ⅴ��</span></a></li><li><a href="#"><span class="prd_name">�쇰퉬��</span></a></li><li><a href="#"><span class="prd_name">留μ뒪�щ（利�</span></a></li><li><a href="#"><span class="prd_name">�쇳���</span></a></li><li></li>';
+            //var car ='<li><a href="#"><span class="prd_name">i30</span></a></li><li><a href="#"><span class="prd_name">i40</span></a></li><li><a href="#"><span class="prd_name">LF소나타</span></a></li><li><a href="#"><span class="prd_name">갤로퍼</span></a></li><li class=""><a href="#"><span class="prd_name">그랜져</span></a></li><li><a href="#"><span class="prd_name">그레이스</span></a></li><li><a href="#"><span class="prd_name">다이너스티</span></a></li><li><a href="#"><span class="prd_name">마르샤</span></a></li><li><a href="#"><span class="prd_name">라비타</span></a></li><li><a href="#"><span class="prd_name">맥스크루즈</span></a></li><li><a href="#"><span class="prd_name">싼타페</span></a></li><li></li>';
             $('.step02 ul').html(car).promise().done(function() {
                 bindStep(index);
             });
@@ -2070,7 +2219,7 @@ window.uiCarSearch = (function() {
     }
 })();
 
-//Mondi-Car 吏��� 李⑤웾 �덉씠�� �앹뾽 ��
+//Mondi-Car 지원 차량 레이어 팝업 탭
 window.uiMondiCarLayer = (function() {
     var el, elTab, tabBox, tabList, elCont;
 
@@ -2105,7 +2254,7 @@ window.uiMondiCarLayer = (function() {
     }
 })();
 
-//�덉씠�� �꾩튂 諛� �ㅽ겕濡� �듭뀡
+//레이어 위치 및 스크롤 옵션
 window.uiLyer = (function() {
 
     var el, heigth, checkr, checkedready = false,
@@ -2128,7 +2277,7 @@ window.uiLyer = (function() {
 
     function check_reay() {
 
-        //�섎━癒쇳듃�� �믪씠瑜� �ъ꽌 釉뚮씪�곗��� 洹몃젮 議뚮뒗吏� �뺤씤!
+        //엘리먼트의 높이를 재서 브라우저에 그려 졌는지 확인!
         if (el.height() > 150) {
             bindEvents();
             clearInterval(checkr);
@@ -2140,7 +2289,8 @@ window.uiLyer = (function() {
         if (el.hasClass('doscroll')) {
             $('.doscroll .layer_content').jScrollPane({
                 mouseWheelSpeed: 100,
-                hijackInternalLinks: true
+                hijackInternalLinks: true,
+                animateScroll: true
             });
         }
         if (el.height() > $(window).height()) {
@@ -2179,16 +2329,16 @@ window.goDirect = (function() {
     }
 
     function call_panel() {
-        //�믪씠 怨꾩궛
-        // �ㅽ겕濡� �믪쓣��
-        // ��쓣��
+        //높이 계산
+        // 스크롤 높을때
+        // 낮을때
         var panelHTML2 = '';
         panelHTML2 += '<div id="goDirect" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:1;overflow:auto;"></div>';
 
         var panelHTML = '';
         panelHTML += '	<div id="uiDirectPannel" style="position:relative;width:1200px;height:840px;padding:1px 3px 3px 1px;background: url(/subscribe/images/pd/pn/bg_layer_sdw.png) no-repeat left 30px;z-index: 105;margin:0 auto;">';
         panelHTML += '<iframe name="contract"  style="width:100%; height:800px;  overflow-y: hidden; border:none;margin-top:30px" scrolling="no" id="directFrame"></iframe>';
-        panelHTML += '		<a href="#" class="frame_close" style="display:inline-block;position:absolute;top:0px;right:3px;padding-left:20px;font-size:18px;color:#555555;text-decoration:none;line-height:20px;background:url(/subscribe/images/pd/pn/bg_btn_frame.png) no-repeat left 2px" id="frame_close">醫낅즺</a>';
+        panelHTML += '		<a href="#" class="frame_close" style="display:inline-block;position:absolute;top:0px;right:3px;padding-left:20px;font-size:18px;color:#555555;text-decoration:none;line-height:20px;background:url(/subscribe/images/pd/pn/bg_btn_frame.png) no-repeat left 2px" id="frame_close">종료</a>';
         panelHTML += '	</div>';
         $('body').append(panelHTML2).css({
             overflow: 'hidden'
@@ -2249,7 +2399,7 @@ window.goDirect = (function() {
     }
 
     function get_url() {
-        // 鍮꾨룞湲� �몄텧濡� URL 蹂�寃� 媛���//
+        // 비동기 호출로 URL 변경 가능//
         directUrl = ""
         //set_url()
     };
@@ -2352,7 +2502,7 @@ window.MainVisCalc = (function() {
     }
     //
     //	function bindEvent(){
-    //		// �명꽣�� �좎씤 �곸슜
+    //		// 인터넷 할인 적용
     //		switchEl.on('click', function(){
     //			if(!el.find('.option_group .btn_bar_area').hasClass('off')){
     //				$('.btn_bar_area').addClass('off');
@@ -2368,7 +2518,7 @@ window.MainVisCalc = (function() {
     //			moveAni();
     //		});
     //
-    //		// 二쇳뻾嫄곕━
+    //		// 주행거리
     //		option2Radio.find('.select_radio input').on('change', function(){
     //			$(this).closest('.step01').prev().removeClass();
     //			$(this).closest('.step01').prev().addClass('step_bar '+ $(this).attr('id'));
@@ -2400,7 +2550,7 @@ window.MainVisCalc = (function() {
     //			moveAni();
     //		});
     //
-    //		// 臾댁궗怨� 寃쎈젰
+    //		// 무사고 경력
     //		option3Radio.find('.select_radio input').on('change', function(){
     //			$(this).closest('.step01').prev().removeClass();
     //			$(this).closest('.step01').prev().addClass('step_bar '+ $(this).attr('id'));
@@ -2723,21 +2873,21 @@ window.mainSnsRoll = (function() {
     }
 })();
 
-//硫붿씤 湲곕뒫 �꾩껜 珥덇린��(吏곹뙋)
+//메인 기능 전체 초기화(직판)
 window.uiMain = (function() {
     function init() {
         MainVisCalc.init();
-        dLabInfo.init(); //硫붿씤 �ㅼ씠�됲듃 �곌뎄�� �덈궡
-        mainEvtRoll.init(); //硫붿씤 �대깽�� 諛곕꼫 濡ㅻ쭅
-        mainSnsRoll.init(); //硫붿씤 sns 諛곕꼫 濡ㅻ쭅
-        mainCtn.init(); //硫붿씤 而ㅽ듉 踰좊꼫
+        dLabInfo.init(); //메인 다이렉트 연구소 안내
+        mainEvtRoll.init(); //메인 이벤트 배너 롤링
+        mainSnsRoll.init(); //메인 sns 배너 롤링
+        mainCtn.init(); //메인 커튼 베너
     }
     return {
         init: init
     }
 })();
 
-//硫붿씤 鍮꾩＜�� 濡ㅻ쭅(����)
+//메인 비주얼 롤링(대표)
 window.main_de = (function() {
     function init() {
         playMain()
@@ -2757,16 +2907,16 @@ function noticePop() {
     location.href = "https://www.meritzfire.com/footer/notice.do#!/01";
 }
 
-//硫붿씤 而ㅽ듉 諛곕꼫 湲곕뒫
+//메인 커튼 배너 기능
 window.mainCtn = (function() {
     function init() {
         checkTpl()
     }
 
     function checkTpl() {
-        //�쒖뒪�� �묒뾽�쒓컙(而ㅽ듉諛곕꼫 �몄텧�쒓컙)
-        var stDt = "2018072016"; //�쒖옉�쒓컙 (�댁떆媛꾨��� 蹂댁엫)
-        var endDt = "2018072207"; //醫낅즺�쒓컙 (�댁떆媛꾨��� �덈낫��)
+        //시스템 작업시간(커튼배너 노출시간)
+        var stDt = "2018072016"; //시작시간 (이시간부터 보임)
+        var endDt = "2018072207"; //종료시간 (이시간부터 안보임)
         var date = new Date();
         var today = date.getFullYear() + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours()).slice(-2)
 
@@ -2782,7 +2932,7 @@ window.mainCtn = (function() {
 
                 $.post(tplUrl, function(data) {
                     $('#header').prepend(data);
-                    // 硫붿씤諛곕꼫 �앹뾽
+                    // 메인배너 팝업
                     if (eval(stDt) <= eval(today) && eval(today) < eval(endDt)) {
                         $('.top_bnnr').show();
                     }
@@ -2868,14 +3018,14 @@ window.mainVisual = (function() {
 
         }
 
-        //2018-01-23 �뱀젒洹쇱꽦 異붽�
+        //2018-01-23 웹접근성 추가
         if (!cntrl.eq(cntrleq).hasClass('play') || !cntrl.eq(cntrleq).hasClass('pause')) {
             cntrl.find('.hide_txt').remove();
-            cntrl.eq(idx).append('<span class="hide_txt">�꾩옱 �좏깮</span>');
+            cntrl.eq(idx).append('<span class="hide_txt">현재 선택</span>');
         }
 
     }
-    // <span class="hide_txt">�꾩옱 �좏깮</span>
+    // <span class="hide_txt">현재 선택</span>
     function bindEvent() {
         reset()
         cntrl.off('click').on('click', function(e) {
@@ -2883,7 +3033,7 @@ window.mainVisual = (function() {
             if ($(this).index() == cntrleq) {
                 setPs($(this).attr('class'))
                 if (!$(this).find('.hide_txt').length) {
-                    $(this).append('<span class="hide_txt">�꾩옱 �좏깮</span>');
+                    $(this).append('<span class="hide_txt">현재 선택</span>');
                 }
             } else {
                 setControll($(this).index())
@@ -2906,7 +3056,7 @@ window.mainVisual = (function() {
 
         // cntrl.removeClass('on')
         // cntrl.eq(idx).addClass('on')
-        //cntrl.eq(cntrleq).removeClass('play').addClass('pause').text('�좎떆硫덉땄')
+        //cntrl.eq(cntrleq).removeClass('play').addClass('pause').text('잠시멈춤')
 
     }
 
@@ -2919,12 +3069,12 @@ window.mainVisual = (function() {
 
     function setPs(name) {
         if (name == "pause") {
-            cntrl.eq(cntrleq).removeClass('pause').addClass('play').text('�ъ깮')
+            cntrl.eq(cntrleq).removeClass('pause').addClass('play').text('재생')
             stop();
 
         } else {
 
-            cntrl.eq(cntrleq).removeClass('play').addClass('pause').text('�좎떆硫덉땄')
+            cntrl.eq(cntrleq).removeClass('play').addClass('pause').text('잠시멈춤')
 
             playing();
             endAnimation = true;
@@ -2939,7 +3089,7 @@ window.mainVisual = (function() {
 
 })();
 
-//硫붿씤 �쒕툕 濡ㅻ쭅
+//메인 서브 롤링
 window.mainSubRoll = (function() {
     var el, prodList, arrClass;
 
@@ -2966,7 +3116,7 @@ window.mainSubRoll = (function() {
     }
 })();
 
-//蹂몄씤�몄쬆 �듭떊�� �쎄� 2016-03-03
+//본인인증 통신사 약관 2016-03-03
 window.telecomSlt = (function() {
     var el, telecomTab, telecomTabList, tabIdx, telecomView, telecomNum;
 
@@ -2982,12 +3132,17 @@ window.telecomSlt = (function() {
     }
 
     function bindEvent() {
+		if(!telecomTabList.eq(0).children('a').find('.hide_txt').length > 0){
+			telecomTabList.eq(0).children('a').trigger('click')
+		}
         telecomTabList.on('click', '>a', function(e) {
             e.preventDefault();
             var tabIdx = $(this).closest('li').index();
 
             $(this).parent().siblings().removeClass('on');
+			$(this).parent().siblings().find('.hide_txt').remove();
             $(this).parent().addClass('on');
+            $(this).parent().append('<span class="hide_txt">현재 선택</span>');
             //console.log(tabIdx);
             telecomNum.eq(tabIdx).show();
             telecomNum.eq(tabIdx).siblings().hide();
@@ -3005,7 +3160,7 @@ window.telecomSlt = (function() {
     }
 })();
 
-// �щЪ硫붿씠��
+// 재물메이트
 window.bxConsultant = (function() {
     var el;
 
@@ -3034,7 +3189,7 @@ window.bxConsultant = (function() {
     }
 })();
 
-//2016-05-26 �댁쟾�� 媛��낆궗濡�
+//2016-05-26 운전자 가입사례
 window.joinCase = (function() {
     var el, tabBtnArea, tabBtnAreaLi, tabBtnAreaLiA, tabViewArea, tabViewAreaBox01, tabViewAreaBox02, clickViewbox01, clickViewbox02;
 
@@ -3072,8 +3227,8 @@ window.joinCase = (function() {
             var tabBtn = $(this).parent();
             var idx = $(this).parent().index();
 
-            $('.click_viewbox li').hide(); // �뚯씠釉� 珥덇린��
-            $('.click_area li').removeClass('on'); // 留먰뭾�� 珥덇린��
+            $('.click_viewbox li').hide(); // 테이블 초기화
+            $('.click_area li').removeClass('on'); // 말풍선 초기화
 
             if (!tabBtn.hasClass('on')) {
                 tabBtn.addClass('on');
@@ -3156,7 +3311,7 @@ window.joinCase = (function() {
 
 })();
 
-// �좊퀝�� 媛��낆궗濡� ��
+// 유병자 가입사례 팝
 window.uiItgrInsPop = (function() {
     var el, btn01, btn02, btn03;
 
@@ -3178,7 +3333,7 @@ window.uiItgrInsPop = (function() {
             $sickMenu.find('ul li').removeClass('active');
             $sickMenu.find('ul li a').removeClass('active');
             $sickMenu.find('ul li a .hide_txt').remove();
-            $(this).append('<span class="hide_txt">�꾩옱 �좏깮</span>');
+            $(this).append('<span class="hide_txt">현재 선택</span>');
             $(this).closest('li').addClass('active');
         });
 
@@ -3213,12 +3368,12 @@ window.uiItgrInsPop = (function() {
     }
 })();
 
- 170605 留덉씠�댁뭅�댄듃 �뚮줈�낅같�� 
+/* 170605 마이어카운트 플로팅배너 */
 var myAccount_floating = (function() {
     var num = 0;
 
     return {
-         170714
+        /* 170714
 
         move2:function(){
         	$('.bodyCon>ul').children('li').eq(num).children('.textCon').css('margin-top','50px');
@@ -3230,7 +3385,7 @@ var myAccount_floating = (function() {
         		num=0;
         	}
         }
-        
+        */
         move2: function() {
             //console.log("num::::::::::"+num);
 
@@ -3249,7 +3404,7 @@ var myAccount_floating = (function() {
 
 if (typeof window.etribe === 'undefined') window.etribe = {};
 
- 梨꾪똿李� 由ъ궗�댁쫰 & �쒕옒洹� 
+/* 채팅창 리사이즈 & 드래그 */
 window.etribe.chatDragResize = (function() {
     var window_resize_disable;
     var before_min_height;
@@ -3360,7 +3515,7 @@ window.etribe.chatDragResize = (function() {
             .resizable({
                 containment: 'document',
                 handles: 'all',
-                 handles: '.ui-resizable-handle', 
+                /* handles: '.ui-resizable-handle', */
                 maxHeight: 750,
                 maxWidth: 550,
                 minHeight: default_height,
@@ -3401,7 +3556,7 @@ window.etribe.chatDragResize = (function() {
             if (chattion_win.hasClass('isMin')) {
                 disableMinSize();
                 $('.chatbot_min').removeClass('isMin');
-				$('.chatbot_min').find('.hide_txt').text('梨쀫큸 �묎린');
+				$('.chatbot_min').find('.hide_txt').text('챗봇 접기');
             } else {
                 enableMinSize();
                 chattion_win.css({
@@ -3416,7 +3571,7 @@ window.etribe.chatDragResize = (function() {
                     'bottom': '10px'
                 });
                 $('.chatbot_min').addClass('isMin');
-				$('.chatbot_min').find('.hide_txt').text('梨쀫큸 �쇱튂湲�');
+				$('.chatbot_min').find('.hide_txt').text('챗봇 펼치기');
             }
             saveData();
         });
@@ -3425,10 +3580,10 @@ window.etribe.chatDragResize = (function() {
             if (window_resize_disable) {
                 return;
             }
-            
+            /*
              * chattion_win.position({ of: 'body', my: 'right bottom', at:
              * 'right bottom', collision: 'fit fit', top:'unset', left:'unset' })
-             
+             */
             saveData();
         });
     }
@@ -3490,10 +3645,10 @@ window.etribe.chatDragResize = (function() {
             if (window_resize_disable) {
                 return;
             }
-            
+            /*
              * chattion_win.position({ of: 'body', my: 'right bottom', at:
              * 'right bottom', collision: 'fit fit', top:'unset', left:'unset' })
-             
+             */
             saveData();
         });
     }
@@ -3507,6 +3662,11 @@ window.etribe.chatDragResize = (function() {
         if (window.document.documentMode > 10 || window.document.documentMode == undefined) {
             chattion_win.draggable('option', 'disabled', true);
             chattion_win.removeClass('ui-state-disabled').addClass('ui-resizable-disabled');
+			if (chattion_win.hasClass('isMin')) {
+				$('.chatbot_min').find('.hide_txt').text('챗봇 펼치기');
+			}else if(!chattion_win.hasClass('isMin')){
+				$('.chatbot_min').find('.hide_txt').text('챗봇 접기');		
+			}
         }
     }
 
@@ -3521,6 +3681,11 @@ window.etribe.chatDragResize = (function() {
         if (window.document.documentMode > 10 || window.document.documentMode == undefined) {
             chattion_win.draggable('option', 'disabled', false);
             chattion_win.removeClass('ui-resizable-disabled');
+			if (chattion_win.hasClass('isMin')) {
+				$('.chatbot_min').find('.hide_txt').text('챗봇 펼치기');
+			}else if(!chattion_win.hasClass('isMin')){
+				$('.chatbot_min').find('.hide_txt').text('챗봇 접기');		
+			}
         }
         var chat_position2 = {
             top: $('#chatbot_wrap').find('.chattion_win').css('top') + 104,
@@ -3575,7 +3740,7 @@ window.etribe.chatDragResize = (function() {
             before_min_height = chat_size.before_min_height;
 
             if (chat_size.height < after_min_height || chat_size.height == null) {
-                 ���대컢 ��뼱�몄꽌 height媛� 紐� �쎌뼱���� 1濡� �섏뼱�� 寃쎌슦 ��鍮� 
+                /* 타이밍 늦어져서 height값 못 읽어와서 1로 넘어올 경우 대비 */
                 chat_size.width = default_width;
                 $('#chatbot_wrap').find('.chattion_win').css({
                     'top': 'auto',
@@ -3614,6 +3779,11 @@ window.etribe.chatDragResize = (function() {
                 setTimeout(function() {
                     $('#chatbot_wrap').find('.chattion_win>.chatbot_min').addClass('isMin');
                     $('#chatbot_wrap').find('.chattion_win').removeClass('ui-state-disabled').addClass('ui-resizable-disabled isMin');
+					if (chattion_win.hasClass('isMin')) {
+						$('.chatbot_min').find('.hide_txt').text('챗봇 펼치기');
+					}else if(!chattion_win.hasClass('isMin')){
+						$('.chatbot_min').find('.hide_txt').text('챗봇 접기');		
+					}
                 }, 300);
             }
         }
@@ -3621,6 +3791,11 @@ window.etribe.chatDragResize = (function() {
             setTimeout(function() {
                 $('#chatbot_wrap').find('.chattion_win>.chatbot_min').addClass('isMin');
                 $('#chatbot_wrap').find('.chattion_win').removeClass('ui-state-disabled').addClass('ui-resizable-disabled isMin');
+				if (chattion_win.hasClass('isMin')) {
+					$('.chatbot_min').find('.hide_txt').text('챗봇 펼치기');
+				}else if(!chattion_win.hasClass('isMin')){
+					$('.chatbot_min').find('.hide_txt').text('챗봇 접기');		
+				}
             }, 300);
         }
 
@@ -3654,6 +3829,11 @@ window.etribe.chatDragResize = (function() {
                 min.removeClass('isMin').parent().css('height', '580px');
             } else {
                 min.addClass('isMin').parent().css('height', '95px');
+				if (chattion_win.hasClass('isMin')) {
+					$('.chatbot_min').find('.hide_txt').text('챗봇 펼치기');
+				}else if(!chattion_win.hasClass('isMin')){
+					$('.chatbot_min').find('.hide_txt').text('챗봇 접기');		
+				}
             }
         });
     }
@@ -3665,7 +3845,7 @@ window.etribe.chatDragResize = (function() {
 })();
 
 
-// 200218 : BHY : �뱀젒洹쇱꽦 �ъ빱�� 愿��� 異붽�
+// 200218 : BHY : 웹접근성 포커스 관련 추가
 window.chk_errmeritz = (function () {
     var ck_btn;
 
@@ -3686,7 +3866,7 @@ window.chk_errmeritz = (function () {
         var targetBtn = _this,
             errorText = $('.frmbox').find('.txt_error');
 
-        // �대낫�섎즺 �먮윭硫붿꽭吏� �ъ빱�ㅼ씠��
+        // 내보험료 에러메세지 포커스이동
         targetBtn.parents('.frmbox').find('.error').first().find('.txt_error').attr('tabindex', '0').focus();
         errorText.on('focusout', function(e) {
             $(this).removeAttr('tabindex');
@@ -3701,7 +3881,7 @@ window.chk_errmeritz = (function () {
 
 
 
-//梨쀫큸 �뚮줈�� 諛곕꼫 �쒕굹由ъ삤
+//챗봇 플로팅 배너 시나리오
 (function($) {
     'use strict'
     // namespace
@@ -3710,41 +3890,55 @@ window.chk_errmeritz = (function () {
 
 
     var ns = window.etribe.chatbot
-    *//**
-     * �곷떞濡쒕큸 紐щ뵒�� �됰룞�� �쒖뼱�쒕떎
-     *//*
+    /**
+     * 상담로봇 몬디의 행동을 제어한다
+     */
     ns.mondiManager = (function() {
         var type1, type2, type3, type4, popTween;
-        var chatTextArr = [
-            ['諛섍��뚯슂! ���� 紐щ뵒�쇨퀬 �댁슂.'],
-            ['蹂댄뿕�� 沅곴툑�� �� �쒓쾶 臾쇱뼱蹂댁꽭��!'],
-            [],
-            ['蹂댄뿕鍮꾧탳 �ъ씤��, �뚮젮�쒕┫源뚯슂?', '�먮쾲吏몃뒗 �곗씠吏� �딆쓬!!']
-        ]
-        var changeupTextArr = [
-            ['移섍낵移섎즺�� �ㅻ퉬蹂댄뿕�쇰줈 蹂댁옣諛쏆쓣 �� �덈떎? �녿떎?'],
-            ['留먰뭾�좎쓣 �뚮윭 �뺣떟�� �뺤씤�대낫�몄슂!'],
-            ['蹂댄뿕�곸떇 OX�댁쫰~ 留욎떠蹂댁꽭��!', '�먮쾲吏몃뒗 �곗씠吏� �딆쓬!!'],
-            ['蹂댄뿕�곸떇 OX�댁쫰~ 留욎떠蹂댁꽭��!', '�먮쾲吏몃뒗 �곗씠吏� �딆쓬!!']
-        ];
-        var nudgeTextArr = [
-            ['�먯꽭�� �뚯븘蹂쇱닔濡� 怨좊��섏떆二�?'],
-            ['鍮꾧탳�ъ씤��, �듭떖留� �뚮젮�쒕┫源뚯슂?'],
-            ['蹂댄뿕�곸떇 OX�댁쫰~ 留욎떠蹂댁꽭��!', '�먮쾲吏몃뒗 �곗씠吏� �딆쓬!!'],
-            ['蹂댄뿕媛��� 轅���, �뺤씤�대낫�몄슂!', '�먮쾲吏몃뒗 �곗씠吏� �딆쓬!!']
-        ];
-        var changeupTextArr2 = [
-            ['changeupTextArr2'],
-            ['changeupTextArr2changeupTextArr2'],
-            ['changeupTextArr2', '�먮쾲吏몃뒗 �곗씠吏� �딆쓬!!'],
-            ['changeupTextArr2changeupTextArr2changeupTextArr2', '�먮쾲吏몃뒗 �곗씠吏� �딆쓬!!']
-        ];
-
-        var lastWArr = [{
-            'bubble_txt': null,
-            'textWidth': null,
-            'textHeight': null
-        }];
+		var chatTextArr = [
+ 			       			['반가워요! 저는 인공지능 상담로봇 몬디입니다'],
+ 			       			['어려운 보험은 NO! 쉽게 알려드릴게요'],
+ 			       			['보험이 궁금할 때, 저에게 물어보세요'],
+ 			       			['보험이 궁금할 때, 저에게 물어보세요']
+ 			       		];
+    		var changeupTextArr = [
+    			['보험 가입할 때 무엇을 알아봐야 할까요?'],
+    			['보험 비교포인트, 하나씩 알려드릴게요'],
+    			['보험이 궁금할 때, 저에게 물어보세요'],
+    			['보험이 궁금할 때, 저에게 물어보세요']
+    		];
+    		var nudgeTextArr = [
+    			['나는 어떤 보험이 필요할까요?'],
+    			['어려운 보험은 NO! 쉽게 알려드릴게요'],
+    			['보험이 궁금할 때, 저에게 물어보세요'],
+    			['보험이 궁금할 때, 저에게 물어보세요']
+    		];
+    		var changeupTextArr2 = [
+    			['보험 가입할 때 무엇을 알아봐야 할까요?'],
+    			['보험 비교포인트, 하나씩 알려드릴게요'],
+    			['보험이 궁금할 때, 저에게 물어보세요'],
+    			['보험이 궁금할 때, 저에게 물어보세요']
+    		];
+          
+          var lastWArr = [
+	            {
+	                'bubble_txt': null,
+	                'textWidth': null,
+	                'textHeight': null
+	            },{
+	                'bubble_txt': null,
+	                'textWidth': null,
+	                'textHeight': null
+	            },{
+	                'bubble_txt': null,
+	                'textWidth': null,
+	                'textHeight': null
+	            },{
+	                'bubble_txt': null,
+	                'textWidth': null,
+	                'textHeight': null
+	            }
+          ];
         var currentType = "chatt_type";
 
         var imgConArr = ['/default/images/common/chattbot/ico_chatbot_body01.png', '/default/images/common/chattbot/ico_chatbot_body02.png', '/default/images/common/chattbot/ico_chatbot_body01.png', '/default/images/common/chattbot/ico_chatbot_body02.png'];
@@ -3796,7 +3990,7 @@ window.chk_errmeritz = (function () {
                         opacity: 1
                     }),
                     function() {
-                        // 190411 : BHY : 梨쀫큸 �リ린�앹꽦
+                        // 190411 : BHY : 챗봇 닫기생성
                         chatBotClose();
                     }])
 
@@ -4182,7 +4376,7 @@ window.chk_errmeritz = (function () {
             }
         }
 
-        // 留먯벐湲�
+        // 말쓰기
         function talking_bubble(dot, bubble_txt, bubble_type) {
             if (bubble_txt.length < 1) return;
             var textWidth = 0
@@ -4229,7 +4423,7 @@ window.chk_errmeritz = (function () {
 
             $('.txt_chat_last').hide()
 
-            // �꾪듃 留먰뭾�좎씪�� true
+            // 도트 말풍선일때 true
             if (dot == true) {
                 //	        $('.txt_chat01').hide()
                 //	        $('.dot_wrap').delay(300).fadeIn().delay(1700).fadeOut(0)
@@ -4261,7 +4455,7 @@ window.chk_errmeritz = (function () {
                 $('.txt_chat01').animate({
                     opacity: 1
                 }, 500).fadeIn();
-                // �꾪듃 留먰뭾�좎뾾�� 諛붾줈 �섏삱�� false
+                // 도트 말풍선없이 바로 나올때 false
             } else {
                 $('.dot_wrap').hide()
 
@@ -4285,7 +4479,7 @@ window.chk_errmeritz = (function () {
             }
         }
 
-        // 罹먮┃�� 蹂�寃� 愿��� 紐⑥뀡
+        // 캐릭터 변경 관련 모션
         function mondi_chang(mond_type) {
             //	      var mond_type
             //	      $('.chat_step01').fadeIn()
@@ -4310,7 +4504,7 @@ window.chk_errmeritz = (function () {
             //		      $('.chat_step03').delay(1400).fadeIn()
         }
 
-        // 留덉�留� 罹먮┃�곗� 留먰뭾�� 蹂�寃� 紐⑥뀡
+        // 마지막 캐릭터와 말풍선 변경 모션
         function final_ani() {
             $('.chat_mondi_con>div').css('opacity', 1);
             $('.chat_bubble').fadeOut()
@@ -4405,7 +4599,7 @@ window.chk_errmeritz = (function () {
             }
         }
 
-        // 梨꾪똿李� �댁쓣��
+        // 채팅창 떴을때
         function wait_move() {
             if (typeof(type1) != "undefined" && typeof(type1) != undefined) {
                 type1.seek(0.1).kill();
@@ -4461,7 +4655,7 @@ window.chk_errmeritz = (function () {
                 }))
         }
 
-        // 190411 : BHY : 梨쀫큸 �リ린�앹꽦
+        // 190411 : BHY : 챗봇 닫기생성
         function chatBotClose() {
             var $chatbotClose = $(".chatbotClose");
 
@@ -4477,9 +4671,9 @@ window.chk_errmeritz = (function () {
 
         return {
             init: function() {
-                *//**
-                 * �쟧nitialize
-                 *//*
+                /**
+                 * ①initialize
+                 */
                 // console.debug('mondi, int.');
                 //       impl.init()
             },
@@ -4508,11 +4702,11 @@ window.chk_errmeritz = (function () {
             },
             changeup: function(text, num) {
 
-                *//**
-                 * �≪쫱�쒖쟾�� �쒕굹由ъ삤 �ㅽ뻾
+                /**
+                 * ②즉시전환 시나리오 실행
                  *
-                 * @arguments - text (array) �몄텧�� 臾몄옄��
-                 *//*
+                 * @arguments - text (array) 노출될 문자열
+                 */
                 if (text && text.length) {
                     text = aryDefine(text);
                     changeupTextArr = text;
@@ -4535,11 +4729,11 @@ window.chk_errmeritz = (function () {
             },
             nudge: function(text, num) {
 
-                *//**
-                 * ��꽋吏� �쒕굹由ъ삤 �ㅽ뻾
+                /**
+                 * ③넛지 시나리오 실행
                  *
-                 * @arguments - text (array) �몄텧�� 臾몄옄��
-                 *//*
+                 * @arguments - text (array) 노출될 문자열
+                 */
                 if (text && text.length) {
                     text = aryDefine(text);
                     nudgeTextArr = text;
@@ -4564,11 +4758,11 @@ window.chk_errmeritz = (function () {
             },
             changeup2: function(text, num) {
 
-                *//**
-                 * �� �쏆� �ㅼ쓬 �쒕굹由ъ삤 �ㅽ뻾 (利됱떆�꾪솚 �쒕굹由ъ삤�� ��吏곸엫�� 媛숈븘�� 2濡� 紐낅챸)
+                /**
+                 * ④ 넛지 다음 시나리오 실행 (즉시전환 시나리오와 움직임이 같아서 2로 명명)
                  *
-                 * @arguments - text (array) �몄텧�� 臾몄옄��
-                 *//*
+                 * @arguments - text (array) 노출될 문자열
+                 */
                 if (text && text.length) {
                     text = aryDefine(text);
                     changeupTextArr2 = text;
@@ -4673,7 +4867,7 @@ window.chk_errmeritz = (function () {
                 var bannl = 0.5 * $('window').width() + 400;
             }
 
-            if (first == true) { //泥섏쓬 �쒖옉�좊븣留� 諛묒뿉�� �꾨줈 �щ씪��
+            if (first == true) { //처음 시작할때만 밑에서 위로 올라옴
                 $(".chatbanner").css({
                     'bottom': 0,
                     'left': 0,
@@ -4757,7 +4951,7 @@ window.chk_errmeritz = (function () {
                                 }
                                 $('*[id^=' + idName + ']').focus();
                                 
-                                //20190207 �뱀젒洹쇱꽦 愿��� �섏젙 (tabIndex 愿��� 臾댄븳猷⑦봽 �섏젙)
+                                //20190207 웹접근성 관련 수정 (tabIndex 관련 무한루프 수정)
                                 em.removeAttr('tabIndex');      
                                 
                                 
@@ -4788,7 +4982,7 @@ window.chk_errmeritz = (function () {
 
 
     nsUiComm.focusSet_ontoError2 = (function() {
-         tm�� 
+        /* tm용 */
         var impl = {
             init: function() {
                 var errorBox = $('.txt_error');
@@ -4798,7 +4992,7 @@ window.chk_errmeritz = (function () {
                         var p = errorBox.eq(j);
                         if (p.css('display') != 'none') {
                             var errorHtml = p.html();
-                            p.attr('tabIndex', 0).html('<span class="hide_txt">�ㅻ쪟�뚮┝</span>' + errorHtml).focus();
+                            p.attr('tabIndex', 0).html('<span class="hide_txt">오류알림</span>' + errorHtml).focus();
                             //							p.blur(function(){
                             //								p.parent().find('group').children('input').focus();
                             //								//alert(p.parent().find('group').length);
@@ -4833,13 +5027,13 @@ window.chk_errmeritz = (function () {
                 $('html').find('.bx_error').each(function() {
                     $(this).find('em').each(function() {
                         var errorMessage = $(this).text();
-                        $(this).attr('tabIndex', 0).html('<span class="hide_txt">�ㅻ쪟�뚮┝</span>' + errorMessage);
+                        $(this).attr('tabIndex', 0).html('<span class="hide_txt">오류알림</span>' + errorMessage);
 
                     });
                 });
                 $('html').find('.txt_error').each(function() {
                     var errorHtml = $(this).html();
-                    $(this).attr('tabIndex', 0).html('<span class="hide_txt">�ㅻ쪟�뚮┝</span>' + errorHtml);
+                    $(this).attr('tabIndex', 0).html('<span class="hide_txt">오류알림</span>' + errorHtml);
                 });
             }
         };
@@ -4865,10 +5059,10 @@ window.chk_errmeritz = (function () {
                     }
                     tabList.eq(dlabIdx).addClass('on');
                     $('.tabContentsCon').eq(dlabIdx).addClass('on');
-                    // - 2019.01.25 �뱀젒洹쇱꽦 愿��� �� hidden �띿뒪�� 異붽�
+                    // - 2019.01.25 웹접근성 관련 탭 hidden 텍스트 추가
                     tabList.find('.hide_txt').remove();
-                    tabList.eq(dlabIdx).append('<span class="hide_txt">�꾩옱 �좏깮</span>')
-                    // -// 2019.01.25 �뱀젒洹쇱꽦 愿��� �� hidden �띿뒪�� 異붽�
+                    tabList.eq(dlabIdx).append('<span class="hide_txt">현재 선택</span>')
+                    // -// 2019.01.25 웹접근성 관련 탭 hidden 텍스트 추가
                 })
             }
         };
@@ -4887,11 +5081,11 @@ window.chk_errmeritz = (function () {
                 dateFormat: 'yymmdd',
                 prevText: '<',
                 nextText: '>',
-                monthNames: ['1��', '2��', '3��', '4��', '5��', '6��', '7��', '8��', '9��', '10��', '11��', '12��'],
-                monthNamesShort: ['1��', '2��', '3��', '4��', '5��', '6��', '7��', '8��', '9��', '10��', '11��', '12��'],
-                dayNames: ['��', '��', '��', '��', '紐�', '湲�', '��'],
-                dayNamesShort: ['��', '��', '��', '��', '紐�', '湲�', '��'],
-                dayNamesMin: ['��', '��', '��', '��', '紐�', '湲�', '��'],
+                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+                dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
                 showOn: 'button',
                 buttonImage: '/default/images/common/ico_calendar.gif',
                 buttonImageOnly: true,
@@ -4911,7 +5105,7 @@ window.chk_errmeritz = (function () {
         };
     })();
 
-    //�뚮줈�� 諛곕꼫 �좊땲
+    //플로팅 배너 애니
     var nsUiComm = window.etribe.ui.comm;
 
     nsUiComm.floatBaAni = (function() {
@@ -4951,7 +5145,7 @@ window.chk_errmeritz = (function () {
         }
 
         function setTop() {
-            if ($(".floatSet_area").length > 0 && $("#tm>.bx_mydirect2").length > 0) {
+            if ($(".floatSet_area.insu").length > 0 && $("#tm>.bx_mydirect2").length > 0) {
                 var float = $(".floatSet_area");
                 var h = $("#tm>.bx_mydirect2").offset().top;
                 var l = $("#tm>.bx_mydirect2").offset().left;
@@ -4976,7 +5170,7 @@ window.chk_errmeritz = (function () {
 
     })();
 
-    //�앸뀈�붿씪 �낅젰�� ui 媛쒖꽑
+    //생년월일 입력란 ui 개선
     nsUiComm.birthCheck = (function() {
         var impl = {
             init: function() {
@@ -5034,7 +5228,7 @@ window.chk_errmeritz = (function () {
 
 })(window.jQuery)
 
-//蹂댁긽/蹂댄뿕湲덉껌援� : �댁쇅嫄곗＜�먯쟾�� 蹂댄뿕湲� �묒닔 李쎄뎄 �뚯씪�깅줉
+//보상/보험금청구 : 해외거주자전용 보험금 접수 창구 파일등록
 function add_file_fuc() {
     var file_add_btn = $('.file_add_btn');
     if (file_add_btn.length > 0) {
@@ -5047,7 +5241,7 @@ function add_file_fuc() {
             var td = board.find('tr:eq(1)').clone();
 
             board.find('tbody').append(th).append(td);
-            board.find('tr:last-child').prev().find('td').text('�뚯씪�좏깮' + (totalLen + 1));
+            board.find('tr:last-child').prev().find('td').text('파일선택' + (totalLen + 1));
             delete_fine_func('.btn_delfile');
 
         })
@@ -5069,12 +5263,21 @@ function delete_fine_func(obj) {
                     $(this).closest('tr').prev().remove();
                     $(this).closest('tr').remove();
                     for (var i = 0; i < totalLen; i++) {
-                        board.find('tr.th').eq(i).find('td').text('�뚯씪�좏깮' + (i + 1));
+                        board.find('tr.th').eq(i).find('td').text('파일선택' + (i + 1));
                     }
                 }
             });
         });
     }
+}
+
+function hashTagTrigHis(){
+	//챗봇 해시태그 트리거 클릭시 이력클래스 적용 200525
+	if( !!$('.hashTagCon > a').size() ){
+		$('.hashTagCon > a').on('click', function(arg){
+			$(this).addClass('clicked');
+		});
+	}
 }
 
 function sitemap_link() {
@@ -5086,13 +5289,13 @@ function sitemap_link() {
     });
 }
 
-// 2019.01.29 怨듭떆�뺣낫愿�由ъ�移� �뱀젒洹쇱꽦 �ㅽ겕濡� �섏젙(李멸퀬 : styleFormMethod)
+// 2019.01.29 공시정보관리지침 웹접근성 스크롤 수정(참고 : styleFormMethod)
 var styleFormMethod02 = function(obj) {
     var $ipt = $('.ipt'),
         $iptSlc = $('.ipt_select');
 
     var root = obj || $("body");
-    //textarea �먮룞�믪씠 議곗젅
+    //textarea 자동높이 조절
     if (root.find('textarea').length) {
         var textarea = root.find('textarea');
         var txtareaFnc = function() {
@@ -5100,7 +5303,7 @@ var styleFormMethod02 = function(obj) {
             textarea.on({
                 focusout: function() {
                     if ($(this).val().length == false) {
-                        // �볤�
+                        // 댓글
                         if ($(this).closest('.reply_list').length || $(this).closest('.reply_box').length) {
                             $(this).outerHeight(47);
                         } else {
@@ -5112,7 +5315,7 @@ var styleFormMethod02 = function(obj) {
         }
         txtareaFnc();
     }
-    //textarea �ㅽ겕濡� �붿옄��
+    //textarea 스크롤 디자인
     if (root.find('.txtarea').length) {
         if (root.find('.txtarea').hasClass('none') == false) {
             root.find('.txtarea .view').jScrollPane({
@@ -5123,6 +5326,45 @@ var styleFormMethod02 = function(obj) {
     }
 }
 
+// 20200521 : KJW : 상품 플로팅배너(보장분석/상담번호/채팅상담/탑 버튼) 스크롤 이벤트
+var ET_bestWScroll = function(){
+	var scroll_el = $('.bestWScroll'),
+		scroll_stand_cont = $('#tm').find('.chat_cta_form'),
+		scroll_stand_offT = scroll_stand_cont.offset().top,
+		scroll_stand_height = scroll_stand_cont.height(),
+		scroll_standard = scroll_stand_offT + (scroll_stand_height/2);
+	/* 스크롤인식 후 on off */
+	function scrollCheck(){
+		$(window).on('scroll',function(){
+			var winScroll = $(window).scrollTop();
+			if(winScroll > scroll_standard){
+				scroll_el.fadeIn();
+			}else{
+				scroll_el.fadeOut();
+			}
+		});
+	}
+	/* 해당 함수 초기세팅  */
+	function init(){
+		if(scroll_el.length > 0){
+			scrollCheck();
+		}
+	}
+
+	init();
+}
+
+pmmifloating = function(){
+	var check_ctaFloat = setInterval(function(){
+		if($('#pmmifloating').find('.fs_wrap.best').length > 0 && $('#tm').find('.bx_mydirect2').length > 0){
+			//플로팅배너 스크롤이벤트
+			ET_bestWScroll();
+			window.etribe.ui.comm.floatBaAni.init();
+		 	return clearInterval(check_ctaFloat);
+		}
+	}, 100);
+}
+
 $(function() {
     skip_navigating();
     tooltipMethod();
@@ -5131,14 +5373,19 @@ $(function() {
     termMenu();
     tabContent();
     window.main_de.init();
-    sitemap_link(); //2019.01.29 �뱀젒洹쇱꽦 �ъ씠�몃㏊ 愿��� �ъ빱��
-    //window.etribe.chatBanner_move();//梨꾪똿 諛곕꼫 ��吏곸엫
-    
+    sitemap_link(); //2019.01.29 웹접근성 사이트맵 관련 포커스
+    //window.etribe.chatBanner_move();//채팅 배너 움직임
     setTimeout(function() {
         //accordionMethod();
         skip_navigating();
         autocomplete();
-        styleFormMethod();
+        setTimeout(function(){
+            styleFormMethod();
+
+            //챗봇 해시태그 트리거 클릭시 이력클래스 적용 200525
+            hashTagTrigHis();
+            
+        },5000)
         tabHeight();
         uiFooter.init();
         // uiFrTab.init();
@@ -5151,29 +5398,21 @@ $(function() {
         replyMethod();
         uiReckoning.init();
         uiSnb.init();
-        idScroll.init(); //蹂댁옣�댁슜 踰꾪듉 �대┃ �대깽��
-        anchorVeiw.init(); //�곹뭹�곸꽭 瑗� �뚯븘�먯떎 �ы빆
-        topEvent.init(); //top踰꾪듉 �대깽��
-        siteFixMenu(); //�ъ씠�몃㏊
-        siteFixMenu02(); //�ъ씠�몃㏊(��)
+        idScroll.init(); //보장내용 버튼 클릭 이벤트
+        anchorVeiw.init(); //상품상세 꼭 알아두실 사항
+        topEvent.init(); //top버튼 이벤트
+        siteFixMenu(); //사이트맵
+        siteFixMenu02(); //사이트맵(대)
         prematToggle();
         sickMethod.init();
         uiCarSearch.init();
         uiMondiCarLayer.init();
         promotionEvent.init();
-        // uiLyer.init();	// 20170117 怨좎쁺�� 理쒖큹 �ㅽ뻾�댁쑀�놁쓬
-        //uiItgrInsPop.init(); // �좊퀝�� 媛��낆궗濡� ��
-        //joinCase.init();// �댁쟾�� 媛��낆궗濡�
-        //bxConsultant.init();//�щЪ硫붿씠��
-        //uiMain.init();//硫붿씤 湲곕뒫 �꾩껜 珥덇린��
-        //telecomSlt.init();//蹂몄씤�몄쬆 �듭떊�� �쎄� 2016-03-03
-        add_file_fuc(); //蹂댁긽蹂댄뿕湲� 泥�뎄 > �댁쇅嫄곗＜�먯쟾�� 蹂댄뿕湲� 泥�뎄 �뚯씪 �깅줉
-        delete_fine_func('.btn_delfile'); //蹂댁긽蹂댄뿕湲� 泥�뎄 > �댁쇅嫄곗＜�먯쟾�� 蹂댄뿕湲� 泥�뎄 �뚯씪 ��젣
-
-
-        chk_errmeritz.init(); //2020.02.18 �뱀젒洹쇱꽦 愿��� �곹뭹�덈궡 �섏씠吏� �곗륫, 以묎컙 "�� 蹂댄뿕猷� �뺤씤" error �ъ빱��
-
-         ie 10�댄븯 泥댄겕 
+        add_file_fuc(); //보상보험금 청구 > 해외거주자전용 보험금 청구 파일 등록
+        delete_fine_func('.btn_delfile'); //보상보험금 청구 > 해외거주자전용 보험금 청구 파일 삭제
+        
+        
+        /* ie 10이하 체크 */
         if (window.document.documentMode > 10 || window.document.documentMode == undefined) {
             window.etribe.chatDragResize.init();
         } else {
@@ -5181,43 +5420,48 @@ $(function() {
             //	window.etribe.chatDragResize.under_ie11();
             window.etribe.chatDragResize.init_u_ie11();
         }
-
+        
         window.etribe.ui.comm.errorTxtSet.init();
-
-
+        
+        
         setTimeout(function() {
             if ((".tm_bd_tabInCon").length > 0) {
                 window.etribe.ui.comm.tmTab.init();
             }
-            //if((".et_datepicker").length>0){window.etribe.ui.comm.datePicker.init();}
-            if ($('#pmmifloating').find('.fs_wrap.best').length > 0) {
-                window.etribe.ui.comm.floatBaAni.init();
-            }
-            //window.etribe.ui.comm.birthCheck.init();
+            
+			
+			if($('#tm').find('.bx_mydirect2').length > 0){
+				ET_bestWScroll();
+			}
+            chk_errmeritz.init(); //2020.02.18 웹접근성 관련 상품안내 페이지 우측, 중간 "내 보험료 확인" error 포커스
+
+            //챗봇 해시태그 트리거 클릭시 이력클래스 적용 200525
+            hashTagTrigHis();
+
         }, 1500);
-
-
+        
     }, 1000);
 
     setTimeout(function() {
         accordionMethod();
         historyOn();
         historyTit();
-        //200220 : BHY :  �뱀젒洹쇱꽦 �ъ궗 HIDEEN
-        // $("#ccName").focus();
+        tabsTotal();
+        tabsCar();
+        $("#ccName").focus();
     }, 1500);
 
 
-     180129 
+    /* 180129 */
     setTimeout(function() {
         skip_navigating();
         uiFrTab.init();
         uiSideLayer.init();
-        styleFormMethod02(); //2019.01.29 �뱀젒洹쇱꽦 愿��� ie �ㅽ겕濡� view
-        //200220 : BHY :  �뱀젒洹쇱꽦 �ъ궗 HIDEEN
-        // $("#ccName").focus();
+        styleFormMethod02(); //2019.01.29 웹접근성 관련 ie 스크롤 view
+        $("#ccName").focus();
 
     }, 2500);
+    
 });
 
 function mLayer() {
@@ -5236,7 +5480,7 @@ function carTodayCancel(){
 }
 
 
-// �뚯궗�뚭컻 - 硫붾━痢� 諛쒖옄痍� 
+// 회사소개 - 메리츠 발자취 
 function historyOn(){
     var lastHistoryCnt = $(".history .history_ul>li:last");
     lastHistoryCnt.addClass("on");
@@ -5248,4 +5492,190 @@ function historyTit(){
         historyTit.parent().removeClass("on");
         $(this).parent('h3').parent().addClass("on");
     });
-}*/
+}
+
+
+// 새 탭 정리
+function tabsTotal() {
+	$(function(){  	
+		$(".tabBox > ul > li > a").on('click',function() {
+			var $this = $(this).parent();
+			if(!$this.hasClass("on")){  			
+				tabChoice($this);
+				$this.find(".tabs > li").eq(0).addClass("on");
+				$this.find(".tabs > li").eq(0).siblings().removeClass("on");
+			}
+		}) 	
+		$(".tabs > li > a").on('click',function() {   	
+			var $this = $(this).parent();		
+			tabChoice($this);
+		})   	
+		function tabChoice(el){
+			el.addClass("on"); 
+			el.siblings().removeClass("on"); 
+		}
+	});
+}
+
+function tabsCar() {
+    $(function() {
+        $(".car_prov .prov_tab li").on("click",function() {
+            $(this).parent().find("li").addClass("on");
+            $(this).siblings().removeClass("on");
+        });
+        $(".car_prov .prov_tab li:first").addClass("on");
+    });
+}
+
+// 200623 : KSH : 스크롤 있는 팝업에서 필요시 높이값 리셋하는 기능
+function scrollReset(){
+	$(".layer_wrap_in.scrollResetFunc").on("click",function(){
+		$('.doscroll .layer_content').jScrollPane({
+                mouseWheelSpeed: 100,
+                hijackInternalLinks: true,
+                animateScroll: true
+            });
+	})
+}
+
+// 200623 : KSH : 스크롤 있는 팝업에서 필요시 높이값 리셋하는 기능
+function all_agree() {
+    $(function() {
+        setTimeout(function() {
+           var element = $('.doscroll .layer_content').jScrollPane({
+                mouseWheelSpeed: 100,
+                hijackInternalLinks: true,
+                animateScroll: true
+            });
+            var api = element.data('jsp');
+            var btnTopVal = $('.mobile_regi_btn').offset().top;
+            api.scrollToY(btnTopVal);
+        });
+    });
+}
+
+// 200706 : BHY : 채팅배너 리뉴얼
+// @ 챗봇 세트별 지연시간은 개발로직에서 30초, 마지막 60초 세팅되어 있음.
+window.uiNewChatBanner = (function () {
+    var obj = {}, opt = {};
+    function init(text, idxTtx) {
+        tagSet();
+        readySet(text, idxTtx);
+    }
+    
+    // DOM
+    function tagSet(text, idxTtx) {
+        obj.target        = document.querySelector(".newChatBanner");
+        obj.inner         = obj.target.querySelector(".inner");
+        obj.mask          = obj.inner.querySelector(".mask");
+        obj.swiperWrapper = obj.mask.querySelector(".swiper-wrapper");
+        obj.swiperSlide   = obj.swiperWrapper.children;
+        obj.pdCta         = document.querySelector(".btn_cta_comm");
+        obj.tmCta         = document.getElementById("callHeader");
+        
+        opt.scroll        = null;
+        opt.active        = "open";
+        opt.tmPos         = "tmPos";
+        opt.dummyArr      = [
+                                ['반가워요! 저는 인공지능 상담로봇 몬디입니다.'],
+                                ['메리츠 올바른 정기보험을 소개할께요! 더자세히 알아보세요!'],
+                                ['말풍선을 눌러 "정기보험 비교포인트" 알아보세요'],
+                                ['올바른 정기보험, 더 자세히 알아볼까요?']
+                            ];
+    };
+    
+    // 기본체크 : 시나리오, 랜딩 하단 CTA
+    function readySet(text, idxTtx) {
+        if (text.length > 0) {
+            // 30초후 시나리오 업데이트시 DOM초기화
+            domResetFunc();
+            opt.dummyArr = text;
+            setScenario();
+        }
+    }
+
+    // 시나리오 DOM 셋팅
+    function setScenario() {
+        var frag = document.createDocumentFragment();
+
+        opt.dummyArr.forEach(function (item) {
+            obj.creatElm = document.createElement("div");
+            obj.creatElm.classList.add("swiper-slide");
+            obj.span = document.createElement("span");
+            obj.creatElm.appendChild(obj.span);
+            obj.span.textContent = item;
+
+            frag.appendChild(obj.creatElm);
+        });
+        obj.swiperWrapper.appendChild(frag);
+
+        setScenarioSlide();
+    }
+
+    // 시나리오 셋팅이 끝나면 API호출
+    function setScenarioSlide() {
+
+        var scenario_swiper = new Swiper('.slide_scenario', {
+            loop: false,
+            speed: 700,
+            direction: 'vertical',
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                stopOnLastSlide: true,         // true : 마지막슬라이드에서 멈춘다. (loop: true 제외)
+            },
+            touchRatio: 0,
+            roundLengths: true,
+            simulateTouch: false,
+            autoplayDisableOnInteraction: false
+            // debugger: true,
+        });
+
+        // 30초후 시나리오 업데이트시 swiper업데이트
+        if (obj.swiperSlide.length > 0) {
+            scenario_swiper.update();
+        }
+        // chatbotPause(scenario_swiper)
+        chatbotScrollCheck(scenario_swiper);
+    }
+    
+    // DOM초기화 함수
+    function domResetFunc() {
+        if (obj.swiperSlide.length > 0) {
+            obj.swiperWrapper.textContent = '';
+        }
+    }   
+    
+    // 스크롤 체크 함수
+    function chatbotScrollCheck(scenario_swiper){
+        $(window).scroll(function(){
+            var footerOffset = $("#footer").offset().top;
+            var scrollValue = $(window).scrollTop();
+            var windowHeight = $(window).height();
+            var chatBannerWarp = $(".newChatBanner");
+
+            if(scrollValue+windowHeight <= footerOffset){
+                chatBannerWarp.removeClass("hideChat");
+                chatbotStart(scenario_swiper);
+            }else{
+                chatBannerWarp.addClass("hideChat");
+                chatbotPause(scenario_swiper);
+            }
+        })
+    }
+
+
+    // 일시정지 기능
+    function chatbotPause(scenario_swiper){
+        scenario_swiper.autoplay.stop();
+    }
+
+    // 재생 기능
+    function chatbotStart(scenario_swiper){
+        scenario_swiper.autoplay.start();
+    }
+
+    return {
+        init: init
+    }
+})();

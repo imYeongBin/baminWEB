@@ -1,18 +1,17 @@
 (function(angular, mz) {
-	
 	mz.core.factory('util', mz.mold(function(layerPop) {
 		var o = {};
-		
-		//�대��� �곗냽踰덊샇 �ㅻ쪟 DATA
+
+		//휴대폰 연속번호 오류 DATA
 		var MOB_ERROR = ['00000000','11111111','22222222',
 		                 '33333333','44444444','55555555','66666666','77777777','88888888','99999999'];
 		
-		var TEL_ERROR_NUM1 = ['02']; //�먰깮,吏곸옣踰덊샇泥댄겕...
+		var TEL_ERROR_NUM1 = ['02']; //자택,직장번호체크...
 
 		var TEL_ERROR_NUM2 = ['031','032','033','041','042','043','044','051','052','053','054','055',
-			     		      '061','062','063','064','070','080']; //�먰깮,吏곸옣踰덊샇泥댄겕...
+			     		      '061','062','063','064','070','080']; //자택,직장번호체크...
 
-		var TEL_ERROR_NUM3 = ['0130','0303','0502','0505','0506','0507','0707','0504']; //�먰깮,吏곸옣踰덊샇泥댄겕...
+		var TEL_ERROR_NUM3 = ['0130','0303','0502','0505','0506','0507','0707','0504']; //자택,직장번호체크...
 
 		
 		
@@ -21,7 +20,7 @@
 		};
 
 		//StringUtil
-		//二쇱뼱吏� 臾몄옄�댁씠 null �먮뒗 怨듬갚�� 寃쎌슦 李� 諛섑솚
+		//주어진 문자열이 null 또는 공백일 경우 참 반환
 		o.isEmpty = function(s) {
 			if (!_.isString(s)) return false;
 			if (s == null || s === '') {
@@ -30,44 +29,44 @@
 			return false;
 		};
 
-		//�낅젰�� 臾몄옄�댁씠 �レ옄�� �뚰뙆踰노줈留� 援ъ꽦�섏뼱�덈뒗吏� 泥댄겕
+		//입력된 문자열이 숫자와 알파벳로만 구성되어있는지 체크
 		o.isAlphaNumeric = function(s) {
 			if (!_.isString(s)) return false;
 			return /^[A-Za-z0-9]+$/.test(s);
 		};
 
-		//�낅젰�� 臾몄옄�댁씠 �レ옄濡쒕쭔 援ъ꽦�섏뼱�덈뒗吏� 泥댄겕
+		//입력된 문자열이 숫자로만 구성되어있는지 체크
 		o.isNumeric = function(s) {
 			if (!_.isString(s)) return false;
 			return /^[0-9]+$/.test(s);
 		};
 
-		//�낅젰�� 臾몄옄�댁씠 �뚰뙆踰노줈留� 援ъ꽦�섏뼱�덈뒗吏� 泥댄겕
+		//입력된 문자열이 알파벳로만 구성되어있는지 체크
 		o.isAlpha = function(s) {
 			if (!_.isString(s)) return false;
 			return /^[A-Za-z]+$/.test(s);
 		};
 
-		//�낅젰�� 臾몄옄�댁씠 �쒓�濡쒕쭔 援ъ꽦�섏뼱 �덈뒗吏� 泥댄겕
+		//입력된 문자열이 한글로만 구성되어 있는지 체크
 		o.isHangul = function(s) {
 			if (!_.isString(s)) return false;
-			return /^[��-��|��-��|媛�-��]+$/.test(s);
+			return /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$/.test(s);
 		};
 		
-		//�낅젰�� 臾몄옄�댁씠 �쒓�, �뚰뙆踰녹쑝濡쒕쭔 援ъ꽦�섏뼱 �덈뒗吏� 泥댄겕
+		//입력된 문자열이 한글, 알파벳으로만 구성되어 있는지 체크
 		o.isHangulAlpha = function(s) {
 			if (!_.isString(s)) return false;
-			return /^[��-��|��-��|媛�-��|A-Z|a-z]+$/.test(s);
+			return /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|A-Z|a-z]+$/.test(s);
 		};
 
-		//�대떦�섎뒗 臾몄옄�댁뿉 ���� 湲몄씠 諛섑솚
+		//해당하는 문자열에 대한 길이 반환
 		o.getLength = function(s) {
 			if (!_.isString(s)) return 0;
 			return s.length;
 		};
 
-		//�대떦�섎뒗 臾몄옄�댁뿉 ���댁꽌 byte �⑥쐞�� ���댁꽌 湲몄씠 怨꾩궛�댁꽌 珥� 湲몄씠 諛섑솚
-		//�쒓��� 3Byte
+		//해당하는 문자열에 대해서 byte 단위에 대해서 길이 계산해서 총 길이 반환
+		//한글은 3Byte
 		o.getByteLength = function(s) {
 			if (!_.isString(s)) return 0;
 			var b, i, c = 0;
@@ -75,25 +74,25 @@
 			return b;
 		};
 
-		//臾몄옄�댁쓽 �쇱そ�� 怨듬갚 臾몄옄�� �쒓굅
+		//문자열의 왼쪽의 공백 문자열 제거
 		o.leftTrim = function(s) {
 			if (!_.isString(s)) return '';
 			return s.replace(/^\s+/, "");
 		};
 
-		//臾몄옄�댁쓽 �ㅻⅨ履쎌쓽 怨듬갚 臾몄옄�� �쒓굅
+		//문자열의 오른쪽의 공백 문자열 제거
 		o.rightTrim = function(s) {
 			if (!_.isString(s)) return '';
 			return s.replace(/\s+$/, "");
 		};
 
-		//臾몄옄�댁쓽 怨듬갚 臾몄옄�� �쒓굅
+		//문자열의 공백 문자열 제거
 		o.trim = function(s) {
 			if (!_.isString(s)) return '';
 			return s.replace(/^\s+|\s+$/g, "");
 		};
 
-		//�대떦�섎뒗 臾몄옄�댁뿉 ���댁꽌 �낅젰�� 湲몄씠留뚰겮 遺�議깊븳 湲몄씠瑜� �쇱そ遺��� 怨듬갚�쇰줈 梨꾩썙�ｋ뒗��.
+		//해당하는 문자열에 대해서 입력된 길이만큼 부족한 길이를 왼쪽부터 공백으로 채워넣는다.
 		o.leftPad = function(s, len, c) {
 			if (!_.isString(s) || !_.isString(c)) return '';
 			if (!_.isNumber(len) || len <= o.getLength(s)) return s;
@@ -106,7 +105,7 @@
 			return s;
 		};
 
-		//�대떦�섎뒗 臾몄옄�댁뿉 ���댁꽌 �낅젰�� 湲몄씠留뚰겮 遺�議깊븳 湲몄씠瑜� �ㅻⅨ履쎈��� 吏��뺣맂 臾몄옄濡� 梨꾩썙�ｋ뒗��.
+		//해당하는 문자열에 대해서 입력된 길이만큼 부족한 길이를 오른쪽부터 지정된 문자로 채워넣는다.
 		o.rightPad = function(s, len, c) {
 			if (!_.isString(s) || !_.isString(c)) return '';
 			if (!_.isNumber(len) || len <= o.getLength(s)) return s;
@@ -134,26 +133,26 @@
 			return x1 + x2;
 		};
 
-		//�낅젰�� 臾몄옄�댁씠 二쇱뼱吏� 臾몄옄�닿낵 �쇱튂�섎뒗 紐⑤뱺 臾몄옄�댁쓣 諛붽퓭�쇳븷 臾몄옄�대줈 蹂�寃�
+		//입력된 문자열이 주어진 문자열과 일치하는 모든 문자열을 바꿔야할 문자열로 변경
 		o.replaceAll = function(s, bs, as) {
 			if (!_.isString(s) || !_.isString(bs) || !_.isString(as)) return '';
 			return s.split(bs).join(as);
 		};
 
-		//HTML tag媛� �ㅼ뼱�덈뒗 臾몄옄�댁뿉 ���� unescape�댁���.
+		//HTML tag가 들어있는 문자열에 대해 unescape해준다.
 		o.replaceHtmlEscape = function(s) {
 			if (!_.isString(s)) return '';
 			return _.escape(s);
 		};
 
-		//unescaped�� 臾몄옄�댁뿉 ���� HTML tag �뺥깭濡� 諛붽퓭以���.
+		//unescaped된 문자열에 대해 HTML tag 형태로 바꿔준다.
 		o.removeEscapeChar = function(s) {
 			if (!_.isString(s)) return '';
 			return _.unescape(s);
 		};
 
 		//DateUtil
-		//�낅젰�� �쇱옄媛� �좏슚�� �쇱옄�몄� 泥댄겕
+		//입력된 일자가 유효한 일자인지 체크
 		o.isDate = function(s) {
 			if (!_.isString(s) || o.isEmpty(s) || o.getLength(s) != 8) return false;
 
@@ -179,7 +178,7 @@
 			return true;
 		};
 
-		//�낅젰�� �쒓컙�� �좏슚�쒖� 泥댄겕
+		//입력된 시간이 유효한지 체크
 		o.isTime = function(s) {
 			if (!_.isString(s) || o.isEmpty(s) || o.getLength(s) != 6) return false;
 
@@ -202,7 +201,7 @@
 			return true;
 		};
 		
-		//�낅젰�� �쒓컙�� �좏슚�쒖� 泥댄겕
+		//입력된 시간이 유효한지 체크
 		o.isHour = function(s) {
 			if (!_.isString(s) || o.isEmpty(s) || o.getLength(s) != 2) return false;
 
@@ -215,7 +214,7 @@
 			return true;
 		};
 		
-		//�낅젰諛쏆� �쇱옄瑜� Date�뺤쑝濡� 蹂���
+		//입력받은 일자를 Date형으로 변환
 		o.strToDate = function(s) {
 			if (!_.isString(s)) return null;
 
@@ -265,7 +264,7 @@
 						case "fff":
 							return o.leftPad('' + d.getMilliseconds(), 3, '0');
 						case "a/p":
-							return d.getHours() < 12 ? "�ㅼ쟾" : "�ㅽ썑";
+							return d.getHours() < 12 ? "오전" : "오후";
 						default:
 							return $1;
 					}
@@ -277,14 +276,14 @@
 			return '';
 		};
 
-		//�낅젰諛쏆� �쇱옄�� �붿씪 諛섑솚
+		//입력받은 일자의 요일 반환
 		o.getDayOfWeek = function(s) {
 			if (!o.isDate(s)) return '';
-			var week = ['��', '��', '��', '��', '紐�', '湲�', '��'];
+			var week = ['일', '월', '화', '수', '목', '금', '토'];
 			return week[o.strToDate(s).getDay()];
 		};
 
-		//�낅젰諛쏆� �� �좎쭨 �ъ씠�� �쇱옄 怨꾩궛
+		//입력받은 두 날짜 사이의 일자 계산
 		o.getDay = function(sd, ed) {
 			if (!o.isDate(sd) || !o.isDate(ed)) return -1;
 			if (Number(ed) < Number(sd)) return -2;
@@ -296,7 +295,7 @@
 			return Math.floor(diffTime / (1000 * 60 * 60 * 24));
 		};
 
-		//�낅젰諛쏆� �쇱옄�� ���댁꽌 �대떦 �쇰쭔�� �뷀븳 �쇱옄 諛섑솚. 留덉씠�덉뒪 �쇱옄�� �낅젰諛쏆� �쇱옄蹂대떎 �댁쟾�� �쇱옄濡� 怨꾩궛�댁꽌 諛섑솚
+		//입력받은 일자에 대해서 해당 일만큼 더한 일자 반환. 마이너스 일자는 입력받은 일자보다 이전의 일자로 계산해서 반환
 		o.addDays = function(s, d, f) {
 			if (!o.isDate(s) || !_.isNumber(d)) return '';
 			var newDt = o.strToDate(s);
@@ -304,7 +303,7 @@
 			return o.formatDate(newDt, f || 'yyyymmdd');
 		};
 
-		//�낅젰諛쏆� �쇱옄�� ���댁꽌 �대떦 媛쒖썡�섎쭔�� �뷀븳 �쇱옄 諛섑솚. 留덉씠�덉뒪 媛쒖썡�섎뒗 �낅젰諛쏆� �쇱옄蹂대떎 �댁쟾 �쇱옄濡� 怨꾩궛�댁꽌 諛섑솚
+		//입력받은 일자에 대해서 해당 개월수만큼 더한 일자 반환. 마이너스 개월수는 입력받은 일자보다 이전 일자로 계산해서 반환
 		o.addMonths = function(s, m, f) {
 			if (!o.isDate(s) || !_.isNumber(m)) return '';
 			var newDt = o.strToDate(s);
@@ -312,7 +311,7 @@
 			return o.formatDate(newDt, f || 'yyyymmdd');
 		};
 
-		//�낅젰諛쏆� �쇱옄�� ���댁꽌 �대떦 �꾩닔留뚰겮 �뷀븳 �쇱옄 諛섑솚. 留덉씠�덉뒪 �꾩닔�� �낅젰諛쏆� �쇱옄蹂대떎 �댁쟾 �쇱옄濡� 怨꾩궛�댁꽌 諛섑솚
+		//입력받은 일자에 대해서 해당 년수만큼 더한 일자 반환. 마이너스 년수는 입력받은 일자보다 이전 일자로 계산해서 반환
 		o.addYears = function(s, y, f) {
 			if (!o.isDate(s) || !_.isNumber(y)) return '';
 			var newDt = o.strToDate(s);
@@ -320,7 +319,7 @@
 			return o.formatDate(newDt, f || 'yyyymmdd');
 		};
 
-		//�낅젰諛쏆� �쇱옄�� 留덉�留� �� 諛섑솚
+		//입력받은 일자에 마지막 일 반환
 		o.getLastDay = function(s, f) {
 			if (!o.isDate(s)) return '';
 			var newDt = o.strToDate(s);
@@ -350,7 +349,7 @@
 		};
 
 		//ValidationUtil
-		//臾몄옄�댁쓽 湲몄씠媛� 理쒖냼, 理쒕� 湲몄씠 �ъ씠�� 議댁옱�섎뒗吏� 泥댄겕
+		//문자열의 길이가 최소, 최대 길이 사이에 존재하는지 체크
 		o.isRangeLength = function(s, min, max) {
 			if (!_.isString(s) || !_.isNumber(min) || !_.isNumber(max)) return false;
 
@@ -362,7 +361,7 @@
 			return false;
 		};
 
-		//臾몄옄�댁쓽 湲몄씠媛� byte �⑥쐞濡� 怨꾩궛�덉쓣�� 理쒖냼, 理쒕� 湲몄씠 �ъ씠�� 議댁옱�섎뒗吏� 泥댄겕
+		//문자열의 길이가 byte 단위로 계산했을때 최소, 최대 길이 사이에 존재하는지 체크
 		o.isRangeByteLength = function(s, min, max) {
 			if (!_.isString(s) || !_.isNumber(min) || !_.isNumber(max)) return false;
 
@@ -374,7 +373,7 @@
 			return false;
 		};
 
-		//�낅젰�� �대찓�쇱＜�뚭� �좏슚�쒖씠硫붿씪二쇱냼�몄� 寃�利앺븳��.
+		//입력된 이메일주소가 유효한이메일주소인지 검증한다.
 		o.isEmail = function(s) {
 			if (!_.isString(s)) return false;
 			return /^([0-9a-zA-Z]+)([0-9a-zA-Z\._-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,3}$/.test(s);
@@ -396,14 +395,14 @@
 			return val.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/, "$1-$2-$3");
 		};
 		
-		//�몃뱶�곗뿰�띻컳��踰덊샇泥댄겕(AS-IS濡쒖쭅)
+		//핸드폰연속같은번호체크(AS-IS로직)
 		o.checkSameTelNo = function(s) {
 			var sameCnt = 0;
 			var ret = false;
 			
 			s = o.phoneFormat(s);
 			
-			//�곗냽�� �レ옄 泥댄겕..
+			//연속된 숫자 체크..
 			var array = s.split("-");
 			var str   = array[1] + '' + array[2];
 			
@@ -411,7 +410,7 @@
 			  var chr_pass_0 = str.charAt(0);
 			  var chr_pass_1 = str.charAt(i);
 			 
-			  //�숈씪臾몄옄 移댁슫��
+			  //동일문자 카운트
 			  if(chr_pass_0 == chr_pass_1) sameCnt++;
 
 			}	
@@ -420,12 +419,12 @@
 			return ret;
 		};
 
-		//�낅젰�� �대��곕쾲�멸� �좏슚�� 踰덊샇�몄� 寃�利앺븳��.
+		//입력된 휴대폰번호가 유효한 번호인지 검증한다.
 		o.isMobile = function(s) {
 			if (!_.isString(s)) return false;
 			
 			var checkSameNo = _.find(MOB_ERROR, function(v){
-				 //�곗냽踰덊샇 �먮윭媛� �ы븿�� 寃쎌슦 �ㅻ쪟踰덊샇 由ы꽩
+				 //연속번호 에러가 포함된 경우 오류번호 리턴
 				 return s.indexOf(v) > -1;
 			 });
 			
@@ -437,7 +436,7 @@
 			return /^(?:(010-?\d{4})|(01[1|6|7|8|9]-?\d{3,4}))-?(\d{4})$/.test(s);
 		};
 
-		//�낅젰�� �꾪솕踰덊샇媛� �좏슚�� 踰덊샇�몄� 寃�利앺븳��.
+		//입력된 전화번호가 유효한 번호인지 검증한다.
 		o.isTel = function(s) {
 			if (!_.isString(s)) return false;
 			
@@ -554,95 +553,30 @@
 		};
 
 		/**
-		 * �ㅻ낫�쒕낫��/媛��곹궎�⑤뱶 �낅젰 object
+		 * 키보드보안/가상키패드 입력 object
 		 */
-		o.getInputEncData = function(ids, formObj) {
-			var inputData = {
-				ids: ids,
-				transkeyUuid: tk.transkeyUuid
-			};
-			var isMakeEncData = false;
-			var idsBuf = "";
-			for (var i = 0; i < ids.length; i++) {
-				var id = ids[i];
-				//var tkCheckObj = document.getElementsByName("Tk_" + id + "_checkbox");
-				//var tkCheckObj = document.getElementById("Tk_" + id + "_checkbox");
-				var tkCheckObj = $("input[type=hidden][name=Tk_" + id + "_checkbox]");
-				var tkCheckVal = "";
-				if (tkCheckObj == undefined) {
-					tkCheckVal = "e2e";
-				} else {
-					//tkCheckVal = tkCheckObj.value;
-					tkCheckVal = tkCheckObj.val();
-				}
-				if (tkCheckVal == 'transkey') {
-					//媛��곹궎�⑤뱶�쇨꼍��
-					var values = tk.inputFillEncData(document.getElementById(id)); //inputFillEncData 濡쒖쭅 �쒖썙�� �꾩넚�댁빞 ��
-					var name = document.getElementById(id).name;
-					var hidden = values.hidden;
-					var hmac = values.hmac;
-					inputData["name_" + id] = name;
-					inputData["hidden_" + id] = hidden;
-					inputData["hmac_" + id] = hmac;
-				} else if (tkCheckVal == 'e2e') {
-					//�ㅻ낫�쒕낫�덉씪 寃쎌슦
-					if (!isMakeEncData) {
-						if (TK_makeEncData(formObj)) {
-							inputData.hid_key_data = encodeURIComponent(document.getElementById("hid_key_data").value);
-							inputData.hid_enc_data = encodeURIComponent(document.getElementById("hid_enc_data").value);
-							isMakeEncData = true;
-						}
-					}
-				}
-				inputData["Tk_" + id + "_checkbox"] = tkCheckVal;
-			}
-			return inputData;
-		};
 
 		/**
-		 * 紐⑤컮�� 媛��곹궎�⑤뱶 �낅젰 object
+		 * 모바일 가상키패드 입력 object
 		 */
-		o.getMobileInputEncData = function(ids, formObj) {
-			var inputData = {
-				ids: ids,
-				transkeyUuid: mtk.transkeyUuid
-			};
-			var isMakeEncData = false;
-			var idsBuf = "";
-			for (var i = 0; i < ids.length; i++) {
-				var id = ids[i];
-
-				//媛��곹궎�⑤뱶�쇨꼍��
-				var values = mtk.inputFillEncData(document.getElementById(id)); //inputFillEncData 濡쒖쭅 �쒖썙�� �꾩넚�댁빞 ��
-				var name = document.getElementById(id).name;
-				var hidden = values.hidden;
-				var hmac = values.hmac;
-				inputData["name_" + id] = name;
-				inputData["hidden_" + id] = hidden;
-				inputData["hmac_" + id] = hmac;
-
-				inputData["Tk_" + id + "_checkbox"] = 'transkey';
-			}
-			return inputData;
-		};
 
 		/**
-		 * �먰깮/吏곸옣踰덊샇 4�먮━ �좏슚�� 泥댄겕...
+		 * 자택/직장번호 4자리 유효성 체크...
 		 */
 		o.isTelFstNum = function(number){
 			var fNum = '';
 			if(number && number.length > 3){
-				//�먯옄由ш퉴吏�泥댄겕
+				//두자리까지체크
 				fNum = _.find(TEL_ERROR_NUM1, function(v){
 					return number.substring(0,2).indexOf(v) > -1;
 				});
 				if(!fNum){
-					//�몄옄由ъ껜��
+					//세자리체크
 					fNum = _.find(TEL_ERROR_NUM2, function(v){
 						return number.substring(0,3).indexOf(v) > -1;
 					});
 					if(!fNum){
-						//�ㅼ옄由ъ껜��
+						//네자리체크
 						fNum = _.find(TEL_ERROR_NUM3, function(v){
 							return number.substring(0,4).indexOf(v) > -1;
 						});
@@ -658,7 +592,7 @@
 		};
 		
 		/**
-		 * �붾㈃ �ㅽ겕濡� �대룞
+		 * 화면 스크롤 이동
 		 */
 		o.goScroll = function(id) {
 			var offset = $('#'+id).offset().top;
@@ -670,42 +604,20 @@
 		};
 		
 		/**
-		 * direct 吏곹뙋 url 
+		 * direct 직판 url 
 		 */
-		o.getDirectHost = function() {
-			var directUrl = "";
-			if (mz.ENVIRINFODIVCD == 'D') {
-				directUrl = "https://storedev.meritzfire.com:19144/"; 
-			} else if (mz.ENVIRINFODIVCD == 'T') {
-				directUrl = "https://storetest.meritzfire.com:19144/";
-			} else {
-				directUrl = "https://store.meritzfire.com/";
-			}
-			return directUrl;
-		};
 		
 		/**
-		 * �ル낫��(ppmint) 吏곹뙋 url 
+		 * 펫보험(ppmint) 직판 url 
 		 */
-		o.getPetHost = function() {
-			var directUrl = "";
-			if (mz.ENVIRINFODIVCD == 'D') {
-				directUrl = "https://wwwdev.ppmint.com:19146/";
-			} else if (mz.ENVIRINFODIVCD == 'T') {
-				directUrl = "https://wwwtest.ppmint.com:19146/";
-			} else {
-				directUrl = "https://www.ppmint.com/";
-			}
-			return directUrl;
-		};
 		
 		/**
-		 * 荑좏궎 �뗮똿 
+		 * 쿠키 셋팅 
 		 */
 		o.setCookie = function(name,value,expiredays){
 			var todayDate = new Date(); 
 			if (expiredays == null){
-				 // 荑좏궎媛� ���λ맆 湲곌컙�� �ㅼ젙 null �쇨꼍�� default �섎（ 
+				 // 쿠키가 저장될 기간을 설정 null 일경우 default 하루 
 				 expiredays = 1;
 			}
 			todayDate.setDate( todayDate.getDate() + expiredays ); 
@@ -715,7 +627,7 @@
 		
 
 		/**
-		 * 荑좏궎 媛��몄삤湲� 
+		 * 쿠키 가져오기 
 		 */
 		o.getCookie = function(name){
 			var nameOfCookie = name + "="; 
@@ -741,5 +653,5 @@
 		
 		return o;
 	}));
-	
+
 })(angular, mz);

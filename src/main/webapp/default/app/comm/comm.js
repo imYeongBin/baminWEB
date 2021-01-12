@@ -12,14 +12,14 @@
 (function(angular, mz) {
 	 
 	mz.load('default/app/comm/', [
-		'config.js',
+		//'config.js',
 		'controller.js',
 		'directive.js',
 		'filter.js',
 		'http.js',
-		'paging.js',
-		'provider.js',
-		'search.js',
+		//'paging.js',
+		//'provider.js',
+		//'search.js',
 		'service.js',
 		'util.js' 
 	],true); 

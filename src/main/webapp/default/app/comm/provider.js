@@ -12,7 +12,7 @@
 (function(angular, mz) {
 	
 	// resolve provider
-	mz.comm.provider('resolve', mz.mold(function() {
+/*	mz.comm.provider('resolve', mz.mold(function() {
 		this.$get = function() {
 			return this;
 		};
@@ -23,12 +23,12 @@
 				}),
 				paramInit: mz.mold(function(location) {
 					return location.init();
-				})/*,
+				}),
 				logging: mz.mold(function(wiselog) {
 					return wiselog.logging();
 				})
-				*/
+				
 			};
 		};
-	}));
+	}));*/
 })(angular, mz);

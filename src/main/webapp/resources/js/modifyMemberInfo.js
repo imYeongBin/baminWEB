@@ -13,7 +13,7 @@ app.controller('comm', function($scope, $http, $location,$q,$timeout) {
 	/*  private  */
 	
 	function init(){
-		retrieveMemberInfo();
+		//retrieveMemberInfo();
 		$scope.attCnt=0;
 		$scope.feeBalance=0;
 		$scope.showGangseoFlag=false;
@@ -35,7 +35,9 @@ app.controller('comm', function($scope, $http, $location,$q,$timeout) {
 	function retrieveLctnCode(){
 		
 		var fn= _$post;
-		var param = {};
+		var param = {
+				
+		};
 		
 		return fn(retrieveLctnCodeUrl,param).then(function(result){
 			var r_tm = new Date();
@@ -59,7 +61,7 @@ app.controller('comm', function($scope, $http, $location,$q,$timeout) {
 	
 	
 	 function retrieveMemberInfo(){
-		
+		debugger;
 		var fn= _$post;
 		var param={
 				memberNo : "",

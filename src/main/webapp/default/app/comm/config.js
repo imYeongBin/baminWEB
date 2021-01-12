@@ -11,22 +11,8 @@
  */
 (function(angular,mz){
 	
-	mz.core.config(mz.mold(function(blockUIConfig) {
-		blockUIConfig.templateUrl = mz.path('/views/comm/loading.tpl', true);
-	}));
-	
-	mz.comm.config(mz.mold(function(routeProvider){
+/*	mz.comm.config(mz.mold(function(routeProvider){
 		routeProvider.resolve({
-			analysis : mz.mold(function($q, $timeout, analysis){
-				var p = $q.defer();
-				$timeout(function() {
-					analysis.gAnalytics();
-					analysis.gTagMgr();
-					analysis.fbPCodeComm();
-				});
-				p.resolve();
-				return p.promise;
-			}),
 			clear: mz.mold(function($timeout, layerPop, $window) {
 				$timeout(function() {
 					//layer_popup_container clear...
@@ -38,13 +24,10 @@
 				});
 				return true;
 			}),
-			session: mz.mold(function(session) {
-				return session.test();
-			}),
 			paramInit: mz.mold(function(location) {
 				return location.init();
 			})
 		});
-	}));
+	}));*/
 	
 })(angular,mz);

@@ -10,18 +10,20 @@
 			},
 			error: function() {
 				//404 html
+				alert("404 에러 낫쪄염 뿌우~");
 				location.replace("/bamin/error.do");
 			},
 			complete: function() {
 				try {
 					angular.element(document).ready(function() {
-						angular.bootstrap(document, ['myApp']);
+						angular.bootstrap(document, ['app']);
 					});
+					console.log("try success");
 				} catch (err) {
 					console.log("##########");
 					console.log(err);
 					//error 
-					location.replace("/bamin/error.do");
+					alert("run 에서 에러낫쪄염 뿌우 ~");
 				}
 			}
 		});
